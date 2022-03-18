@@ -1,0 +1,42 @@
+
+    <div class="container">
+        <h2 class="text-center">Registrarse</h2>
+        <form id="registro" method="post" class="">
+            <div class="form-row ">
+                <div class="form-group col-md-6">
+                    <label for="inputName">Nombre:</label>
+                    <input type="text" class="form-control" id="inputName" name="nombre" placeholder="Nombre" maxlength="15" pattern="[A-Za-z ]{2,15}" title="Introduce entre 2 y 15 letras" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputSurName">Apellidos:</label>
+                    <input type="text" class="form-control" id="inputSurName" name="apellidos" placeholder="Apellidos" maxlength="15" pattern="[A-Za-z ]{2,15}" title="Introduce entre 2 y 15 letras" required>
+                  </div>
+              <div class="form-group col-md-6">
+                <label for="inputNameUser">Nombre de usuario:</label>
+                <input type="text" class="form-control" id="inputNameUser" name="nombreUsuario" placeholder="Nombre de usuario" maxlength="15" pattern="[A-Za-z ]{2,15}" title="Introduce entre 2 y 15 letras" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="Email" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Contraseña</label>
+                <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña" name="password"  pattern="[A-Za-z0-9 ]{2,15}" title="Introduce entre 2 y 15 letras y números" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword42">Repite la contraseña</label>
+                <input type="password" class="form-control" id="inputPassword42" placeholder="Contraseña" name="password"  pattern="[A-Za-z0-9 ]{2,15}" title="Introduce entre 2 y 15 letras y números" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="admin">Administrador </label>
+                <select name="admin">
+                    <option value="no">No</option>
+                    <option value="si">Sí</option>
+                </select>
+              </div>
+            </div>
+            <p id="mensajeError" class="bg-danger w-50 mt-3 text-white"></p>
+            <button type="submit" class="btn btn-primary mt-3">Registrarse</button>
+            <span class="bg-success" id="resultadoRegistro"></span>
+          </form>
+    </div>
