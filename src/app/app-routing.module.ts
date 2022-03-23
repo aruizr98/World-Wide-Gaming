@@ -13,8 +13,8 @@ const routes: Routes = [
   {path:"eventos", component:EventosComponent},
   {path:"IniciarSesion", component:IniciarSesionComponent},
   {path:"Registrarse", component:RegistrarseComponent},
-  {path:"Micuenta", component:MiCuentaComponent},
-  {path:"ListaMensajes", component:MiCuentaComponent},
+  {path:"MiCuenta", component:MiCuentaComponent},
+  {path:"ListaMensajes", component:ListaMensajesComponent},
 ];
 
 @NgModule({
