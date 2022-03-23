@@ -10,7 +10,7 @@ import { ListaMensajesComponent } from './lista-mensajes/lista-mensajes.componen
 const routes: Routes = [
   {path:"", component:CarrouselComponent},
   {path:"inicio", component:CarrouselComponent},
-  {path:"eventos", component:EventosComponent},
+  {path:"Eventos", component:EventosComponent},
   {path:"IniciarSesion", component:IniciarSesionComponent},
   {path:"Registrarse", component:RegistrarseComponent},
   {path:"MiCuenta", component:MiCuentaComponent},
