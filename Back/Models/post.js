@@ -4,8 +4,8 @@ var mongoose=require("mongoose");
 var Schema= mongoose.Schema;
 
 var postSchema=Schema({
-    id:Number,
-    UsuarioCreador:Number,
+    id:String,
+    UsuarioCreador:String,
     Titulo:String,
     TextoPost:String,
     FechaHora:String,

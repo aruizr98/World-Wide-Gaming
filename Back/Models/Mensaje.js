@@ -4,9 +4,9 @@ var mongoose=require("mongoose");
 var Schema= mongoose.Schema;
 
 var mensajeSchema=Schema({
-    id:Number,
-    Receptor:Number,
+    id:String,
+    Receptor:String,
     Mensaje:String,
-    Emisor:Number
+    Emisor:String
 });
 module.exports=mongoose.model("Mensaje", mensajeSchema);

@@ -4,7 +4,7 @@ var mongoose=require("mongoose");
 var Schema= mongoose.Schema;
 
 var juegoSchema=Schema({
-    id:Number,
+    id:String,
     NombreJuego:String,
     LimiteUsuarios:Number
 });
