@@ -37,10 +37,10 @@ var controller={
                 evento:eventoStored
             });
         });
-        return res.status(200).send({
-            evento:evento,
-            message:"Método save"
-        })
+        // return res.status(200).send({
+        //     evento:evento,
+        //     message:"Método save"
+        // })
     },
     mostrarEvento:function(req, res){
         var idEvento=req.params.id;

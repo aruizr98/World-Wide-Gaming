@@ -16,7 +16,8 @@ var controller={
         post.save((err, postStored) =>{
             if(err){
                 return res.status(500).send({
-                    message:"Error al guardar"
+                    message:"Error al guardar",
+                    error:err
                 })
             }
             if(!postStored){
@@ -28,9 +29,9 @@ var controller={
                 post:postStored
             });
         });
-        return res.status(200).send({
-            post:post
-        })
+        // return res.status(200).send({
+        //     post:post
+        // })
     },
     mostrarPost:function(req, res){
         var idPost=req.params.id;

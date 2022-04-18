@@ -34,10 +34,10 @@ var controller={
                 juego:juegoStored
             });
         });
-        return res.status(200).send({
-            juego:juego,
-            message:"Método save"
-        })
+        // return res.status(200).send({
+        //     juego:juego,
+        //     message:"Método save"
+        // })
     },
     mostrarJuego:function(req, res){
         var idJuego=req.params.id;
@@ -110,45 +110,42 @@ var controller={
             })
         })
     },
-    subirImagen: function(req, res){
-        var idJuego=req.params.id;
-        var nombreArchivo="Imagen no subida";
+    // subirImagen: function(req, res){
+    //     var idJuego=req.params.id;
+    //     var nombreArchivo="Imagen no subida";
 
-        if(req.files){
-            var rutaImagen=req.files.image.path;
-            var rutaSplit=rutaImagen.split("\\");
-            var nombreImagen=rutaSplit[1];
-            var extensionSplit=nombreImagen.split(".");
-            var extensionImagen=extensionSplit[1];
+    //     if(req.files){
+    //         var rutaImagen=req.files.image.path;
+    //         var rutaSplit=rutaImagen.split("\\");
+    //         var nombreImagen=rutaSplit[1];
+    //         var extensionSplit=nombreImagen.split(".");
+    //         var extensionImagen=extensionSplit[1];
 
-            if(extensionImagen == "png" || extensionImagen == "jpg" || extensionImagen == "jpeg" || extensionImagen=="gif"){
-                 Juego.findByIdAndUpdate(idJuego, {FotoPerfil:nombreImagen},{new:true}, (err, juegoUpdated)=>{
-                if(err){
-                     return res.status(500).send({
-                    message:"La imagen no se ha subido"
-                })};
-                if(!juegoUpdated){
-                    return res.status(404).send({
-                        message:"El juego no existe"
-                    });
-                }
-                return res.status(200).send({
-                    juego:juegoUpdated
-                })
-            })
-            }else{
-                fs.unlink(rutaImagen, (err)=>{
-                    return res.status(200).send({
-                        message:"La extensión no es válida."
-                    })
-                })
-            }
-
-
-           
+    //         if(extensionImagen == "png" || extensionImagen == "jpg" || extensionImagen == "jpeg" || extensionImagen=="gif"){
+    //              Juego.findByIdAndUpdate(idJuego, {FotoPerfil:nombreImagen},{new:true}, (err, juegoUpdated)=>{
+    //             if(err){
+    //                  return res.status(500).send({
+    //                 message:"La imagen no se ha subido"
+    //             })};
+    //             if(!juegoUpdated){
+    //                 return res.status(404).send({
+    //                     message:"El juego no existe"
+    //                 });
+    //             }
+    //             return res.status(200).send({
+    //                 juego:juegoUpdated
+    //             })
+    //         })
+    //         }else{
+    //             fs.unlink(rutaImagen, (err)=>{
+    //                 return res.status(200).send({
+    //                     message:"La extensión no es válida."
+    //                 })
+    //             })
+    //         }
             
-        }
-    }
+    //     }
+    // }
 }
 
 module.exports=controller;

@@ -35,10 +35,10 @@ var controller={
                 mensaje:mensajeStored
             });
         });
-        return res.status(200).send({
-            mensaje:mensaje,
-            message:"Método save"
-        })
+        // return res.status(200).send({
+        //     mensaje:mensaje,
+        //     message:"Método save"
+        // })
     },
     mostrarMensaje:function(req, res){
         var idMensaje=req.params.id;
@@ -111,45 +111,45 @@ var controller={
     //         })
     //     })
     // },
-    subirImagen: function(req, res){
-        var idMensaje=req.params.id;
-        var nombreArchivo="Imagen no subida";
+    // subirImagen: function(req, res){
+    //     var idMensaje=req.params.id;
+    //     var nombreArchivo="Imagen no subida";
 
-        if(req.files){
-            var rutaImagen=req.files.image.path;
-            var rutaSplit=rutaImagen.split("\\");
-            var nombreImagen=rutaSplit[1];
-            var extensionSplit=nombreImagen.split(".");
-            var extensionImagen=extensionSplit[1];
+    //     if(req.files){
+    //         var rutaImagen=req.files.image.path;
+    //         var rutaSplit=rutaImagen.split("\\");
+    //         var nombreImagen=rutaSplit[1];
+    //         var extensionSplit=nombreImagen.split(".");
+    //         var extensionImagen=extensionSplit[1];
 
-            if(extensionImagen == "png" || extensionImagen == "jpg" || extensionImagen == "jpeg" || extensionImagen=="gif"){
-                 Mensaje.findByIdAndUpdate(idMensaje, {FotoPerfil:nombreImagen},{new:true}, (err, mensajeUpdated)=>{
-                if(err){
-                     return res.status(500).send({
-                    message:"La imagen no se ha subido"
-                })};
-                if(!mensajeUpdated){
-                    return res.status(404).send({
-                        message:"El mensaje no existe"
-                    });
-                }
-                return res.status(200).send({
-                    mensaje:mensajeUpdated
-                })
-            })
-            }else{
-                fs.unlink(rutaImagen, (err)=>{
-                    return res.status(200).send({
-                        message:"La extensión no es válida."
-                    })
-                })
-            }
+    //         if(extensionImagen == "png" || extensionImagen == "jpg" || extensionImagen == "jpeg" || extensionImagen=="gif"){
+    //              Mensaje.findByIdAndUpdate(idMensaje, {FotoPerfil:nombreImagen},{new:true}, (err, mensajeUpdated)=>{
+    //             if(err){
+    //                  return res.status(500).send({
+    //                 message:"La imagen no se ha subido"
+    //             })};
+    //             if(!mensajeUpdated){
+    //                 return res.status(404).send({
+    //                     message:"El mensaje no existe"
+    //                 });
+    //             }
+    //             return res.status(200).send({
+    //                 mensaje:mensajeUpdated
+    //             })
+    //         })
+    //         }else{
+    //             fs.unlink(rutaImagen, (err)=>{
+    //                 return res.status(200).send({
+    //                     message:"La extensión no es válida."
+    //                 })
+    //             })
+    //         }
 
 
            
             
-        }
-    }
+    //     }
+    // }
 }
 
 module.exports=controller;
