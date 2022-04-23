@@ -15,25 +15,25 @@
         </li>
         <li class="nav-item dropdown">
           <a class="btn m-1 botonNavegacion" href="#" id="navbarDarkDropdownMenuLink" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          Foros
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-          <li><a class="dropdown-item">League Of Legends</a></li>
-          <li><a class="dropdown-item">Rocket League</a></li>
-          <li><button class="dropdown-item">Counter Strike:GO</button></li>
-          <li><button class="dropdown-item">Tekken 7</button></li>
-          <li><button class="dropdown-item">Minecraft</button></li>
-          <li><button class="dropdown-item">COD: Warzone</button></li>
-          <li><button class="dropdown-item">Valorant</button></li>
-          <li><button class="dropdown-item">World Of Warcraft</button></li>
-          <li><button class="dropdown-item">Splatoon 2</button></li>
-          <li><button class="dropdown-item">Mario Kart 8</button></li>
-          <li><button class="dropdown-item">Stardew Valley</button></li>
-          <li><button class="dropdown-item">Team Fortress 2</button></li>
-          <li><button class="dropdown-item">Payday 2</button></li>
-          <li><button class="dropdown-item">GTA V</button></li>
-        </ul>
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Foros
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item">League Of Legends</a></li>
+            <li><a class="dropdown-item">Rocket League</a></li>
+            <li><button class="dropdown-item">Counter Strike:GO</button></li>
+            <li><button class="dropdown-item">Tekken 7</button></li>
+            <li><button class="dropdown-item">Minecraft</button></li>
+            <li><button class="dropdown-item">COD: Warzone</button></li>
+            <li><button class="dropdown-item">Valorant</button></li>
+            <li><button class="dropdown-item">World Of Warcraft</button></li>
+            <li><button class="dropdown-item">Splatoon 2</button></li>
+            <li><button class="dropdown-item">Mario Kart 8</button></li>
+            <li><button class="dropdown-item">Stardew Valley</button></li>
+            <li><button class="dropdown-item">Team Fortress 2</button></li>
+            <li><button class="dropdown-item">Payday 2</button></li>
+            <li><button class="dropdown-item">GTA V</button></li>
+          </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="btn  m-1 botonNavegacion" [routerLink]="['/Eventos']">
@@ -41,26 +41,28 @@
           </a>
         </li>
         <div>
-          <button type="button" class="btn btn-outline-primary me-2 m-1"
-            id="botoniniciarSesion" [routerLink]="['/IniciarSesion']">Iniciar sesión</button>
-          <button id="botonRegistrarse" type="button"
-            class="btn btn-warning m-1" [routerLink]="['/Registrarse']">Registrarse</button>
+          <button type="button" class="btn btn-outline-primary me-2 m-1" id="botoniniciarSesion"
+            [routerLink]="['/IniciarSesion']" *ngIf="!this.localStorage && !this.sessionStorage">Iniciar sesión</button>
+          <button id="botonRegistrarse" type="button" class="btn btn-warning m-1" [routerLink]="['/Registrarse']"
+            *ngIf="!this.localStorage && !this.sessionStorage">Registrarse</button>
 
-          <div id="conectadoComo" style="display:none;">
-            <a class="nav-link dropdown-toggle text-success m-1" href="#" id="navbarDarkDropdownMenuLink" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="miCuenta.html">Mi cuenta</a></li>
-              <li><a class="dropdown-item" href="biblioteca.html">Mi biblioteca</a></li>
-              <li><button class="dropdown-item" id="botonCerrarSesion">Cerrar Sesión</button></li>
-            </ul>
-          </div>
-
-
+          <!-- <button class="btn btn-outline-primary me-2 m-1" *ngIf="this.localStorage ||this.sessionStorage">Mi
+            Cuenta</button> -->
+          
         </div>
-
+        <li class="nav-item dropdown" *ngIf="this.localStorage ||this.sessionStorage">
+          <a class="btn btn-primary" href="#" id="navbarDarkDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Mi Cuenta
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/MiCuenta']">Mi cuenta</a></li>
+            <li><a class="dropdown-item" href="biblioteca.html">Mi biblioteca</a></li>
+            <li><button class="dropdown-item"  [routerLink]="['/CerrarSesion']">Cerrar Sesión</button></li>
+          </ul>
+          <button class="btn btn-warning m-1" *ngIf="this.localStorage ||this.sessionStorage">Lista de Mensajes</button>
+        </li>
+        
       </ul>
 
 
