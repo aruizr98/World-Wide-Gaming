@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Usuario} from "../models/usuario";
 import {UsuarioService} from "../services/usuario.service";
-import { Global } from '../services/Global';
+import { Global } from '../services/global';
 @Component({
   selector: 'app-registrarse',
   templateUrl: './registrarse.component.html',
@@ -11,6 +11,7 @@ import { Global } from '../services/Global';
 export class RegistrarseComponent implements OnInit {
   public usuario:Usuario;
   public url:string;
+  public status:boolean;
   constructor(
     private _usuarioService:UsuarioService
   ) {
@@ -25,6 +26,9 @@ export class RegistrarseComponent implements OnInit {
     this._usuarioService.guardarUsuario(this.usuario).subscribe(
       response => {
         console.log(response);
+        if(response.usuario){
+          this.status=true;
+        }
         
       },
       error =>{
