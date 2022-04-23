@@ -6,6 +6,9 @@ import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.componen
 import {RegistrarseComponent } from './registrarse/registrarse.component';
 import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
 import { ListaMensajesComponent } from './lista-mensajes/lista-mensajes.component';
+import{CerrarSesionComponent} from './cerrar-sesion/cerrar-sesion.component';
+import { ModuleWithProviders } from '@angular/core';
+
 
 const routes: Routes = [
   {path:"", component:CarrouselComponent},
@@ -14,7 +17,9 @@ const routes: Routes = [
   {path:"IniciarSesion", component:IniciarSesionComponent},
   {path:"Registrarse", component:RegistrarseComponent},
   {path:"MiCuenta", component:MiCuentaComponent},
+  {path:"CerrarSesion", component:CerrarSesionComponent},
   {path:"ListaMensajes", component:ListaMensajesComponent},
+  {path:"**", component:CarrouselComponent}
 ];
 
 @NgModule({
