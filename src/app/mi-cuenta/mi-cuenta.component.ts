@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mi-cuenta.component.css']
 })
 export class MiCuentaComponent implements OnInit {
-
+  public nombreUsuario:string;
   constructor() { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("nombreUsuario") !=undefined){
+      this.nombreUsuario = localStorage.getItem("nombreUsuario")
+    }else{
+      this.nombreUsuario=sessionStorage.getItem("nombreUsuario")
+    }
   }
 
 }
