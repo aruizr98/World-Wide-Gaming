@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Usuario} from "../models/usuario";
-import { Global } from './Global';
+import { Global } from './global';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +22,10 @@ export class UsuarioService {
     let headers=new HttpHeaders().set("content-type", "application/json");
 
     return this._http.post(this.url+"guardarUsuario", params, {headers:headers});
+   }
+   listarUsuarios(){
+    let headers=new HttpHeaders().set("content-type", "application/json");
+
+    return this._http.get(this.url+"usuarios", {headers:headers});
    }
 }
