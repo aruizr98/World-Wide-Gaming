@@ -2,62 +2,60 @@
   Usuario creado correctamente.
 </div>
 <div class="container">
-  <h2 class="text-center">Registrarse</h2>
   <form id="registro" #formularioRegistro="ngForm" (ngSubmit)="onSubmit(formularioRegistro)">
+    <h1 class="h3 mb-3 fw-normal">Registrarse</h1>
     <div class="form-row ">
-      <div class="form-group col-md-6">
-        <label for="inputNameUser">Nombre de usuario:</label>
+      <div class="form-group col-md-12 form-floating">
         <input type="text" class="form-control" id="inputNameUser" name="nombreUsuario" #NombreUsuario="ngModel"
-          [(ngModel)]="usuario.NombreUsuario" placeholder="Nombre de usuario" maxlength="15" pattern="[A-Za-z0-9 ]{3,15}"
+          [(ngModel)]="usuario.NombreUsuario" placeholder="Nombre de usuario" maxlength="15" pattern="[A-Za-z ]{3,15}"
           title="Introduce entre 2 y 15 letras" required>
-        <span class="alert alert-danger d-block mt-2" *ngIf="NombreUsuario.touched && !NombreUsuario.valid">El nombre de
+        <label for="inputNameUser">Nombre de usuario</label>
+        <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="NombreUsuario.touched && !NombreUsuario.valid">El nombre de
           usuario es obligatorio y debe tener como mínimo 3 caracteres</span>
-          <span class="alert alert-danger d-block mt-2" *ngIf="this.NombreUsuarioRepetido">El nombre de
-            usuario ya esta siendo utilizado en otra cuenta. Por favor, escoge otro.</span>
       </div>
-      <div class="form-group col-md-6">
-        <label for="inputName">Nombre:</label>
+      <div class="form-group col-md-12 form-floating">
         <input type="text" class="form-control" id="inputName" name="nombre" #Nombre="ngModel"
           [(ngModel)]="usuario.Nombre" placeholder="Nombre" maxlength="15" pattern="[A-Za-z ]{3,15}"
           title="Introduce entre 2 y 15 letras" required>
-        <span class="alert alert-danger d-block mt-2" *ngIf="Nombre.touched && !Nombre.valid">El nombre es obligatorio y
+        <label for="inputName">Nombre</label>
+        <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="Nombre.touched && !Nombre.valid">El nombre es obligatorio y
           debe tener como mínimo 3 caracteres</span>
       </div>
-      <div class="form-group col-md-6">
-        <label for="inputSurName">Apellidos:</label>
+      <div class="form-group col-md-12 form-floating">
         <input type="text" class="form-control" id="inputSurName" name="apellidos" #Apellidos="ngModel"
           [(ngModel)]="usuario.Apellidos" placeholder="Apellidos" maxlength="15" pattern="[A-Za-z ]{2,15}"
           title="Introduce entre 2 y 15 letras" required>
-        <span class="alert alert-danger d-block mt-2" *ngIf="Apellidos.touched && !Apellidos.valid">Los apellidos son
+        <label for="inputSurName">Apellidos</label>
+        <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="Apellidos.touched && !Apellidos.valid">Los apellidos son
           obligatorios</span>
       </div>
 
-      <div class="form-group col-md-6">
-        <label for="inputEmail4">Email</label>
+      <div class="form-group col-md-12 form-floating">
         <input type="email" class="form-control" id="inputEmail4" name="email" #Correo="ngModel"
           [(ngModel)]="usuario.Correo" placeholder="Email" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" required>
-        <span class="alert alert-danger d-block mt-2" *ngIf="Correo.touched && !Correo.valid">El email es obligatorio y
+        <label for="inputEmail4">Email</label>
+        <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="Correo.touched && !Correo.valid">El email es obligatorio y
           debe tener el formato NombreEmail@NombreDominio.com,es,org...</span>
       </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword4">Contraseña</label>
+      <div class="form-group col-md-12 form-floating">
         <input type="password" class="form-control" id="inputPassword4" #Contrasenya="ngModel"
           [(ngModel)]="usuario.Contrasenya" placeholder="Contraseña" name="password" pattern="[A-Za-z0-9 ]{2,15}"
           title="Introduce entre 2 y 15 letras y números" required>
-        <span class="alert alert-danger d-block mt-2" *ngIf="Contrasenya.touched && !Contrasenya.valid">La contraseña es
+        <label for="inputPassword4">Contraseña</label>
+        <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="Contrasenya.touched && !Contrasenya.valid">La contraseña es
           obligatoria y debe tener entre 2 y 15 caracteres</span>
       </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword42">Repite la contraseña</label>
+      <div class="form-group col-md-12 form-floating">
         <input type="password" class="form-control" id="inputPassword42" #Contrasenya2="ngModel"
         [(ngModel)]="usuario.Contrasenya2" placeholder="Repite la contraseña" name="password2"
           pattern="[A-Za-z0-9 ]{2,15}" title="Introduce entre 2 y 15 letras y números" required>
+        <label for="inputPassword42">Repite la contraseña</label>
       </div>
-      <span class="alert alert-danger d-block mt-2" *ngIf="Contrasenya2.touched && !Contrasenya2.valid">La contraseña es
+      <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="Contrasenya2.touched && !Contrasenya2.valid">La contraseña es
         obligatoria y debe tener entre 2 y 15 caracteres</span>
-      <span class="alert alert-danger d-block mt-2" *ngIf="Contrasenya2.touched && usuario.Contrasenya != usuario.Contrasenya2">Las contraseñas deben ser iguales</span>
+      <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="Contrasenya2.touched && usuario.Contrasenya != usuario.Contrasenya2">Las contraseñas deben ser iguales</span>
         
-      <div class="form-group col-md-6">
+      <div id="administrar" class="form-group col-md-12">
         <label for="admin" class="mt-2">Administrador </label>
         <select name="admin" #Administrador="ngModel" [(ngModel)]="usuario.Administrador">
           <option value=false selected>No</option>
@@ -65,7 +63,7 @@
         </select>
       </div>
     </div>
-    <input type="submit" class="btn btn-primary mt-3" value="Registrarse" [disabled]="!formularioRegistro.form.valid" />
+    <input type="submit" class="w-100 btn btn-primary mt-3" value="Registrarse" [disabled]="!formularioRegistro.form.valid" />
     <span class="bg-success" id="resultadoRegistro"></span>
   </form>
 </div>

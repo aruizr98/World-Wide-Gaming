@@ -13,7 +13,6 @@ import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.componen
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
 import { ListaMensajesComponent } from './lista-mensajes/lista-mensajes.component';
-import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
     RegistrarseComponent,
     MiCuentaComponent,
     ListaMensajesComponent,
-    CerrarSesionComponent,
     
   ],
   imports: [
