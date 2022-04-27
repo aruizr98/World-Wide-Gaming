@@ -11,19 +11,17 @@ var rutas=require("./Routes/rutas");
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-// CORS
+// Configurar cabeceras y CORS
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
 
 // rutas
-// app.get("/test", (req, res) =>{
-//     res.status(200).send({
-//         mensaje:"Hola mundo desde mi API de NodeJS"
-//     }) 
-// })
-// app.get("/", (req, res) =>{
-//     res.status(200).send(
-//         "<h1>Página de inicio</h1>"
-//     ) 
-// })
 app.use("/api", rutas);
 // Exportar 
 module.exports = app;
