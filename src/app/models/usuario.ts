@@ -1,4 +1,5 @@
 export class Usuario{
+    public Contrasenya2:string;
     constructor(
         public _id:string,
         public NombreUsuario:string,
