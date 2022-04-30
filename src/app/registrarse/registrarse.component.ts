@@ -23,6 +23,7 @@ export class RegistrarseComponent implements OnInit {
   }
   onSubmit(form){
     console.log(this.usuario);
+    if(!this.usuario.Administrador){
     this._usuarioService.guardarUsuario(this.usuario).subscribe(
       response => {
         console.log(response);
@@ -35,5 +36,24 @@ export class RegistrarseComponent implements OnInit {
         console.log(<any>error);
       }
     )
+    }else{
+      let codigo=prompt("Introduce el código para ser administrador");
+      if(codigo == "1234"){
+        this._usuarioService.guardarUsuario(this.usuario).subscribe(
+          response => {
+            console.log(response);
+            if(response.usuario){
+              this.status=true;
+            }
+            
+          },
+          error =>{
+            console.log(<any>error);
+          }
+        )
+      }else{
+        alert("Código incorrecto.");
+      }
+    }
   }
 }
