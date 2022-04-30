@@ -4,7 +4,7 @@
  
 
     <div class="col-1">
-        <button class="btn btn-primary">Administrar</button>
+        <button class="btn btn-primary" *ngIf="this.administrador">Administrar</button>
     </div><!--Esto sólo aparecerá si el usuario es administrador-->
 </div>
     <h2 class="text-center">Cuenta de {{nombreUsuario}}</h2>
