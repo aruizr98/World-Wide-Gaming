@@ -2,7 +2,7 @@
   <main class="form-signin mx-auto">
     <form id="inicioSesion" #InicioSesion="ngForm" (ngSubmit)="onSubmit(InicioSesion)">
       <h1 class="h3 mb-3 fw-normal">Iniciar Sesión</h1>
-
+      <span class="alert alert-danger d-block" *ngIf="!comprobarLogin()">El correo o la contraseña introducidos son incorrectos.</span>
       <div class="form-floating">
         <input type="email" name="email" class="form-control" id="floatingInput" #Correo="ngModel"
         [(ngModel)]="usuario.Correo" placeholder="name@example.com" required>
