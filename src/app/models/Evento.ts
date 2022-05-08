@@ -5,6 +5,7 @@ export class Evento{
         public FechaHora:string,
         public Descripcion:string,
         public NombreJuego:string,
-        public Creador:string
+        public Creador:string,
+        public UsuariosApuntados:string[]
     ){}
 }
