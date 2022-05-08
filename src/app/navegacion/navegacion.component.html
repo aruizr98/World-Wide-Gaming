@@ -57,7 +57,7 @@
           <li><a class="dropdown-item" href="biblioteca.html">Mi biblioteca</a></li>
           <li><button class="dropdown-item"  [routerLink]="['/CerrarSesion']">Cerrar Sesión</button></li>
         </ul>
-        <button class="btn btn-warning m-1" *ngIf="this.localStorage ||this.sessionStorage">Lista de Mensajes</button>
+        <button class="btn btn-warning m-1" [routerLink]="['/ListaMensajes']" *ngIf="this.localStorage ||this.sessionStorage">Lista de Mensajes</button>
       </li>
       
     </ul>
