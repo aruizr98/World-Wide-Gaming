@@ -18,13 +18,18 @@ export class IniciarSesionComponent implements OnInit {
     this.usuario = new Usuario("", "", "", "", "", "", false, "");
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    console.log("asdasd");
+    sessionStorage.setItem("loginCorrecto", "true");
+    
+  }
   onSubmit(form) {
     this._usuarioService.listarUsuarios().subscribe(
       response => {
+        sessionStorage.setItem("loginCorrecto", "false");
         for (let index = 0; index < response["usuarios"].length; index++) {
           if(response["usuarios"][index].Correo == this.usuario.Correo && response["usuarios"][index].Contrasenya == this.usuario.Contrasenya){
-            
+            sessionStorage.setItem("loginCorrecto", "true");
             console.log(this.recuerdame);
             if(this.recuerdame == undefined || !this.recuerdame){
               sessionStorage.setItem("nombreUsuario", response["usuarios"][index].NombreUsuario);
@@ -34,6 +39,14 @@ export class IniciarSesionComponent implements OnInit {
              location.href="/inicio";
           }
         }
+        this.comprobarLogin();
+        // if(!correcto){
+        //   console.log("incorrecto")
+        //   document.getElementById("loginIncorrecto").innerText="El correo o la contraseña utilizados son incorrectos.";
+        // }else{
+        //   console.log("alskdjlaskdjlasdjlaskj")
+        //   document.getElementById("loginIncorrecto").innerText="";
+        // }
 
       },
       error => {
@@ -41,5 +54,11 @@ export class IniciarSesionComponent implements OnInit {
       }
     )
   }
-
+  comprobarLogin():boolean{
+    if(sessionStorage.getItem("loginCorrecto") == "true"){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }
