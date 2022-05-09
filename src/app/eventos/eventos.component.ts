@@ -19,6 +19,9 @@ export class EventosComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    if(sessionStorage.getItem("apuntadoCorrecto") == "true"){
+      
+    }
     if (sessionStorage.getItem("agregarUsuario") == "true") {
       this._eventoService.listarEventos().subscribe(
         response => {
@@ -37,11 +40,13 @@ export class EventosComponent implements OnInit {
               if (sessionStorage.getItem("nombreEvento") == response["eventos"][index].Nombre) {
                 let usuariosInscritos=response["eventos"][index].UsuariosApuntados;
                 usuariosInscritos.push(sessionStorage.getItem("nombreUsuario"));
-                let eventoModificado=new Evento(response["eventos"][index]._id, response["eventos"][index].Nombre, response["eventos"][index].FechaHora, response["eventos"][index].Descripcion, response["eventos"][index].NombreJuego, response["eventos"][index].Creador, usuariosInscritos);
+                var eventoModificado=new Evento(response["eventos"][index]._id, response["eventos"][index].Nombre, response["eventos"][index].FechaHora, response["eventos"][index].Descripcion, response["eventos"][index].NombreJuego, response["eventos"][index].Creador, usuariosInscritos);
                 console.log(eventoModificado);
                 this._eventoService.agregarUsuario(response["eventos"][sessionStorage.getItem("indice")]._id, usuariosInscritos ).subscribe(
                   response2 => {
                     console.log(response2);
+                    document.getElementById("apuntadoCorrecto").innerText ="Te has apuntado correctamente al evento "+response2["evento"].Nombre;
+                    document.getElementById("apuntadoCorrecto").setAttribute("class", "alert alert-success d-block text-center");
                   },
                   error2 => {
                     console.log(<any>error2);
@@ -59,7 +64,7 @@ export class EventosComponent implements OnInit {
           console.log(<any>error);
         }
       )
-      // sessionStorage.removeItem("agregarUsuario");
+       sessionStorage.removeItem("agregarUsuario");
       // sessionStorage.removeItem("indice");
     }
     this._eventoService.listarEventos().subscribe(
