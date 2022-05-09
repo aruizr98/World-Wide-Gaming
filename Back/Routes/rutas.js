@@ -40,6 +40,7 @@ router.post("/crearEvento", eventoController.crearEvento);
 router.get("/evento/:id", eventoController.mostrarEvento);
 router.get("/eventos", eventoController.listarEventos);
 router.put("/editarEvento/:id", eventoController.editarEvento);
+router.put("/agregarUsuario/:id/:UsuariosApuntados", eventoController.agregarUsuario);
 router.delete("/eliminarEvento/:id", eventoController.eliminarEvento);
 
 module.exports=router;
