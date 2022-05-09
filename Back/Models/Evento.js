@@ -9,6 +9,7 @@ var eventoSchema=Schema({
     FechaHora:String,
     Descripcion:String,
     NombreJuego:String,
-    Creador:String
+    Creador:String,
+    UsuariosApuntados:Array
 });
 module.exports=mongoose.model("Evento", eventoSchema);
