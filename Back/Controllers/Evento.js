@@ -95,6 +95,50 @@ var controller={
             })
         })
     },
+    agregarUsuario: function (req, res) {
+        var idEvento = req.params.id;
+        var editar = req.params.UsuariosApuntados;
+        var usuariosArray = new Array();
+        var editarArray = editar.split(","); //Divido cada nombre por separado
+        for (let index = 0; index < editarArray.length; index++) {//Y los añado al array
+            usuariosArray.push(editarArray[index]);
+        }
+        console.log(idEvento);
+        console.log(usuariosArray);
+        Evento.findByIdAndUpdate(idEvento, { UsuariosApuntados: usuariosArray}, { new: true }, (err, eventoUpdated) => {
+    if (err) {
+        return res.status(500).send({
+            message: "Error al editar."
+        })
+    }
+    if (!eventoUpdated) {
+        return res.status(404).send({
+            message: "No existe ese evento"
+        })
+    }
+    return res.status(200).send({
+        evento: eventoUpdated
+    })
+})
+        // var idEvento= req.params.id;
+        // var editar=req.params.Nombre;
+        // Evento.findByIdAndUpdate(idEvento, editar, { new: true }, (err, eventoUpdated) => {
+        //     if (err) {
+        //         return res.status(500).send({
+        //             message: "Error al editar."
+        //         })
+        //     }
+        //     if (!eventoUpdated) {
+        //         return res.status(404).send({
+        //             message: "No existe ese evento"
+        //         })
+        //     }
+        //     return res.status(200).send({
+        //         evento: eventoUpdated
+        //     })
+        // })
+        // Evento.findByIdAndUpdate(idEvento, {$addToSet: {usuariosApuntados: usuariosArray}}, {new:true}).exec();
+    },
     eliminarEvento: function(req, res){
         var idEvento=req.params.id;
         Evento.findByIdAndDelete(idEvento, (err, eventoRemoved)=>{
