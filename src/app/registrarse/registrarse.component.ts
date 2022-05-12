@@ -21,7 +21,7 @@ export class RegistrarseComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onSubmit(form){
+  onSubmit(){
     console.log(this.usuario);
     if(!this.usuario.Administrador){
     this._usuarioService.guardarUsuario(this.usuario).subscribe(
