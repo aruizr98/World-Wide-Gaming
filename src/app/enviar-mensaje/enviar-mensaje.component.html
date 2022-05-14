@@ -1,0 +1,17 @@
+
+<div class="container">
+    <form id="registro" #formularioRegistro="ngForm" (ngSubmit)="onSubmit()">
+      <h1 class="h3 mb-3 fw-normal">Registrarse</h1>
+      <div class="form-row ">
+        <div class="form-group col-md-12 form-floating">
+            Receptor: 
+          <select id="receptores" #Receptor="ngModel" [(ngModel)]="mensaje.Receptor" name="Receptor"></select>  
+        </div>
+        <textarea #Mensaje="ngModel" [(ngModel)]="mensaje.Mensaje" name="Mensaje" placeholder="Escribe un mensaje" required></textarea>
+        <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="Mensaje.touched && !Mensaje.valid">Por favor, escribe un mensaje para el destinatario.</span>
+      </div>
+      <input type="submit" class="w-100 btn btn-primary mt-3" value="Enviar mensaje" [disabled]="!formularioRegistro.form.valid" />
+      <span class="bg-success" id="resultadoRegistro"></span>
+    </form>
+  </div>
+  
