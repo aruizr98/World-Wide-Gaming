@@ -11,7 +11,7 @@ var usuarioSchema=Schema({
     Correo:String,
     Contrasenya:String,
     Administrador:Boolean,
-    idEvento:String,
+    idEvento:Array,
     FotoPerfil:String
 });
 module.exports=mongoose.model("Usuario", usuarioSchema);
