@@ -15,48 +15,123 @@ export class EventosComponent implements OnInit {
   constructor(private _eventoService: EventoService, private _usuarioService: UsuarioService) {
     this.numeroEventos = 0;
   }
-  agregarUsuario() {
-
+  yaExiste(array: Array<string>, elemento: string): boolean {
+    let respuesta = false;
+    for (let index = 0; index < array.length; index++) {
+      if (array[index] == elemento) {
+        respuesta = true;
+      }
+    }
+    return respuesta;
   }
   ngOnInit(): void {
-    if(sessionStorage.getItem("apuntadoCorrecto") == "true"){
-      
-    }
+    document.getElementById("apuntadoIncorrecto").innerText = "";
+    document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-danger d-none text-center");
     if (sessionStorage.getItem("agregarUsuario") == "true") {
       this._eventoService.listarEventos().subscribe(
         response => {
           if (sessionStorage.getItem("nombreUsuario")) {
-            // response["eventos"][sessionStorage.getItem("indice")].UsuariosApuntados.push(sessionStorage.getItem("nombreUsuario"));
-
-            // this._eventoService.agregarUsuario(response["eventos"][sessionStorage.getItem("indice")])).subscribe(
-            //   response2 =>{
-            //     console.log(response2);
-            //   },
-            //   error2=>{
-            //     console.log(<any>error2);
-            //   }
-            // )
             for (let index = 0; index < response["eventos"].length; index++) {
               if (sessionStorage.getItem("nombreEvento") == response["eventos"][index].Nombre) {
-                let usuariosInscritos=response["eventos"][index].UsuariosApuntados;
-                usuariosInscritos.push(sessionStorage.getItem("nombreUsuario"));
-                var eventoModificado=new Evento(response["eventos"][index]._id, response["eventos"][index].Nombre, response["eventos"][index].FechaHora, response["eventos"][index].Descripcion, response["eventos"][index].NombreJuego, response["eventos"][index].Creador, usuariosInscritos);
-                console.log(eventoModificado);
-                this._eventoService.agregarUsuario(response["eventos"][sessionStorage.getItem("indice")]._id, usuariosInscritos ).subscribe(
-                  response2 => {
-                    console.log(response2);
-                    document.getElementById("apuntadoCorrecto").innerText ="Te has apuntado correctamente al evento "+response2["evento"].Nombre;
-                    document.getElementById("apuntadoCorrecto").setAttribute("class", "alert alert-success d-block text-center");
-                  },
-                  error2 => {
-                    console.log(<any>error2);
-                  }
-                )
+                let usuariosInscritos = response["eventos"][index].UsuariosApuntados;
+                if (!this.yaExiste(usuariosInscritos, sessionStorage.getItem("nombreUsuario"))) {
+                  usuariosInscritos.push(sessionStorage.getItem("nombreUsuario"));
+                  var eventoModificado = new Evento(response["eventos"][index]._id, response["eventos"][index].Nombre, response["eventos"][index].FechaHora, response["eventos"][index].Descripcion, response["eventos"][index].NombreJuego, response["eventos"][index].Creador, usuariosInscritos);
+                  console.log(eventoModificado);
+                  this._eventoService.agregarUsuario(response["eventos"][sessionStorage.getItem("indice")]._id, usuariosInscritos).subscribe(
+                    response2 => {
+                      console.log(response2);
+                      document.getElementById("apuntadoCorrecto").innerText = "Te has apuntado correctamente al evento " + response2["evento"].Nombre;
+                      document.getElementById("apuntadoCorrecto").setAttribute("class", "alert alert-success d-block text-center");
+                      this._usuarioService.listarUsuarios().subscribe(
+                        response3 => {
+                          for (let j = 0; j < response3["usuarios"].length; j++) {
+                            if (response3["usuarios"][j]._id == sessionStorage.getItem("idUsuario")) {
+                              console.log("El usuario ha coincidido")
+                              let listaEventos = response3["usuarios"][j].idEvento;
+                              listaEventos.push(response2["evento"]._id);
+                              this._usuarioService.actualizarListaEventos(response3["usuarios"][j]._id, listaEventos).subscribe(
+                                response4 => {
+                                  console.log(response4);
+                                },
+                                error => {
+                                  console.log(<any>error);
+                                }
+                              )
+
+                            }
+
+                          }
+                        },
+                        error => {
+                          console.log(<any>error);
+                        }
+                      )
+                    },
+                    error2 => {
+                      console.log(<any>error2);
+                    }
+                  )
+                } else {
+                  document.getElementById("apuntadoIncorrecto").innerText = "Ya estabas apuntad@ a ese evento";
+                  document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-danger d-block text-center");
+                }
+
+
               }
 
             }
           } else if (localStorage.getItem("nombreUsuario")) {
+            for (let index = 0; index < response["eventos"].length; index++) {
+              if (sessionStorage.getItem("nombreEvento") == response["eventos"][index].Nombre) {
+                let usuariosInscritos = response["eventos"][index].UsuariosApuntados;
+                if (!this.yaExiste(usuariosInscritos, localStorage.getItem("nombreUsuario"))) {
+                  usuariosInscritos.push(localStorage.getItem("nombreUsuario"));
+                  var eventoModificado = new Evento(response["eventos"][index]._id, response["eventos"][index].Nombre, response["eventos"][index].FechaHora, response["eventos"][index].Descripcion, response["eventos"][index].NombreJuego, response["eventos"][index].Creador, usuariosInscritos);
+                  console.log(eventoModificado);
+                  this._eventoService.agregarUsuario(response["eventos"][sessionStorage.getItem("indice")]._id, usuariosInscritos).subscribe(
+                    response2 => {
+                      console.log(response2);
+                      document.getElementById("apuntadoCorrecto").innerText = "Te has apuntado correctamente al evento " + response2["evento"].Nombre;
+                      document.getElementById("apuntadoCorrecto").setAttribute("class", "alert alert-success d-block text-center");
+                      this._usuarioService.listarUsuarios().subscribe(
+                        response3 => {
+                          for (let j = 0; j < response3["usuarios"].length; j++) {
+                            if (response3["usuarios"][j]._id == localStorage.getItem("idUsuario")) {
+                              console.log("El usuario ha coincidido")
+                              let listaEventos = response3["usuarios"][j].idEvento;
+                              listaEventos.push(response2["evento"]._id);
+                              this._usuarioService.actualizarListaEventos(response3["usuarios"][j]._id, listaEventos).subscribe(
+                                response4 => {
+                                  console.log(response4);
+                                },
+                                error => {
+                                  console.log(<any>error);
+                                }
+                              )
 
+                            }
+
+                          }
+                        },
+                        error => {
+                          console.log(<any>error);
+                        }
+                      )
+                    },
+                    error2 => {
+                      console.log(<any>error2);
+                    }
+                  )
+                } else {
+                  document.getElementById("apuntadoIncorrecto").innerText = "Ya estabas apuntad@ a ese evento";
+                  document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-danger d-block text-center");
+                }
+
+
+              }
+
+            }
           }
 
         },
@@ -64,8 +139,7 @@ export class EventosComponent implements OnInit {
           console.log(<any>error);
         }
       )
-       sessionStorage.removeItem("agregarUsuario");
-      // sessionStorage.removeItem("indice");
+      sessionStorage.removeItem("agregarUsuario");
     }
     this._eventoService.listarEventos().subscribe(
       response => {
