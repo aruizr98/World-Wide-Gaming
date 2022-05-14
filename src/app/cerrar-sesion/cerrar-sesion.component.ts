@@ -11,6 +11,8 @@ export class CerrarSesionComponent implements OnInit {
 
   ngOnInit(): void {
     sessionStorage.removeItem('nombreUsuario');
+    sessionStorage.removeItem('idUsuario');
+    localStorage.removeItem('idUsuario');
     localStorage.setItem("mensajes", "false");
     localStorage.removeItem('nombreUsuario');
     location.href="/Inicio";
