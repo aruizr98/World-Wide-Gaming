@@ -28,4 +28,9 @@ export class UsuarioService {
 
     return this._http.get(this.url+"usuarios", {headers:headers});
    }
+   actualizarListaEventos(id: string, eventos: string[]) {
+    let headers = new HttpHeaders().set("content-type", "application/json");
+
+    return this._http.put(this.url + "actualizarListaEventos/" + id + "/" + eventos, { headers: headers });
+  }
 }
