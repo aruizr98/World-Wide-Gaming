@@ -1,42 +1,42 @@
 "use strict"
 
-var Usuario=require("../Models/usuario");
-var fs=require("fs");
-var controller={
-    home: function(req, res){
+var Usuario = require("../Models/usuario");
+var fs = require("fs");
+var controller = {
+    home: function (req, res) {
         return res.status(200).send({
-            message:"Soy la home"
+            message: "Soy la home"
         });
     },
-    test: function(req, res){
+    test: function (req, res) {
         return res.status(200).send({
-            message:"Soy el método test del controlador de usuario"
+            message: "Soy el método test del controlador de usuario"
         });
     },
-    guardarUsuario: function(req, res){
+    guardarUsuario: function (req, res) {
         var usuario = new Usuario();
-        var params=req.body;
-        usuario.NombreUsuario=params.NombreUsuario;
-        usuario.Nombre=params.Nombre;
-        usuario.Apellidos=params.Apellidos;
-        usuario.Correo=params.Correo;
-        usuario.Contrasenya=params.Contrasenya;
-        usuario.Administrador=params.Administrador;
-        usuario.FotoPerfil=null;
+        var params = req.body;
+        usuario.NombreUsuario = params.NombreUsuario;
+        usuario.Nombre = params.Nombre;
+        usuario.Apellidos = params.Apellidos;
+        usuario.Correo = params.Correo;
+        usuario.Contrasenya = params.Contrasenya;
+        usuario.Administrador = params.Administrador;
+        usuario.FotoPerfil = null;
 
-        usuario.save((err, usuarioStored) =>{
-            if(err){
+        usuario.save((err, usuarioStored) => {
+            if (err) {
                 return res.status(500).send({
-                    message:"Error al guardar"
+                    message: "Error al guardar"
                 })
             }
-            if(!usuarioStored){
+            if (!usuarioStored) {
                 return res.status(404).send({
-                    message:"No se  ha podido guardar el usuario"
+                    message: "No se  ha podido guardar el usuario"
                 })
             }
             return res.status(200).send({
-                usuario:usuarioStored
+                usuario: usuarioStored
             });
         });
         // return res.status(200).send({
@@ -75,17 +75,17 @@ var controller={
     //         message:"Método save"
     //     })
     // },
-    listarUsuario:function(req, res){
-        var idUsuario=req.params.id;
-        Usuario.findById(idUsuario, (err, usuario) =>{
-            if(err){
+    listarUsuario: function (req, res) {
+        var idUsuario = req.params.id;
+        Usuario.findById(idUsuario, (err, usuario) => {
+            if (err) {
                 return res.status(500).send({
-                    message:"Error al mostrar el usuario"
+                    message: "Error al mostrar el usuario"
                 })
             }
-            if(!usuario){
+            if (!usuario) {
                 return res.status(404).send({
-                    message:"El usuario no existe"
+                    message: "El usuario no existe"
                 })
             }
             return res.status(200).send({
@@ -93,98 +93,125 @@ var controller={
             })
         });
     },
-    listarUsuarios: function(req, res){
-        Usuario.find({}).exec((err, usuarios)=>{
-            if(err){
+    listarUsuarios: function (req, res) {
+        Usuario.find({}).exec((err, usuarios) => {
+            if (err) {
                 return res.status(500).send({
-                    message:"Error al listar los usuarios"
+                    message: "Error al listar los usuarios"
                 })
             }
-            if(!usuarios){
+            if (!usuarios) {
                 return res.status(404).send({
-                    message:"No hay usuarios para mostrar"
+                    message: "No hay usuarios para mostrar"
                 })
             }
-            return res.status(200).send({usuarios})
+            return res.status(200).send({ usuarios })
         })
     },
-    editarUsuario: function(req, res){
-        var idUsuario=req.params.id;
-        var editar=req.body;
+    editarUsuario: function (req, res) {
+        var idUsuario = req.params.id;
+        var editar = req.body;
 
-        Usuario.findByIdAndUpdate(idUsuario, editar, {new:true}, (err, usuarioUpdated) =>{
-            if(err){
+        Usuario.findByIdAndUpdate(idUsuario, editar, { new: true }, (err, usuarioUpdated) => {
+            if (err) {
                 return res.status(500).send({
-                    message:"Error al editar."
+                    message: "Error al editar."
                 })
             }
-            if(!usuarioUpdated){
+            if (!usuarioUpdated) {
                 return res.status(404).send({
-                    message:"No existe ese usuario"
+                    message: "No existe ese usuario"
                 })
             }
             return res.status(200).send({
-                usuario:usuarioUpdated
+                usuario: usuarioUpdated
             })
         })
     },
-    eliminarUsuario: function(req, res){
-        var idUsuario=req.params.id;
-        Usuario.findByIdAndDelete(idUsuario, (err, usuarioRemoved)=>{
-            if(err){
+    actualizarListaEventos: function (req, res) {
+        var idUsuario = req.params.id;
+        var editar = req.params.listaEventos;
+        var eventosArray = new Array();
+        var editarArray = editar.split(","); //Divido cada id de evento por separado
+        for (let index = 0; index < editarArray.length; index++) {//Y los añado al array
+            eventosArray.push(editarArray[index]);
+        }
+        console.log(idUsuario);
+        console.log(eventosArray);
+        Usuario.findByIdAndUpdate(idUsuario, { idEvento: eventosArray }, { new: true }, (err, eventoUpdated) => {
+            if (err) {
                 return res.status(500).send({
-                    message:"No se ha podido eliminar el usuario"
+                    message: "Error al editar."
                 })
             }
-            if(!usuarioRemoved){
+            if (!eventoUpdated) {
                 return res.status(404).send({
-                    message:"No se ha encontrado el usuario"
+                    message: "No existe ese evento"
                 })
             }
             return res.status(200).send({
-                usuario:usuarioRemoved
+                evento: eventoUpdated
             })
         })
     },
-    subirImagen: function(req, res){
-        var idUsuario=req.params.id;
-        var nombreArchivo="Imagen no subida";
-
-        if(req.files){
-            var rutaImagen=req.files.image.path;
-            var rutaSplit=rutaImagen.split("\\");
-            var nombreImagen=rutaSplit[1];
-            var extensionSplit=nombreImagen.split(".");
-            var extensionImagen=extensionSplit[1];
-
-            if(extensionImagen == "png" || extensionImagen == "jpg" || extensionImagen == "jpeg" || extensionImagen=="gif"){
-                 Usuario.findByIdAndUpdate(idUsuario, {FotoPerfil:nombreImagen},{new:true}, (err, usuarioUpdated)=>{
-                if(err){
-                     return res.status(500).send({
-                    message:"La imagen no se ha subido"
-                })};
-                if(!usuarioUpdated){
-                    return res.status(404).send({
-                        message:"El usuario no existe"
-                    });
-                }
-                return res.status(200).send({
-                    usuario:usuarioUpdated
+    eliminarUsuario: function (req, res) {
+        var idUsuario = req.params.id;
+        Usuario.findByIdAndDelete(idUsuario, (err, usuarioRemoved) => {
+            if (err) {
+                return res.status(500).send({
+                    message: "No se ha podido eliminar el usuario"
                 })
+            }
+            if (!usuarioRemoved) {
+                return res.status(404).send({
+                    message: "No se ha encontrado el usuario"
+                })
+            }
+            return res.status(200).send({
+                usuario: usuarioRemoved
             })
-            }else{
-                fs.unlink(rutaImagen, (err)=>{
+        })
+    },
+    subirImagen: function (req, res) {
+        var idUsuario = req.params.id;
+        var nombreArchivo = "Imagen no subida";
+
+        if (req.files) {
+            var rutaImagen = req.files.image.path;
+            var rutaSplit = rutaImagen.split("\\");
+            var nombreImagen = rutaSplit[1];
+            var extensionSplit = nombreImagen.split(".");
+            var extensionImagen = extensionSplit[1];
+
+            if (extensionImagen == "png" || extensionImagen == "jpg" || extensionImagen == "jpeg" || extensionImagen == "gif") {
+                Usuario.findByIdAndUpdate(idUsuario, { FotoPerfil: nombreImagen }, { new: true }, (err, usuarioUpdated) => {
+                    if (err) {
+                        return res.status(500).send({
+                            message: "La imagen no se ha subido"
+                        })
+                    };
+                    if (!usuarioUpdated) {
+                        return res.status(404).send({
+                            message: "El usuario no existe"
+                        });
+                    }
                     return res.status(200).send({
-                        message:"La extensión no es válida."
+                        usuario: usuarioUpdated
+                    })
+                })
+            } else {
+                fs.unlink(rutaImagen, (err) => {
+                    return res.status(200).send({
+                        message: "La extensión no es válida."
                     })
                 })
             }
 
 
-           
-            
+
+
         }
     }
 }
 
-module.exports=controller;
+module.exports = controller;
