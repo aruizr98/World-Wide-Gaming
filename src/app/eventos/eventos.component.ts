@@ -124,8 +124,8 @@ export class EventosComponent implements OnInit {
                     }
                   )
                 } else {
-                  document.getElementById("apuntadoIncorrecto").innerText = "Ya estabas apuntad@ a ese evento";
-                  document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-danger d-block text-center");
+                  document.getElementById("apuntadoIncorrecto").innerText = "Ya estás apuntad@ a ese evento";
+                  document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-primary d-block text-center");
                 }
 
 
