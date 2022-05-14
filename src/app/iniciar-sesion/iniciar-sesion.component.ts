@@ -15,7 +15,7 @@ export class IniciarSesionComponent implements OnInit {
   public contrasenya: string;
   public recuerdame:boolean;
   constructor(private _usuarioService: UsuarioService) {
-    this.usuario = new Usuario("", "", "", "", "", "", false, "");
+    this.usuario = new Usuario("", "", "", "", "", "", false, "", []);
   }
 
   ngOnInit(): void { 
@@ -33,8 +33,10 @@ export class IniciarSesionComponent implements OnInit {
             console.log(this.recuerdame);
             if(this.recuerdame == undefined || !this.recuerdame){
               sessionStorage.setItem("nombreUsuario", response["usuarios"][index].NombreUsuario);
+              sessionStorage.setItem("idUsuario", response["usuarios"][index]._id);
             }else{
               localStorage.setItem("nombreUsuario", response["usuarios"][index].NombreUsuario);
+              localStorage.setItem("idUsuario", response["usuarios"][index]._id);
             }
              location.href="/inicio";
           }
