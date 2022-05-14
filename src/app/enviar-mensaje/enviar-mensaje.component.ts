@@ -13,9 +13,10 @@ import { Global } from '../services/global';
 export class EnviarMensajeComponent implements OnInit {
   public mensaje:Mensaje;
   public url:string;
+  public status:boolean;
   constructor(private _usuarioService:UsuarioService, private _mensajeService:MensajeService) {
     this.url=Global.url; 
-    if(sessionStorage.getItem("idUsuario") != undefined){
+    if(sessionStorage.getItem("idUsuario")){
     this.mensaje=new Mensaje("", "", "", sessionStorage.getItem("idUsuario"));
     }else{
       this.mensaje=new Mensaje("", "", "", localStorage.getItem("idUsuario")); 
@@ -27,9 +28,16 @@ export class EnviarMensajeComponent implements OnInit {
       response =>{
         console.log(response["usuarios"]);
         for (let index = 0; index < response["usuarios"].length; index++) {
-          document.getElementById("receptores").innerHTML+=`
+          if(index==0){
+            document.getElementById("receptores").innerHTML+=`
+            <option value='`+response["usuarios"][index]._id+`' checked>`+response["usuarios"][index].NombreUsuario+`</option>
+          `;
+          }else{
+            document.getElementById("receptores").innerHTML+=`
             <option value='`+response["usuarios"][index]._id+`'>`+response["usuarios"][index].NombreUsuario+`</option>
-          `
+          `;
+          }
+          
         };
       },
       error =>{
@@ -41,6 +49,7 @@ export class EnviarMensajeComponent implements OnInit {
    this._mensajeService.crearMensjae(this.mensaje).subscribe(
      response=>{
       console.log(response);
+      this.status=true;
      },
      error=>{
        console.log(<any>error);

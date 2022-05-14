@@ -1,4 +1,6 @@
-
+<div class="alert alert-success text-center" *ngIf="status">
+   Mensaje enviado correctamente.
+  </div>
 <div class="container text-center">
     <form id="registro" #formularioRegistro="ngForm" (ngSubmit)="onSubmit()">
       <h1 class="h3 mb-3 fw-normal">Enviar un mensaje</h1>
