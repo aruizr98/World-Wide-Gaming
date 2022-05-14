@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Mensaje } from "../models/Mensaje";
 import { MensajeService } from "../services/mensaje.service"
 import { UsuarioService } from "../services/usuario.service";
+import {AppModule} from "../app.module"
 
 
 @Component({
@@ -14,22 +15,6 @@ export class ListaMensajesComponent implements OnInit {
   constructor(private _usuarioService: UsuarioService, private _mensajeService: MensajeService) { }
 
   ngOnInit(): void {
-   
-
-    this._usuarioService.listarUsuarios().subscribe(
-      response => {
-        console.log(response["usuarios"])
-        for (let index = 0; index < response["usuarios"].length; index++) {
-          if (response["usuarios"][index].NombreUsuario == sessionStorage.getItem("nombreUsuario") ||response["usuarios"][index].NombreUsuario == localStorage.getItem("nombreUsuario") ) {
-            sessionStorage.setItem("idUsuario", response["usuarios"][index]._id);
-          }
-        }
-
-      },
-      error => {
-        console.log(<any>error);
-      }
-    )
     this._mensajeService.listarMensajes().subscribe(
       response => {
         console.log(response["mensajes"])
@@ -43,10 +28,11 @@ export class ListaMensajesComponent implements OnInit {
                     localStorage.setItem("mensajes", "true");
                     let mensajes=document.getElementById("mensajes");
                     let div=document.createElement("div");
-                    div.setAttribute("class", "border border-black w-25 mx-auto")
+                    div.setAttribute("class", "border border-black w-25 mx-auto");
                     div.innerHTML=`
                       <span>De `+nombreEmisor+`</span>
-                      <p>`+response["mensajes"][j].Mensaje+`</p>
+                      <p>`+response["mensajes"][index].Mensaje+`</p>
+                      <button class='btn btn-primary my-1' onclick="sessionStorage.setItem('ReceptorMensaje', '`+response2["usuarios"][j].NombreUsuario+`'); sessionStorage.setItem('idReceptorMensaje', '`+response2["usuarios"][j]._id+`')">Responder</button>
                     `
                     mensajes.append(div);
                   }
