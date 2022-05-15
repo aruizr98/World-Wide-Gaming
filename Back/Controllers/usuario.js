@@ -154,6 +154,32 @@ var controller = {
             })
         })
     },
+    actualizarListaFavoritos: function (req, res) {
+        var idUsuario = req.params.id;
+        var editar = req.params.listaFavoritos;
+        var favoritosArray = new Array();
+        var editarArray = editar.split(","); //Divido cada id de evento por separado
+        for (let index = 0; index < editarArray.length; index++) {//Y los añado al array
+            favoritosArray.push(editarArray[index]);
+        }
+        console.log(idUsuario);
+        console.log(favoritosArray);
+        Usuario.findByIdAndUpdate(idUsuario, { Favoritos: favoritosArray }, { new: true }, (err, eventoUpdated) => {
+            if (err) {
+                return res.status(500).send({
+                    message: "Error al editar."
+                })
+            }
+            if (!eventoUpdated) {
+                return res.status(404).send({
+                    message: "No existe ese evento"
+                })
+            }
+            return res.status(200).send({
+                usuario: eventoUpdated
+            })
+        })
+    },
     eliminarUsuario: function (req, res) {
         var idUsuario = req.params.id;
         Usuario.findByIdAndDelete(idUsuario, (err, usuarioRemoved) => {
