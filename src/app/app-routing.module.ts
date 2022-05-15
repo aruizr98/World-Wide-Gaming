@@ -7,6 +7,8 @@ import {RegistrarseComponent } from './registrarse/registrarse.component';
 import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
 import { ListaMensajesComponent } from './lista-mensajes/lista-mensajes.component';
 import{CerrarSesionComponent} from './cerrar-sesion/cerrar-sesion.component';
+import { EnviarMensajeComponent } from './enviar-mensaje/enviar-mensaje.component';
+import { BuscarComponent } from './buscar/buscar.component';
 import { ModuleWithProviders } from '@angular/core';
 
 
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path:"MiCuenta", component:MiCuentaComponent},
   {path:"CerrarSesion", component:CerrarSesionComponent},
   {path:"ListaMensajes", component:ListaMensajesComponent},
+  {path:"EnviarMensaje", component:EnviarMensajeComponent},
+  {path:"BuscarUsuarios", component:BuscarComponent},
   {path:"**", component:CarrouselComponent}
 ];
 
