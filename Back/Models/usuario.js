@@ -12,6 +12,7 @@ var usuarioSchema=Schema({
     Contrasenya:String,
     Administrador:Boolean,
     idEvento:Array,
-    FotoPerfil:String
+    FotoPerfil:String,
+    Favoritos:Array
 });
 module.exports=mongoose.model("Usuario", usuarioSchema);
