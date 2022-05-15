@@ -27,7 +27,11 @@ export class BuscarComponent implements OnInit {
           for (let index = 0; index < response["usuarios"].length; index++) {
             if (response["usuarios"][index]._id == localStorage.getItem("idUsuario")) {
               var favoritosArray = response["usuarios"][index].Favoritos;
-              if (!this.yaExiste(favoritosArray, sessionStorage.getItem("usuarioAgregar"))) {
+              if(sessionStorage.getItem("usuarioAgregar") == localStorage.getItem("idUsuario")){
+                document.getElementById("yaExisteUsuario").innerText = "No puedes agregar tu propio usuario a favoritos.";
+                document.getElementById("yaExisteUsuario").setAttribute("class", "alert alert-primary text-center d-block my-3 w-50 mx-auto");
+              }else{
+                if (!this.yaExiste(favoritosArray, sessionStorage.getItem("usuarioAgregar"))) {
                 favoritosArray.push(sessionStorage.getItem("usuarioAgregar"));
                 document.getElementById("usuarioAgregado").innerText = "El usuario " + sessionStorage.getItem("NombreUsuarioAgregar") + " ha sido agregado a la lista de favoritos correctamente";
                 document.getElementById("usuarioAgregado").setAttribute("class", "alert alert-success text-center d-block my-3 w-50 mx-auto");
@@ -43,6 +47,8 @@ export class BuscarComponent implements OnInit {
                 document.getElementById("yaExisteUsuario").innerText = "El usuario " + sessionStorage.getItem("NombreUsuarioAgregar") + " ya está en tu lista de favoritos";
                 document.getElementById("yaExisteUsuario").setAttribute("class", "alert alert-primary text-center d-block my-3 w-50 mx-auto");
               }
+              }
+              
             }
 
 
@@ -58,7 +64,11 @@ export class BuscarComponent implements OnInit {
           for (let index = 0; index < response["usuarios"].length; index++) {
             if (response["usuarios"][index]._id == sessionStorage.getItem("idUsuario")) {
               var favoritosArray = response["usuarios"][index].Favoritos;
-              if (!this.yaExiste(favoritosArray, sessionStorage.getItem("usuarioAgregar"))) {
+              if(sessionStorage.getItem("usuarioAgregar") == sessionStorage.getItem("idUsuario")){
+                document.getElementById("yaExisteUsuario").innerText = "No puedes agregar tu propio usuario a favoritos.";
+                document.getElementById("yaExisteUsuario").setAttribute("class", "alert alert-primary text-center d-block my-3 w-50 mx-auto");
+              }else{
+                if (!this.yaExiste(favoritosArray, sessionStorage.getItem("usuarioAgregar"))) {
                 favoritosArray.push(sessionStorage.getItem("usuarioAgregar"));
                 document.getElementById("usuarioAgregado").innerText = "El usuario " + sessionStorage.getItem("NombreUsuarioAgregar") + " ha sido agregado a la lista de favoritos correctamente";
                 document.getElementById("usuarioAgregado").setAttribute("class", "alert alert-success text-center d-block my-3 w-50 mx-auto");
@@ -74,9 +84,8 @@ export class BuscarComponent implements OnInit {
                 document.getElementById("yaExisteUsuario").innerText = "El usuario " + sessionStorage.getItem("NombreUsuarioAgregar") + " ya está en tu lista de favoritos";
                 document.getElementById("yaExisteUsuario").setAttribute("class", "alert alert-primary text-center d-block my-3 w-50 mx-auto");
               }
+              }
             }
-
-
           }
         },
         error => {
