@@ -9,6 +9,7 @@ export class Usuario{
         public Contrasenya:string,
         public Administrador:boolean,
         public FotoPerfil:string,
-        public idEvento:Array<string>
+        public idEvento:Array<string>,
+        public Favoritos:Array<string>
     ){}
 }
