@@ -33,4 +33,9 @@ export class UsuarioService {
 
     return this._http.put(this.url + "actualizarListaEventos/" + id + "/" + eventos, { headers: headers });
   }
+  actualizarListaFavoritos(id: string, favoritos: string[]) {
+    let headers = new HttpHeaders().set("content-type", "application/json");
+
+    return this._http.put(this.url + "actualizarListaFavoritos/" + id + "/" + favoritos, { headers: headers });
+  }
 }
