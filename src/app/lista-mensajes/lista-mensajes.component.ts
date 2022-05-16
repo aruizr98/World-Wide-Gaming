@@ -60,7 +60,8 @@ export class ListaMensajesComponent implements OnInit {
               let mensajes = false;
               var caja = document.createElement("div");
               let contador=0;
-              caja.setAttribute("class", "border border-black w-25 mx-auto my-3 px-2");
+              caja.setAttribute("style", "height:300px;overflow:scroll;")
+              caja.setAttribute("class", "border border-black w-25 mx-auto my-3 px-2 ");
               var mensajesCaja = document.getElementById("mensajes");
               for (let j = 0; j < response2["mensajes"].length; j++) {
                 if (response["usuarios"][index]._id == response2["mensajes"][j].Emisor && (response2["mensajes"][j].Receptor == sessionStorage.getItem("idUsuario") || response2["mensajes"][j].Receptor == localStorage.getItem("idUsuario"))) {
