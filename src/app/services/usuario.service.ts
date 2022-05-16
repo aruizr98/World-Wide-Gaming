@@ -23,6 +23,11 @@ export class UsuarioService {
 
     return this._http.post(this.url+"guardarUsuario", params, {headers:headers});
    }
+   listarUsuario(id:string){
+    let headers=new HttpHeaders().set("content-type", "application/json");
+
+    return this._http.get(this.url+"usuario/"+id, {headers:headers});
+   }
    listarUsuarios(){
     let headers=new HttpHeaders().set("content-type", "application/json");
 
