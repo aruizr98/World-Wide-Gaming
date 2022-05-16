@@ -14,6 +14,7 @@ export class EnviarMensajeComponent implements OnInit {
   public mensaje: Mensaje;
   public url: string;
   public status: boolean;
+  public receptorCorrecto=true;
   constructor(private _usuarioService: UsuarioService, private _mensajeService: MensajeService) {
     this.url = Global.url;
     if (sessionStorage.getItem("idUsuario")) {
@@ -61,17 +62,23 @@ export class EnviarMensajeComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
-    this.mensaje.Receptor=sessionStorage.getItem("receptor");
-    this._mensajeService.crearMensjae(this.mensaje).subscribe(
-      response => {
-        console.log(response);
-        this.status = true;
-      },
-      error => {
-        console.log(<any>error);
-      }
-    )
-    this.mensaje.Receptor=sessionStorage.getItem("nombreReceptor");
+    if(sessionStorage.getItem("receptor") == sessionStorage.getItem("idUsuario") ||sessionStorage.getItem("receptor") == localStorage.getItem("idUsuario") ){
+      this.receptorCorrecto=false;
+    }else{
+      this.receptorCorrecto=true;
+      this.mensaje.Receptor=sessionStorage.getItem("receptor");
+      this._mensajeService.crearMensjae(this.mensaje).subscribe(
+        response => {
+          console.log(response);
+          this.status = true;
+        },
+        error => {
+          console.log(<any>error);
+        }
+      )
+      this.mensaje.Receptor=sessionStorage.getItem("nombreReceptor");
+    }
+    
   }
   
 }

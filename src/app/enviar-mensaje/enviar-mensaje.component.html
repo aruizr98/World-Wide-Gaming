@@ -4,6 +4,7 @@
 <div class="container text-center">
     <form id="registro" #formularioRegistro="ngForm" (ngSubmit)="onSubmit()">
       <h1 class="h3 mb-3 fw-normal">Enviar un mensaje</h1>
+      <span class="alert alert-danger d-block" *ngIf="!this.receptorCorrecto">No puedes enviarte un mensaje a ti mism@.</span>
       <div class="form-row ">
         <div class="form-group col-md-12 form-floating my-3"> 
           <!-- <select id="receptores" #Receptor="ngModel" [(ngModel)]="mensaje.Receptor" name="Receptor"></select>   -->
