@@ -59,18 +59,6 @@ export class EnviarMensajeComponent implements OnInit {
     )
   }
   ngOnInit(): void {
-    // this._usuarioService.listarUsuarios().subscribe(
-    //   response => {
-    //     for (let index = 0; index < response["usuarios"].length; index++) {
-    //       document.getElementById("receptores").innerHTML += `
-    //         <option value='`+ response["usuarios"][index]._id + `'>` + response["usuarios"][index].NombreUsuario + `</option>
-    //       `;
-    //     };
-    //   },
-    //   error => {
-    //     console.log(<any>error);
-    //   }
-    // )
   }
   onSubmit() {
     this.mensaje.Receptor=sessionStorage.getItem("receptor");
