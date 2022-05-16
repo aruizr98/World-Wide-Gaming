@@ -58,7 +58,6 @@ export class ListaMensajesComponent implements OnInit {
           this._mensajeService.listarMensajes().subscribe(
             response2 => {
               let mensajes = false;
-              let arrayMensajes = new Array();
               var caja = document.createElement("div");
               let contador=0;
               caja.setAttribute("class", "border border-black w-25 mx-auto my-3 px-2");
@@ -66,25 +65,31 @@ export class ListaMensajesComponent implements OnInit {
               for (let j = 0; j < response2["mensajes"].length; j++) {
                 if (response["usuarios"][index]._id == response2["mensajes"][j].Emisor && (response2["mensajes"][j].Receptor == sessionStorage.getItem("idUsuario") || response2["mensajes"][j].Receptor == localStorage.getItem("idUsuario"))) {
                   if(contador==0){
-                    caja.innerHTML += "<div class='text-center'><span><b>De " + response["usuarios"][index].NombreUsuario + "</b></span></div>";
+                    caja.innerHTML += "<div class='text-center'><span><b>" + response["usuarios"][index].NombreUsuario + "</b></span></div>";
                     contador++;
                   }
                   localStorage.setItem("mensajes", "true");
                   mensajes = true;
-                  // arrayMensajes.push(response2["mensajes"][j]);
                   caja.innerHTML += "<p class='m-0 text-start'>" + response2["mensajes"][j].Mensaje + "</p>";
                 }else if((response2["mensajes"][j].Emisor == sessionStorage.getItem("idUsuario") || response2["mensajes"][j].Emisor == localStorage.getItem("idUsuario")) && response["usuarios"][index]._id == response2["mensajes"][j].Receptor  ){
                   if(contador==0){
-                    caja.innerHTML += "<div class='text-center'><span><b>De " + response["usuarios"][index].NombreUsuario + "</b></span></div>";
+                    caja.innerHTML += "<div class='text-center'><span><b>" + response["usuarios"][index].NombreUsuario + "</b></span></div>";
                     contador++;
                   }
-                  // arrayMensajesEmisor.push(response2["mensajes"][j]);
                   caja.innerHTML += "<p class='m-0 text-end'>" + response2["mensajes"][j].Mensaje + "</p>";
                 }
 
               }
               if (mensajes) {
-                
+                // caja.innerHTML+="<div class='text-center my-2'><button class='btn btn-primary' [routerLink]='[´/EnviarMensaje´]'>Escribir mensaje</button></div>";
+                let div=document.createElement("div");
+                let button=document.createElement("button");
+                div.setAttribute("class", "text-center my-2");
+                button.setAttribute("class", "btn btn-primary");
+                button.setAttribute("onclick", "sessionStorage.setItem('receptorEstablecido', this.parentElement.parentElement.children[0].children[0].innerText); location.href='/EnviarMensaje'");
+                button.innerText="Escribir mensaje";
+                div.append(button);
+                caja.append(div);
                 mensajesCaja.append(caja);
               }
              
