@@ -48,7 +48,6 @@ export class BuscarComponent implements OnInit {
                 document.getElementById("yaExisteUsuario").setAttribute("class", "alert alert-primary text-center d-block my-3 w-50 mx-auto");
               }
               }
-              
             }
 
 
