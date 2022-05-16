@@ -13,13 +13,11 @@ export class NavegacionComponent implements OnInit {
   ngOnInit(): void {
     if(localStorage.getItem("nombreUsuario") !=undefined){
       this.localStorage=true;
-      console.log(this.localStorage);
     }else{
       this.localStorage=false;
       console.log(this.localStorage);
       if(sessionStorage.getItem("nombreUsuario") !=undefined){
         this.sessionStorage=true;
-        console.log("SessionStorage");
       }
     }
   }

@@ -13,6 +13,8 @@ import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.componen
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
 import { ListaMensajesComponent } from './lista-mensajes/lista-mensajes.component';
+import { EnviarMensajeComponent } from './enviar-mensaje/enviar-mensaje.component';
+import { BuscarComponent } from './buscar/buscar.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ListaMensajesComponent } from './lista-mensajes/lista-mensajes.componen
     RegistrarseComponent,
     MiCuentaComponent,
     ListaMensajesComponent,
+    EnviarMensajeComponent,
+    BuscarComponent,
     
   ],
   imports: [
@@ -37,4 +41,4 @@ import { ListaMensajesComponent } from './lista-mensajes/lista-mensajes.componen
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
