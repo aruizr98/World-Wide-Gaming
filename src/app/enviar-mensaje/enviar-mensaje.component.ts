@@ -23,6 +23,21 @@ export class EnviarMensajeComponent implements OnInit {
       this.mensaje = new Mensaje("", "", "", localStorage.getItem("idUsuario"));
     }
   }
+  obtenerIdUsuario(nombreUsuario:string){
+    this._usuarioService.listarUsuarios().subscribe(
+      response =>{
+        for (let index = 0; index < response["usuarios"].length; index++) {
+          if(response["usuarios"][index].NombreUsuario == nombreUsuario){
+            return response["usuarios"][index]._id;
+          }
+        }
+      },
+      error =>{
+        console.log(<any>error);
+        return "";
+      }
+    )
+  }
   ngOnInput(){
     if (this.mensaje.Receptor == '') {
       document.getElementById("resultado").setAttribute("class", "text-center d-none")
@@ -60,6 +75,24 @@ export class EnviarMensajeComponent implements OnInit {
     )
   }
   ngOnInit(): void {
+    if(sessionStorage.getItem("receptorEstablecido")) {
+      let id:string;
+      this.mensaje.Receptor=sessionStorage.getItem("receptorEstablecido");
+      this._usuarioService.listarUsuarios().subscribe(
+        response =>{
+          for (let index = 0; index < response["usuarios"].length; index++) {
+            if(response["usuarios"][index].NombreUsuario == sessionStorage.getItem("receptorEstablecido")){
+              id=response["usuarios"][index]._id;
+              sessionStorage.setItem("receptor", id);
+            }
+          }
+        },
+        error =>{
+          console.log(<any>error);
+        }
+      )
+      sessionStorage.setItem("nombreReceptor", sessionStorage.getItem("receptorEstablecido"));
+    }
   }
   onSubmit() {
     if(sessionStorage.getItem("receptor") == sessionStorage.getItem("idUsuario") ||sessionStorage.getItem("receptor") == localStorage.getItem("idUsuario") ){
