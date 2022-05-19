@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavegacionService } from '../services/navegacion.service';
 
 @Component({
   selector: 'app-navegacion',
@@ -8,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class NavegacionComponent implements OnInit {
   public sessionStorage:boolean;
   public localStorage:boolean;
-  constructor() { }
+  public juegos: Array<String>
+
+  constructor(private _navService: NavegacionService, private router: Router) {
+  }
 
   ngOnInit(): void {
     if(localStorage.getItem("nombreUsuario") !=undefined){
@@ -20,6 +25,20 @@ export class NavegacionComponent implements OnInit {
         this.sessionStorage=true;
       }
     }
+    this.juegos=[];
+    this._navService.listarJuegos().subscribe(
+      response => {
+        for (let index = 0; index < response["juegos"].length; index++) {
+          this.juegos.push(response["juegos"][index].NombreJuego);
+        }
+      })
   }
 
+  recargar(juego){
+    localStorage.setItem("juego", juego);
+    let currentUrl = "/MenuForo/"+juego;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
+  }
 }
