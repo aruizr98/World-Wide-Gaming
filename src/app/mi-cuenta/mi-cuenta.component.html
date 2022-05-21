@@ -1,17 +1,37 @@
 <div class="container">
     <div class="row">
         <div class="col-11">Foto de perfil</div>
- 
 
-    <div class="col-1">
-        <button class="btn btn-primary" *ngIf="this.administrador">Administrar</button>
-    </div><!--Esto sólo aparecerá si el usuario es administrador-->
-</div>
+
+        <div class="col-1">
+            <button class="btn btn-primary" *ngIf="this.administrador">Administrar</button>
+        </div>
+        <!--Esto sólo aparecerá si el usuario es administrador-->
+    </div>
     <h2 class="text-center">Cuenta de {{nombreUsuario}}</h2>
     <div class="row ">
-        <div class="col-3 text-center ml-md-auto" style="border:1px solid black; height:300px;">Próximos eventos</div>
+        <div class="col-3 text-center ml-md-auto" style="border:1px solid black; height:300px;overflow:scroll;"
+            id="proximosEventos"><b>Próximos eventos</b></div>
 
 
-        <div class="col-8 text-center offset-1" style="border:1px solid black; height:400px;">Información del usuario</div>
+        <div class="col-8 text-center offset-1" style="border:1px solid black; height:400px;" id="infoUsuario">
+            <h3>Información del usuario</h3>
+            <ul class="list-unstyled">
+                <li><b>Nombre completo:</b> {{nombreCompleto}}</li>
+                <li><b>Correo:</b> {{correo}}</li>
+                <ul class="list-unstyled">
+                    <h4>Mis redes sociales</h4>
+                    <li *ngIf="this.facebook"><b>Facebook:</b> {{facebook}}</li>
+                    <li *ngIf="this.twitter"><b>Twitter:</b> {{twitter}}</li>
+                    <li *ngIf="this.instagram"><b>Instagram:</b> {{instagram}}</li>
+                    <li *ngIf="this.discord"><b>Discord:</b> {{discord}}</li>
+                    <li *ngIf="this.twitch"><b>Twitch:</b> {{twitch}}</li>
+                    <li *ngIf="this.youtube"><b>Youtube:</b> {{youtube}}</li>
+                    <span *ngIf="!this.facebook && !this.twitter && !this.instagram && !this.discord && !this.twitch && !this.youtube">Todavía no has añadido ninguna de tus redes sociales.</span>
+                </ul>
+
+
+            </ul>
+        </div>
     </div>
 </div>
