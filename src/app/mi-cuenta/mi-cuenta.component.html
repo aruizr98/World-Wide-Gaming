@@ -23,12 +23,12 @@
                 <li *ngIf="!this.administrador">No eres administrador</li>
                 <ul class="list-unstyled">
                     <h4>Mis redes sociales</h4>
-                    <li *ngIf="this.facebook"><b>Facebook:</b> {{facebook}}</li>
-                    <li *ngIf="this.twitter"><b>Twitter:</b> {{twitter}}</li>
-                    <li *ngIf="this.instagram"><b>Instagram:</b> {{instagram}}</li>
-                    <li *ngIf="this.discord"><b>Discord:</b> {{discord}}</li>
-                    <li *ngIf="this.twitch"><b>Twitch:</b> {{twitch}}</li>
-                    <li *ngIf="this.youtube"><b>Youtube:</b> {{youtube}}</li>
+                    <li *ngIf="this.facebook"><b>Facebook: </b><a href="{{facebook}}"> {{facebook}}</a></li>
+                    <li *ngIf="this.twitter"><b>Twitter: </b> <a href="{{twitter}}">{{twitter}}</a></li>
+                    <li *ngIf="this.instagram"><b>Instagram: </b><a href="{{instagram}}">{{instagram}}</a> </li>
+                    <li *ngIf="this.discord"><b>Discord: </b><a href="{{discord}}">{{discord}}</a></li>
+                    <li *ngIf="this.twitch"><b>Twitch: </b><a href="{{twitch}}">{{twitch}}</a></li>
+                    <li *ngIf="this.youtube"><b>Youtube :</b><a href="{{youtube}}">{{youtube}}</a></li>
                     <span *ngIf="!this.facebook && !this.twitter && !this.instagram && !this.discord && !this.twitch && !this.youtube">Todavía no has añadido ninguna de tus redes sociales.</span>
                 </ul>
 
