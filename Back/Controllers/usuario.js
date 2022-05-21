@@ -22,6 +22,14 @@ var controller = {
         usuario.Correo = params.Correo;
         usuario.Contrasenya = params.Contrasenya;
         usuario.Administrador = params.Administrador;
+        usuario.Facebook=params.Facebook;
+        usuario.Twitter=params.Twitter;
+        usuario.Instagram=params.Instagram;
+        usuario.Discord=params.Discord;
+        usuario.Steam=params.Steam;
+        usuario.Epic=params.Epic;
+        usuario.Twitch=params.Twitch;
+        usuario.Youtube=params.Youtube;
         usuario.FotoPerfil = null;
 
         usuario.save((err, usuarioStored) => {
