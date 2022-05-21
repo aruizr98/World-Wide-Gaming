@@ -48,7 +48,6 @@ export class MiCuentaComponent implements OnInit {
       }else{
         this.nombreUsuario = sessionStorage.getItem("nombreUsuario");
       }
-      //Mostrar eventos
       this._usuarioService.listarUsuarios().subscribe(
         response => {
           for (let index = 0; index < response["usuarios"].length; index++) {
@@ -69,6 +68,7 @@ export class MiCuentaComponent implements OnInit {
                     console.log(<any>error);
                   }
                 )
+                //Recoger información del usuario
                 this.nombreCompleto=response["usuarios"][index].Nombre+" "+response["usuarios"][index].Apellidos;
                 this.correo=response["usuarios"][index].Correo;
                 this.facebook=response["usuarios"][index].Facebook;
@@ -77,14 +77,6 @@ export class MiCuentaComponent implements OnInit {
                 this.discord=response["usuarios"][index].Discord;
                 this.twitch=response["usuarios"][index].Tiwtch;
                 this.youtube=response["usuarios"][index].Youtube;
-                //Mostrar información del usuario
-                // document.getElementById("infoUsuario").innerHTML=`
-                //   <ul style='list-style:none;'>
-                //   <li>Nombre completo: `+response["usuarios"][index].Nombre+" "+response["usuarios"][index].Apellidos+`</li>
-                //   <li>Email: `+response["usuarios"][index].Correo+`</li>
-                //   <li *ngIf='this.Facebook != '>Facebook: `+response["usuarios"][index].Facebook+`</li>
-                //   <ul>
-                // `
               }
             }
           }
@@ -94,7 +86,6 @@ export class MiCuentaComponent implements OnInit {
           console.log(<any>error);
         }
       )
-    //Mostrar información del usuario
   }
 
 }

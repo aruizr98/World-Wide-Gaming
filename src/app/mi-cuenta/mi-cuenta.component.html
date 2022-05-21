@@ -4,9 +4,9 @@
 
 
         <div class="col-1">
+             <!--Esto sólo aparecerá si el usuario es administrador-->
             <button class="btn btn-primary" *ngIf="this.administrador">Administrar</button>
         </div>
-        <!--Esto sólo aparecerá si el usuario es administrador-->
     </div>
     <h2 class="text-center">Cuenta de {{nombreUsuario}}</h2>
     <div class="row ">
@@ -19,6 +19,8 @@
             <ul class="list-unstyled">
                 <li><b>Nombre completo:</b> {{nombreCompleto}}</li>
                 <li><b>Correo:</b> {{correo}}</li>
+                <li *ngIf="this.administrador">Eres administrador</li>
+                <li *ngIf="!this.administrador">No eres administrador</li>
                 <ul class="list-unstyled">
                     <h4>Mis redes sociales</h4>
                     <li *ngIf="this.facebook"><b>Facebook:</b> {{facebook}}</li>
