@@ -13,6 +13,14 @@ var usuarioSchema=Schema({
     Administrador:Boolean,
     idEvento:Array,
     FotoPerfil:String,
-    Favoritos:Array
+    Favoritos:Array,
+    Facebook: String,
+    Twitter: String,
+    Instagram: String,
+    Discord: String,
+    Steam: String,
+    Epic: String,
+    Twitch: String,
+    Youtube: String
 });
 module.exports=mongoose.model("Usuario", usuarioSchema);
