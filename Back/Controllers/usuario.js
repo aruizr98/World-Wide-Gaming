@@ -47,42 +47,7 @@ var controller = {
                 usuario: usuarioStored
             });
         });
-        // return res.status(200).send({
-        //     usuario:usuario,
-        //     message:"Método save"
-        // })
     },
-    // comprobarInicioSesion: function(req, res){
-    //     var usuario = new Usuario();
-    //     var params=req.body;
-    //     usuario.NombreUsuario=params.NombreUsuario;
-    //     usuario.Nombre=params.Nombre;
-    //     usuario.Apellidos=params.Apellidos;
-    //     usuario.Correo=params.Correo;
-    //     usuario.Contrasenya=params.Contrasenya;
-    //     usuario.Administrador=params.Administrador;
-    //     usuario.FotoPerfil=null;
-
-    //     usuario.save((err, usuarioStored) =>{
-    //         if(err){
-    //             return res.status(500).send({
-    //                 message:"Error al guardar"
-    //             })
-    //         }
-    //         if(!usuarioStored){
-    //             return res.status(404).send({
-    //                 message:"No se  ha podido guardar el usuario"
-    //             })
-    //         }
-    //         return res.status(200).send({
-    //             usuario:usuarioStored
-    //         });
-    //     });
-    //     return res.status(200).send({
-    //         usuario:usuario,
-    //         message:"Método save"
-    //     })
-    // },
     listarUsuario: function (req, res) {
         var idUsuario = req.params.id;
         Usuario.findById(idUsuario, (err, usuario) => {
