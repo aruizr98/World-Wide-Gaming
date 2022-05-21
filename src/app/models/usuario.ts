@@ -10,6 +10,14 @@ export class Usuario{
         public Administrador:boolean,
         public FotoPerfil:string,
         public idEvento:Array<string>,
-        public Favoritos:Array<string>
+        public Favoritos:Array<string>,
+        public Facebook: string,
+        public Twitter: string,
+        public Instagram: string,
+        public Discord: string,
+        public Steam: string,
+        public Epic: string,
+        public Twitch: string,
+        public Youtube: string,
     ){}
 }
