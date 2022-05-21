@@ -15,7 +15,7 @@ export class IniciarSesionComponent implements OnInit {
   public contrasenya: string;
   public recuerdame: boolean;
   constructor(private _usuarioService: UsuarioService) {
-    this.usuario = new Usuario("", "", "", "", "", "", false, "", [], []);
+    this.usuario = new Usuario("", "", "", "", "", "", false, "", [], [], "", "", "", "", "", "", "", "");
   }
 
   ngOnInit(): void {
