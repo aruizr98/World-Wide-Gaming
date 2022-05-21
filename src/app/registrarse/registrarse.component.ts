@@ -16,7 +16,7 @@ export class RegistrarseComponent implements OnInit {
     private _usuarioService:UsuarioService
   ) {
     this.url=Global.url; 
-    this.usuario=new Usuario("", "", "", "", "", "", false, "", [], []);
+    this.usuario=new Usuario("", "", "", "", "", "", false, "", [], [], "", "", "", "", "", "", "", "");
   }
 
   ngOnInit(): void {
