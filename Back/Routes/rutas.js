@@ -21,6 +21,7 @@ router.put("/ActualizarListaEventos/:id/:listaEventos", usuarioController.actual
 router.put("/ActualizarListaFavoritos/:id/:listaFavoritos", usuarioController.actualizarListaFavoritos);
 router.delete("/eliminarUsuario/:id", usuarioController.eliminarUsuario);
 router.post("/subirImagen/:id", multipartMiddleware, usuarioController.subirImagen);
+router.get("/getImagen/:file", usuarioController.getImagen)
 
 router.post("/crearPost", postController.crearPost);
 router.get("/post/:id", postController.mostrarPost);
