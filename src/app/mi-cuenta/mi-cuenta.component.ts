@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from "../models/usuario";
 import { UsuarioService } from "../services/usuario.service";
 import { EventoService } from '../services/evento.service';
+import { Global } from '../services/global';
 
 @Component({
   selector: 'app-mi-cuenta',
@@ -19,8 +19,10 @@ export class MiCuentaComponent implements OnInit {
   public discord:string;
   public twitch:string;
   public youtube:string;
+  public fotoPerfil:string;
+  public url:string;
 
-  constructor(private _usuarioService: UsuarioService, private _eventoService: EventoService) { }
+  constructor(private _usuarioService: UsuarioService, private _eventoService: EventoService) {this.url=Global.url; }
 
   obtenerInfoEvento(id: string): Array<string> {
     let arrayInfo = new Array<string>();
@@ -68,16 +70,17 @@ export class MiCuentaComponent implements OnInit {
                     console.log(<any>error);
                   }
                 )
-                //Recoger información del usuario
-                this.nombreCompleto=response["usuarios"][index].Nombre+" "+response["usuarios"][index].Apellidos;
-                this.correo=response["usuarios"][index].Correo;
-                this.facebook=response["usuarios"][index].Facebook;
-                this.twitter=response["usuarios"][index].Twitter;
-                this.instagram=response["usuarios"][index].Instagram;
-                this.discord=response["usuarios"][index].Discord;
-                this.twitch=response["usuarios"][index].Tiwtch;
-                this.youtube=response["usuarios"][index].Youtube;
               }
+              //Recoger información del usuario
+              this.nombreCompleto=response["usuarios"][index].Nombre+" "+response["usuarios"][index].Apellidos;
+              this.correo=response["usuarios"][index].Correo;
+              this.facebook=response["usuarios"][index].Facebook;
+              this.twitter=response["usuarios"][index].Twitter;
+              this.instagram=response["usuarios"][index].Instagram;
+              this.discord=response["usuarios"][index].Discord;
+              this.twitch=response["usuarios"][index].Tiwtch;
+              this.youtube=response["usuarios"][index].Youtube;
+              this.fotoPerfil=response["usuarios"][index].FotoPerfil;
             }
           }
 
