@@ -5,6 +5,7 @@ var postController=require("../Controllers/post");
 var mensajeController=require("../Controllers/mensaje");
 var juegoController=require("../Controllers/Juego");
 var eventoController=require("../Controllers/evento");
+var respuestaController=require("../Controllers/respuesta");
 
 var router=express.Router();
 
@@ -21,13 +22,19 @@ router.put("/ActualizarListaEventos/:id/:listaEventos", usuarioController.actual
 router.put("/ActualizarListaFavoritos/:id/:listaFavoritos", usuarioController.actualizarListaFavoritos);
 router.delete("/eliminarUsuario/:id", usuarioController.eliminarUsuario);
 router.post("/subirImagen/:id", multipartMiddleware, usuarioController.subirImagen);
-router.get("/getImagen/:file", usuarioController.getImagen)
+router.get("/getImagen/:file", usuarioController.getImagen);
 
 router.post("/crearPost", postController.crearPost);
 router.get("/post/:id", postController.mostrarPost);
 router.get("/posts", postController.listarPosts);
 router.put("/editarPost/:id", postController.editarPost);
 router.delete("/eliminarPost/:id", postController.eliminarPost);
+
+router.post("/crearRespuesta", respuestaController.crearRespuesta);
+router.get("/respuesta/:id", respuestaController.mostrarRespuesta);
+router.get("/respuestas", respuestaController.listarRespuestas);
+router.put("/editarRespuesta/:id", respuestaController.editarRespuesta);
+router.delete("/eliminarRespuesta/:id", respuestaController.eliminarRespuesta);
 
 router.post("/crearMensaje", mensajeController.crearMensaje);
 router.get("/mensaje/:id", mensajeController.mostrarMensaje);
