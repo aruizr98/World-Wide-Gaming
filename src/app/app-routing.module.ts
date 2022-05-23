@@ -10,6 +10,9 @@ import{CerrarSesionComponent} from './cerrar-sesion/cerrar-sesion.component';
 import { EnviarMensajeComponent } from './enviar-mensaje/enviar-mensaje.component';
 import { BuscarComponent } from './buscar/buscar.component';
 import { ModuleWithProviders } from '@angular/core';
+import { MenuForoComponent } from './menu-foro/menu-foro.component';
+import { ForoComponent } from './foro/foro.component';
+import { PostComponent } from './post/post.component';
 
 
 const routes: Routes = [
@@ -23,6 +26,9 @@ const routes: Routes = [
   {path:"ListaMensajes", component:ListaMensajesComponent},
   {path:"EnviarMensaje", component:EnviarMensajeComponent},
   {path:"BuscarUsuarios", component:BuscarComponent},
+  {path:"MenuForo/:juego", component:MenuForoComponent},
+  {path:"Foro/:nombre/:juego", component:ForoComponent},
+  {path:"Post", component:PostComponent},
   {path:"**", component:CarrouselComponent}
 ];
 

@@ -15,6 +15,9 @@ import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
 import { ListaMensajesComponent } from './lista-mensajes/lista-mensajes.component';
 import { EnviarMensajeComponent } from './enviar-mensaje/enviar-mensaje.component';
 import { BuscarComponent } from './buscar/buscar.component';
+import { MenuForoComponent } from './menu-foro/menu-foro.component';
+import { ForoComponent } from './foro/foro.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -29,14 +32,15 @@ import { BuscarComponent } from './buscar/buscar.component';
     ListaMensajesComponent,
     EnviarMensajeComponent,
     BuscarComponent,
-    
+    MenuForoComponent,
+    ForoComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

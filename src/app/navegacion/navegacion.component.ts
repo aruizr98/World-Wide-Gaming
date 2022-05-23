@@ -10,7 +10,7 @@ import { NavegacionService } from '../services/navegacion.service';
 export class NavegacionComponent implements OnInit {
   public sessionStorage:boolean;
   public localStorage:boolean;
-  public juegos: Array<String>
+  public juegos: Array<String>;
 
   constructor(private _navService: NavegacionService, private router: Router) {
   }

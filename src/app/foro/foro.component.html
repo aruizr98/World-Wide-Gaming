@@ -1,0 +1,29 @@
+<div class="container">
+  <h2 id="titulo" class="text-center"></h2>
+  <div class="row mt-5">
+    <div class="col-12 text-center"
+      style="border: 1px solid black; height: auto; background-color: rgb(240, 240, 240);">Lista de
+      posts
+      <div class="my-4 row d-flex align-items-center justify-content-evenly">
+        <div id="cards">
+          <div *ngFor="let post of posts" class="card text-dark bg-light mb-4"
+            style="cursor: pointer; box-shadow: 4px 4px 10px -3px grey;" [routerLink]="['/Post']"
+            (click)="cogerId(post._id)">
+            <div class="card-header d-flex align-items-center" style="background-color: #d7faff;">
+              <h5 class="card-title text-start col-6">{{post.Titulo}}</h5>
+              <div class="col-6 text-end">{{post.FechaHora}}</div>
+            </div>
+            <div class="card-body" style="background-color: #fffad2;">
+              <p class="card-text text-start">{{post.TextoPost}}</p>
+            </div>
+            <div class="card-footer container" style="background-color: #fffad2;">
+              <div class="row">
+                <div class="col text-start">Usuario: <b>{{post.UsuarioCreador}}</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
