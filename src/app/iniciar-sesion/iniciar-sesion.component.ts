@@ -27,9 +27,20 @@ export class IniciarSesionComponent implements OnInit {
     this._usuarioService.listarUsuarios().subscribe(
       response => {
         sessionStorage.setItem("loginCorrecto", "false");
+        var correoCorrecto=false;
+        var contrasenyaCorrecta=false;
         for (let index = 0; index < response["usuarios"].length; index++) {
-          if (response["usuarios"][index].Correo == this.usuario.Correo && response["usuarios"][index].Contrasenya == this.usuario.Contrasenya) {
-            sessionStorage.setItem("loginCorrecto", "true");
+          if (response["usuarios"][index].Correo == this.usuario.Correo) {
+            correoCorrecto=true;
+            document.getElementById("correoIncorrecto").setAttribute("class", "alert alert-danger d-none");
+            if(response["usuarios"][index].Contrasenya == this.usuario.Contrasenya){
+              contrasenyaCorrecta=true;
+              document.getElementById("contrasenyaIncorrecta").setAttribute("class", "alert alert-danger d-none");
+            }
+          }
+         
+          if(correoCorrecto && contrasenyaCorrecta){
+             sessionStorage.setItem("loginCorrecto", "true");
             console.log(this.recuerdame);
             if (this.recuerdame == undefined || !this.recuerdame) {
               sessionStorage.setItem("nombreUsuario", response["usuarios"][index].NombreUsuario);
@@ -40,19 +51,18 @@ export class IniciarSesionComponent implements OnInit {
             }
             location.href = "/inicio";
           }
-        }
-        this.comprobarLogin();
+          }
+          if(!correoCorrecto){
+            document.getElementById("correoIncorrecto").setAttribute("class", "alert alert-danger d-block");
+          }else if(!contrasenyaCorrecta){
+            document.getElementById("contrasenyaIncorrecta").setAttribute("class", "alert alert-danger d-block");
+          }
+          
+       
       },
       error => {
         console.log(<any>error);
       }
     )
-  }
-  comprobarLogin(): boolean {
-    if (sessionStorage.getItem("loginCorrecto") == "true") {
-      return true;
-    } else {
-      return false;
-    }
   }
 }
