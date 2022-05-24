@@ -15,7 +15,7 @@ export class PostComponent implements OnInit {
   public posts: Array<Post> = [];
   public respuestas: Array<Respuesta> = [];
   public post: string = "";
-  public respuesta: Respuesta = new Respuesta("", "", "", "", "", false);
+  public respuesta: Respuesta = new Respuesta("", "", "", "", "", false, "");
   public logeado: boolean = false;
 
   constructor(private router: Router, private _foroService: ForoService, private _usuarioService: UsuarioService, private _respuestaService: RespuestaService) { }
@@ -40,7 +40,7 @@ export class PostComponent implements OnInit {
               this.posts[index].eliminar = true;
             }
             if (this.posts[index].UsuarioCreador == response["usuarios"][index2]._id) {
-              this.posts[index].UsuarioCreador = response['usuarios'][index2].NombreUsuario;
+              this.posts[index].NombreCreador = response['usuarios'][index2].NombreUsuario;
             }
           }
         }
@@ -63,7 +63,7 @@ export class PostComponent implements OnInit {
               this.respuestas[index].eliminar = true;
             }
             if (this.respuestas[index].UsuarioCreador == response["usuarios"][index2]._id) {
-              this.respuestas[index].UsuarioCreador = response['usuarios'][index2].NombreUsuario;
+              this.respuestas[index].NombreCreador = response['usuarios'][index2].NombreUsuario;
             }
           }
         }

@@ -6,5 +6,6 @@ export class Respuesta{
         public Respuesta:string,
         public FechaHora:string,
         public eliminar:boolean,
+        public NombreCreador:string,
     ){}
 }

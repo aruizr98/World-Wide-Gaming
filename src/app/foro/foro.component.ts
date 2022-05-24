@@ -33,7 +33,7 @@ export class ForoComponent implements OnInit {
         for (let index = 0; index < this.posts.length; index++) {
           for (let index2 = 0; index2 < response["usuarios"].length; index2++) {
             if (this.posts[index].UsuarioCreador == response["usuarios"][index2]._id) {
-              this.posts[index].UsuarioCreador = response['usuarios'][index2].NombreUsuario;
+              this.posts[index].NombreCreador = response['usuarios'][index2].NombreUsuario;
             }
           }
         }

@@ -14,7 +14,7 @@
           </div>
           <div class="card-footer container" style="background-color: #fffad2;">
             <div class="row d-flex align-items-center">
-              <div class="col-6 text-start">Usuario: <b>{{post.UsuarioCreador}}</b></div>
+              <div class="col-6 text-start">Usuario: <b>{{post.NombreCreador}}</b></div>
               <div class="col-6 text-end">
                 <button *ngIf="logeado" type="button" class="btn btn-primary mx-3" (click)="responder(post._id)" style="width: 120px;">Responder</button>
                 <button *ngIf="post.eliminar && logeado" type="button" class="btn btn-danger mx-3" (click)="eliminarPost(post._id)" style="width: 120px;">Eliminar</button>
@@ -40,7 +40,7 @@
           </div>
           <div class="card-footer container" style="background-color: #fffad2;">
             <div class="row">
-              <div class="col text-start">Usuario: <b>{{respuesta.UsuarioCreador}}</b></div>
+              <div class="col text-start">Usuario: <b>{{respuesta.NombreCreador}}</b></div>
               <div class="col text-end">
                 {{respuesta.FechaHora}}
                 <button *ngIf="respuesta.eliminar && logeado" type="button" class="btn btn-danger mx-3" (click)="eliminarRespuesta(respuesta._id)" style="width: 120px;">Eliminar</button>

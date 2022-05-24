@@ -8,5 +8,6 @@ export class Post{
         public NombreJuego:string,
         public NombreForo:string,
         public eliminar:boolean,
+        public NombreCreador:string,
     ){}
 }
