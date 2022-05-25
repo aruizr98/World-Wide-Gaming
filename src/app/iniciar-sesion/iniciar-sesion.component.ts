@@ -27,38 +27,38 @@ export class IniciarSesionComponent implements OnInit {
     this._usuarioService.listarUsuarios().subscribe(
       response => {
         sessionStorage.setItem("loginCorrecto", "false");
-        var correoCorrecto=false;
-        var contrasenyaCorrecta=false;
+        var correoCorrecto = false;
+        var contrasenyaCorrecta = false;
         for (let index = 0; index < response["usuarios"].length; index++) {
           if (response["usuarios"][index].Correo == this.usuario.Correo) {
-            correoCorrecto=true;
+            correoCorrecto = true;
             document.getElementById("correoIncorrecto").setAttribute("class", "alert alert-danger d-none");
-            if(response["usuarios"][index].Contrasenya == this.usuario.Contrasenya){
-              contrasenyaCorrecta=true;
+            if (response["usuarios"][index].Contrasenya == this.usuario.Contrasenya) {
+              contrasenyaCorrecta = true;
               document.getElementById("contrasenyaIncorrecta").setAttribute("class", "alert alert-danger d-none");
+              sessionStorage.setItem("loginCorrecto", "true");
+              console.log(this.recuerdame);
+              if (this.recuerdame == undefined || !this.recuerdame) {
+                sessionStorage.setItem("nombreUsuario", response["usuarios"][index].NombreUsuario);
+                sessionStorage.setItem("idUsuario", response["usuarios"][index]._id);
+              } else {
+                localStorage.setItem("nombreUsuario", response["usuarios"][index].NombreUsuario);
+                localStorage.setItem("idUsuario", response["usuarios"][index]._id);
+              }
+              location.href = "/inicio";
+
             }
           }
-         
-          if(correoCorrecto && contrasenyaCorrecta){
-             sessionStorage.setItem("loginCorrecto", "true");
-            console.log(this.recuerdame);
-            if (this.recuerdame == undefined || !this.recuerdame) {
-              sessionStorage.setItem("nombreUsuario", response["usuarios"][index].NombreUsuario);
-              sessionStorage.setItem("idUsuario", response["usuarios"][index]._id);
-            } else {
-              localStorage.setItem("nombreUsuario", response["usuarios"][index].NombreUsuario);
-              localStorage.setItem("idUsuario", response["usuarios"][index]._id);
-            }
-            location.href = "/inicio";
-          }
-          }
-          if(!correoCorrecto){
-            document.getElementById("correoIncorrecto").setAttribute("class", "alert alert-danger d-block");
-          }else if(!contrasenyaCorrecta){
-            document.getElementById("contrasenyaIncorrecta").setAttribute("class", "alert alert-danger d-block");
-          }
-          
-       
+
+
+        }
+        if (!correoCorrecto) {
+          document.getElementById("correoIncorrecto").setAttribute("class", "alert alert-danger d-block");
+        } else if (!contrasenyaCorrecta) {
+          document.getElementById("contrasenyaIncorrecta").setAttribute("class", "alert alert-danger d-block");
+        }
+
+
       },
       error => {
         console.log(<any>error);
