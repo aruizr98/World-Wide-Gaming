@@ -36,6 +36,6 @@ export class JuegoService {
   editarJuego(id: string, juego: Juego) {
     let headers = new HttpHeaders().set("content-type", "application/json");
 
-    return this._http.put(this.url + "editarJuego/" + id, { headers: headers });
+    return this._http.put(this.url + "editarJuego/" + id+"/"+juego.NombreJuego+"/"+juego.LimiteUsuarios, { headers: headers });
   }
 }
