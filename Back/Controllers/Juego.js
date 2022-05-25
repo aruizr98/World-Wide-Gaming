@@ -74,9 +74,9 @@ var controller={
     },
     editarJuego: function(req, res){
         var idJuego=req.params.id;
-        var editar=req.body;
-
-        Juego.findByIdAndUpdate(idJuego, editar, {new:true}, (err, juegoUpdated) =>{
+        var nombre=req.params.nombre;
+        var limite=req.params.limite;
+        Juego.findByIdAndUpdate(idJuego, {NombreJuego:nombre, LimiteUsuarios:limite}, {new:true}, (err, juegoUpdated) =>{
             if(err){
                 return res.status(500).send({
                     message:"Error al editar."
