@@ -18,6 +18,10 @@ import { BuscarComponent } from './buscar/buscar.component';
 import { MenuForoComponent } from './menu-foro/menu-foro.component';
 import { ForoComponent } from './foro/foro.component';
 import { PostComponent } from './post/post.component';
+import { AdministracionComponent } from './administracion/administracion.component';
+import { CrearJuegoComponent } from './administracion/crear-juego/crear-juego.component';
+import { ModificarJuegoComponent } from './administracion/modificar-juego/modificar-juego.component';
+import { EliminarJuegoComponent } from './administracion/eliminar-juego/eliminar-juego.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { PostComponent } from './post/post.component';
     BuscarComponent,
     MenuForoComponent,
     ForoComponent,
-    PostComponent
+    PostComponent,
+    AdministracionComponent,
+    CrearJuegoComponent,
+    ModificarJuegoComponent,
+    EliminarJuegoComponent,
   ],
   imports: [
     BrowserModule,

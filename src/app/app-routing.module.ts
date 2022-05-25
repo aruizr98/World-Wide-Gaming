@@ -13,6 +13,10 @@ import { ModuleWithProviders } from '@angular/core';
 import { MenuForoComponent } from './menu-foro/menu-foro.component';
 import { ForoComponent } from './foro/foro.component';
 import { PostComponent } from './post/post.component';
+import { AdministracionComponent } from './administracion/administracion.component';
+import { CrearJuegoComponent } from './administracion/crear-juego/crear-juego.component';
+import { ModificarJuegoComponent } from './administracion/modificar-juego/modificar-juego.component';
+import { EliminarJuegoComponent } from './administracion/eliminar-juego/eliminar-juego.component';
 
 
 const routes: Routes = [
@@ -29,6 +33,10 @@ const routes: Routes = [
   {path:"MenuForo/:juego", component:MenuForoComponent},
   {path:"Foro/:nombre/:juego", component:ForoComponent},
   {path:"Post", component:PostComponent},
+  {path:"Administrar", component:AdministracionComponent},
+  {path:"Administrar/CrearJuego", component:CrearJuegoComponent},
+  {path:"Administrar/ModificarJuego", component:ModificarJuegoComponent},
+  {path:"Administrar/EliminarJuego", component:EliminarJuegoComponent},
   {path:"**", component:CarrouselComponent}
 ];
 
