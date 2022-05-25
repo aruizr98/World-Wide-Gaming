@@ -21,11 +21,11 @@
           </div>
           <div class="col w-50">
             <input type="text" name="nombre" class="form-control form-control-dark"
-              placeholder="Introduce el nuevo nombre del juego" />
+              placeholder="Introduce el nuevo nombre del juego" #nombreJuego="ngModel" [(ngModel)]="juegoObjeto.NombreJuego" />
             <input type="text" name="limite" class="form-control form-control-dark mt-2"
-              placeholder="Introduce el nuevo limite de usuarios" />
+              placeholder="Introduce el nuevo limite de usuarios" #limite="ngModel" [(ngModel)]="juegoObjeto.LimiteUsuarios" />
           </div>
-          <button class="mt-4 w-100 btn btn-lg btn-primary" name="boton" type="button"
+          <button class="mt-4 w-100 btn btn-lg btn-primary" name="boton" type="submit"
             (click)="modificarJuego()">Guardar</button>
           <button class="mt-2 mb-3 w-100 btn btn-lg btn-danger" name="boton" type="button"
             (click)="cancelar()">Cancelar</button>

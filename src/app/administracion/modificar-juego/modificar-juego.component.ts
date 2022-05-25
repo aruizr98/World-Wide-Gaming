@@ -13,8 +13,11 @@ export class ModificarJuegoComponent implements OnInit {
   public noEncontrado: boolean;
   public status: boolean = false;
   public juego: string = "";
+  public juegoObjeto:Juego;
   public correcto: boolean = false;
-  constructor(private _juegoService: JuegoService, private router: Router) { }
+  constructor(private _juegoService: JuegoService, private router: Router) {
+    this.juegoObjeto=new Juego("", "", 12);
+   }
 
   ngOnInit(): void {
     this.correcto = false;
@@ -56,18 +59,10 @@ export class ModificarJuegoComponent implements OnInit {
   }
 
   modificarJuego(): void {
-    var juegoCreado: Juego = new Juego("", "", 12);
-    var nombreIntroducido = document.forms["formulario"]["nombre"].value;
-    var limiteIntroducido = document.forms["formulario"]["limite"].value;
-    juegoCreado.NombreJuego = nombreIntroducido;
-    if(limiteIntroducido != "") {
-      juegoCreado.LimiteUsuarios = Number(limiteIntroducido);
-    }
-    if (nombreIntroducido == "") {
+    if (this.juegoObjeto.NombreJuego == "") {
       alert("Debe de introducir el nuevo nombre del juego");
     } else {
-      console.log(juegoCreado);
-      this._juegoService.editarJuego(sessionStorage.getItem("idJuego"), juegoCreado).subscribe(
+      this._juegoService.editarJuego(sessionStorage.getItem("idJuego"), this.juegoObjeto).subscribe(
         response => {
           console.log(response);
           this.correcto = true;
