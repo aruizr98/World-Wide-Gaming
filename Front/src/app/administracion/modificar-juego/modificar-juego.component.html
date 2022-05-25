@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 id="titulo" class="text-center"></h2>
+  <div class="row mt-5">
+    <div class="col-12 text-center"
+      style="border: 1px solid black; height: auto; background-color: rgb(240, 240, 240);">Modificar juego
+      <div *ngIf="!status && !correcto" class="row my-4">
+        <form class="mx-auto">
+          <input type="search" class="form-control form-control-dark" placeholder="Busca juegos para modificar" aria-label="Search"
+            name="busqueda" #Busqueda="ngModel" [(ngModel)]="busqueda" (input)="ngOnInput()" style="height: 60px;">
+          <span class="alert alert-danger d-block mt-2" *ngIf="this.noEncontrado">No se han
+            encontrado juegos con ese nombre. Por favor, comprueba que esté bien escrito (las mayúsculas y
+            minúsculas se tienen en cuenta).</span>
+        </form>
+        <div id="resultado" class="text-center"></div>
+      </div>
+      <div *ngIf="status && !correcto" class="row my-4">
+        <form id="formulario" class="mx-auto row">
+          <div class="col w-50 border d-flex justify-content-center align-items-center mx-2"
+            style="background-color: white;">
+            <h4>Juego: {{juego}}</h4>
+          </div>
+          <div class="col w-50">
+            <input type="text" name="nombre" class="form-control form-control-dark"
+              placeholder="Introduce el nuevo nombre del juego" #nombreJuego="ngModel" [(ngModel)]="juegoObjeto.NombreJuego" />
+            <input type="text" name="limite" class="form-control form-control-dark mt-2"
+              placeholder="Introduce el nuevo limite de usuarios" #limite="ngModel" [(ngModel)]="juegoObjeto.LimiteUsuarios" />
+          </div>
+          <button class="mt-4 w-100 btn btn-lg btn-primary" name="boton" type="submit"
+            (click)="modificarJuego()">Guardar</button>
+          <button class="mt-2 mb-3 w-100 btn btn-lg btn-danger" name="boton" type="button"
+            (click)="cancelar()">Cancelar</button>
+        </form>
+      </div>
+      <div *ngIf="correcto" class="m-4 row d-flex flex-column align-items-center justify-content-center alert alert-success">
+        <p class="display-6">El juego se ha actualizado correctamente!</p>
+      </div>
+    </div>
+  </div>
+</div>

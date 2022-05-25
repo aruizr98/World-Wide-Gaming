@@ -1,0 +1,19 @@
+<div class="container">
+    <h2 id="titulo" class="text-center"></h2>
+    <div class="row mt-5">
+      <div class="col-12 text-center" style="border: 1px solid black; height: auto; background-color: rgb(240, 240, 240);">Crear juego
+        <div *ngIf="!status" class="row">
+          <form id="formulario">
+            <input type="text" name="juego" class="mt-4 form-control" placeholder="Introduce aquí el juego" style="height: 60px;">
+            <span class="alert alert-danger d-block mt-2" *ngIf="err == 1">No puedes dejar este campo vacio</span>
+            <span class="alert alert-danger d-block mt-2" *ngIf="err == 2">El juego ya existe</span>
+            <button class="mt-3 mb-4 w-100 btn btn-lg btn-danger" name="boton" type="button" (click)="guardarJuego()">Guardar</button>
+          </form>
+        </div>
+        <div *ngIf="status" class="m-4 row d-flex flex-column align-items-center justify-content-center alert alert-success">
+          <p class="display-6">El juego se ha creado correctamente!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

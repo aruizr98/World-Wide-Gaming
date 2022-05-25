@@ -1,0 +1,25 @@
+<div class="container">
+  <h2 id="titulo" class="text-center"></h2>
+  <div class="row mt-5">
+    <div class="col-12 text-center"
+      style="border: 1px solid black; height: auto; background-color: rgb(240, 240, 240);">Administrar Juegos
+      <div class="my-4 row d-flex flex-row align-items-center justify-content-center">
+        <div [routerLink]="['/Administrar/CrearJuego']"
+          class="card my-2 mx-2 d-flex align-items-center justify-content-center"
+          style="width: 30%; height: 250px; box-shadow: 4px 4px 10px -3px grey; cursor: pointer;">
+          <p class="display-6">Crear</p>
+        </div>
+        <div [routerLink]="['/Administrar/ModificarJuego']"
+          class="card my-2 mx-2 d-flex align-items-center justify-content-center"
+          style="width: 30%; height: 250px; box-shadow: 4px 4px 10px -3px grey; cursor: pointer;">
+          <p class="display-6">Modificar</p>
+        </div>
+        <div [routerLink]="['/Administrar/EliminarJuego']"
+          class="card my-2 mx-2 d-flex align-items-center justify-content-center"
+          style="width: 30%; height: 250px; box-shadow: 4px 4px 10px -3px grey; cursor: pointer;">
+          <p class="display-6">Eliminar</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

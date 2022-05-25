@@ -1,0 +1,19 @@
+<div class="container">
+  <h2 id="titulo" class="text-center"></h2>
+  <div class="row mt-5">
+    <div class="col-12 text-center" style="border: 1px solid black; height: auto; background-color: rgb(240, 240, 240);">Lista de
+      foros
+      <div class="my-4 row d-flex align-items-center justify-content-evenly">
+        <div [routerLink]="['/Foro', 'Dudas', juego]" class="card m-2 d-flex align-items-center justify-content-center" style="width: 18rem; height: 500px; box-shadow: 4px 4px 10px -3px grey; cursor: pointer;">
+          <p class="display-6">Foro de dudas</p>
+        </div>
+        <div [routerLink]="['/Foro', 'Equipos', juego]" class="card m-2 d-flex align-items-center justify-content-center" style="width: 18rem; height: 500px; box-shadow: 4px 4px 10px -3px grey; cursor: pointer;">
+          <p class="display-6">Foro de creacion de equipos</p>
+        </div>
+        <div [routerLink]="['/Foro', 'Eventos', juego]" class="card m-2 d-flex align-items-center justify-content-center" style="width: 18rem; height: 500px; box-shadow: 4px 4px 10px -3px grey; cursor: pointer;">
+          <p class="display-6">Foro de eventos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

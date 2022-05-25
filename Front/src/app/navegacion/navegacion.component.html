@@ -1,0 +1,58 @@
+<nav id="menu" class="navbar navbar-expand-md navbar-light bg-light shadow p-3 mb-5 bg-white rounded">
+  <div class="container-fluid">
+    <div class="col-4">
+      <a class="text-decoration-none text-dark" [routerLink]="['/inicio']"><img class="d-inline-block align-text-center" src="assets/images/logo.png"
+          alt="Logo" height="50"><b>WorldWideGaming</b></a>
+    </div>
+    <ul id="listaMenu" class="nav col-8 justify-content-end">
+      <li class="nav-item dropdown">
+        <a class="btn  m-1 botonNavegacion" [routerLink]="['/inicio']">
+          Inicio
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="btn m-1 botonNavegacion" href="#" id="navbarDarkDropdownMenuLink" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Foros
+        </a>
+        <ul id="lista" class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+          <li *ngFor="let juego of juegos"><button class="dropdown-item" [routerLink]="['/MenuForo', juego]" (click)="recargar(juego)">{{juego}}</button>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="btn m-1 botonNavegacion" [routerLink]="['/Eventos']">
+          Eventos
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="btn m-1 botonNavegacion" [routerLink]="['/BuscarUsuarios']">
+          Buscar
+        </a>
+      </li>
+      <div>
+        <button type="button" class="btn btn-outline-secondary me-2 m-1" id="botoniniciarSesion"
+          [routerLink]="['/IniciarSesion']" *ngIf="!this.localStorage && !this.sessionStorage">Iniciar sesión</button>
+        <button id="botonRegistrarse" type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/Registrarse']"
+          *ngIf="!this.localStorage && !this.sessionStorage">Registrarse</button>
+
+        <!-- <button class="btn btn-outline-primary me-2 m-1" *ngIf="this.localStorage ||this.sessionStorage">Mi
+          Cuenta</button> -->
+        
+      </div>
+      <li class="nav-item dropdown" *ngIf="this.localStorage ||this.sessionStorage">
+        <a class="btn btn-primary" href="#" id="navbarDarkDropdownMenuLink" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Mi Cuenta
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+          <li><a class="dropdown-item" [routerLink]="['/MiCuenta']">Mi cuenta</a></li>
+          <li><a class="dropdown-item" href="biblioteca.html">Mi biblioteca</a></li>
+          <li><button class="dropdown-item"  [routerLink]="['/CerrarSesion']">Cerrar Sesión</button></li>
+        </ul>
+        <button class="btn btn-warning m-1" [routerLink]="['/ListaMensajes']" *ngIf="this.localStorage ||this.sessionStorage">Lista de Mensajes</button>
+      </li>
+      
+    </ul>
+  </div>
+</nav>

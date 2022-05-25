@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-11"><img style="width:120px;" src="{{url+'getImagen/'+this.fotoPerfil}}" *ngIf="this.fotoPerfil"/></div>
+
+
+        <div class="col-1">
+             <!--Esto sólo aparecerá si el usuario es administrador-->
+            <button class="btn btn-primary" *ngIf="this.administrador"[routerLink]="['/Administrar']">Administrar</button>
+        </div>
+    </div>
+    <h2 class="text-center">Cuenta de {{nombreUsuario}}</h2>
+    <div class="row ">
+        <div class="col-3 text-center ml-md-auto" style="border:1px solid black; height:300px;overflow:scroll;"
+            id="proximosEventos"><b>Próximos eventos</b></div>
+
+
+        <div class="col-8 text-center offset-1" style="border:1px solid black; height:400px;" id="infoUsuario">
+            <h3>Información del usuario</h3>
+            <ul class="list-unstyled">
+                <li><b>Nombre completo:</b> {{nombreCompleto}}</li>
+                <li><b>Correo:</b> {{correo}}</li>
+                <li *ngIf="this.administrador">Eres administrador</li>
+                <li *ngIf="!this.administrador">No eres administrador</li>
+                <ul class="list-unstyled">
+                    <h4>Mis redes sociales</h4>
+                    <li *ngIf="this.facebook"><b>Facebook: </b><a href="{{facebook}}"> {{facebook}}</a></li>
+                    <li *ngIf="this.twitter"><b>Twitter: </b> <a href="{{twitter}}">{{twitter}}</a></li>
+                    <li *ngIf="this.instagram"><b>Instagram: </b><a href="{{instagram}}">{{instagram}}</a> </li>
+                    <li *ngIf="this.discord"><b>Discord: </b><a href="{{discord}}">{{discord}}</a></li>
+                    <li *ngIf="this.twitch"><b>Twitch: </b><a href="{{twitch}}">{{twitch}}</a></li>
+                    <li *ngIf="this.youtube"><b>Youtube :</b><a href="{{youtube}}">{{youtube}}</a></li>
+                    <span *ngIf="!this.facebook && !this.twitter && !this.instagram && !this.discord && !this.twitch && !this.youtube">Todavía no has añadido ninguna de tus redes sociales.</span>
+                </ul>
+
+
+            </ul>
+        </div>
+    </div>
+</div>

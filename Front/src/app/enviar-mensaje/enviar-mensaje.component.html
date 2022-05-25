@@ -1,0 +1,25 @@
+<div class="alert alert-success text-center" *ngIf="status">
+   Mensaje enviado correctamente.
+  </div>
+<div class="container text-center">
+    <form id="registro" #formularioRegistro="ngForm" (ngSubmit)="onSubmit()">
+      <h1 class="h3 mb-3 fw-normal">Enviar un mensaje</h1>
+      <span class="alert alert-danger d-block" *ngIf="!this.receptorCorrecto">No puedes enviarte un mensaje a ti mism@.</span>
+      <div class="form-row ">
+        <div class="form-group col-md-12 form-floating my-3"> 
+          <!-- <select id="receptores" #Receptor="ngModel" [(ngModel)]="mensaje.Receptor" name="Receptor"></select>   -->
+          <div class="w-25 mx-auto">
+            <input type="search" class="form-control form-control-dark text-center" placeholder="Receptor del mensaje" aria-label="Search"
+              name="busqueda" id="busqueda" #Busqueda="ngModel" [(ngModel)]="mensaje.Receptor" (input)="ngOnInput()" onsubmit="document.getElementById('receptor').value='';" required>
+              <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="Busqueda.touched && !Busqueda.valid">Por favor, elige un receptor para el mensaje.</span>
+              <div id="resultado" class="text-center"></div>
+          </div>
+        </div>
+        <textarea #Mensaje="ngModel" [(ngModel)]="mensaje.Mensaje" name="Mensaje" placeholder="Escribe un mensaje" required></textarea>
+        <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="Mensaje.touched && !Mensaje.valid">Por favor, escribe un mensaje para el destinatario.</span>
+      </div>
+      <input type="submit" class="w-100 btn btn-primary mt-3" value="Enviar mensaje" [disabled]="!formularioRegistro.form.valid" />
+      <span class="bg-success" id="resultadoRegistro"></span>
+    </form>
+  </div>
+  
