@@ -15,42 +15,6 @@ export class ListaMensajesComponent implements OnInit {
   constructor(private _usuarioService: UsuarioService, private _mensajeService: MensajeService) { }
 
   ngOnInit(): void {
-    // this._mensajeService.listarMensajes().subscribe(
-    //   response => {
-    //     console.log(response["mensajes"])
-    //     for (let index = 0; index < response["mensajes"].length; index++) {
-    //       if(response["mensajes"][index].Receptor == sessionStorage.getItem("idUsuario") ||response["mensajes"][index].Receptor == localStorage.getItem("idUsuario") ){
-    //         this._usuarioService.listarUsuarios().subscribe(
-    //           response2 => {
-    //             for (let j = 0; j < response2["usuarios"].length; j++) {
-    //               if(response2["usuarios"][j]._id == response["mensajes"][index].Emisor){
-    //                 let nombreEmisor=response2["usuarios"][j].NombreUsuario;
-    //                 localStorage.setItem("mensajes", "true");
-    //                 let mensajes=document.getElementById("mensajes");
-    //                 let div=document.createElement("div");
-    //                 div.setAttribute("class", "border border-black w-25 mx-auto");
-    //                 div.innerHTML=`
-    //                   <span>De `+nombreEmisor+`</span>
-    //                   <p>`+response["mensajes"][index].Mensaje+`</p>
-    //                   <button class='btn btn-primary my-1' onclick="sessionStorage.setItem('ReceptorMensaje', '`+response2["usuarios"][j].NombreUsuario+`'); sessionStorage.setItem('idReceptorMensaje', '`+response2["usuarios"][j]._id+`')">Responder</button>
-    //                 `
-    //                 mensajes.append(div);
-    //               }
-
-    //             }
-    //           },
-    //           error => {
-    //             console.log(<any>error);
-    //           }
-    //         )
-    //       }
-    //     }
-
-    //   },
-    //   error => {
-    //     console.log(<any>error);
-    //   }
-    // )
     this._usuarioService.listarUsuarios().subscribe(
 
       response => {
@@ -73,6 +37,8 @@ export class ListaMensajesComponent implements OnInit {
                   mensajes = true;
                   caja.innerHTML += "<p class='m-0 text-start'>" + response2["mensajes"][j].Mensaje + "</p>";
                 }else if((response2["mensajes"][j].Emisor == sessionStorage.getItem("idUsuario") || response2["mensajes"][j].Emisor == localStorage.getItem("idUsuario")) && response["usuarios"][index]._id == response2["mensajes"][j].Receptor  ){
+                  localStorage.setItem("mensajes", "true");
+                  mensajes=true;
                   if(contador==0){
                     caja.innerHTML += "<div class='text-center'><span><b>" + response["usuarios"][index].NombreUsuario + "</b></span></div>";
                     contador++;
@@ -82,7 +48,6 @@ export class ListaMensajesComponent implements OnInit {
 
               }
               if (mensajes) {
-                // caja.innerHTML+="<div class='text-center my-2'><button class='btn btn-primary' [routerLink]='[´/EnviarMensaje´]'>Escribir mensaje</button></div>";
                 let div=document.createElement("div");
                 let button=document.createElement("button");
                 div.setAttribute("class", "text-center my-2");
