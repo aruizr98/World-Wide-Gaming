@@ -43,7 +43,7 @@ router.get("/mensajes", mensajeController.listarMensajes);
 router.post("/crearJuego", juegoController.crearJuego);
 router.get("/juego/:id", juegoController.mostrarJuego);
 router.get("/juegos", juegoController.listarJuegos);
-router.put("/editarJuego/:id", juegoController.editarJuego);
+router.put("/editarJuego/:id/:nombre/:limite", juegoController.editarJuego);
 router.delete("/eliminarJuego/:id", juegoController.eliminarJuego);
 
 router.post("/crearEvento", eventoController.crearEvento);
