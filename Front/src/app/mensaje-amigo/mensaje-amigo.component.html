@@ -4,7 +4,13 @@
     <div class="col-12 text-center"
       style="border: 1px solid black; height: auto; background-color: rgb(240, 240, 240);">Enviar mensaje
       <div *ngIf="!status" class="my-4 row d-flex align-items-center justify-content-evenly">
-        <h2>Usuario receptor: {{amigo}}</h2>
+        <h2 *ngIf="this.receptorMarcado">Usuario receptor: {{amigo}}</h2>
+        <div class="w-25 mx-auto" *ngIf="!this.receptorMarcado">
+          <input type="search" class="form-control form-control-dark text-center" placeholder="Receptor del mensaje" aria-label="Search"
+            name="busqueda" id="busqueda" #Busqueda="ngModel" [(ngModel)]="mensaje.Receptor" (input)="ngOnInput()" onsubmit="document.getElementById('receptor').value='';" required>
+            <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="Busqueda.touched && !Busqueda.valid">Por favor, elige un receptor para el mensaje.</span>
+            <div id="resultado" class="text-center"></div>
+        </div>
         <form id="formulario">
             <textarea class="form-control" name="mensaje" rows="3" placeholder="Escribe aqui tu mensaje"></textarea>
           <span class="alert alert-danger d-block mt-2" *ngIf="err == 1">No puedes dejar este campo vacio</span>
