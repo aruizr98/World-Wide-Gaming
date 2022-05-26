@@ -17,6 +17,7 @@ import { AdministracionComponent } from './administracion/administracion.compone
 import { CrearJuegoComponent } from './administracion/crear-juego/crear-juego.component';
 import { ModificarJuegoComponent } from './administracion/modificar-juego/modificar-juego.component';
 import { EliminarJuegoComponent } from './administracion/eliminar-juego/eliminar-juego.component';
+import { MensajeAmigoComponent } from './mensaje-amigo/mensaje-amigo.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path:"Administrar/CrearJuego", component:CrearJuegoComponent},
   {path:"Administrar/ModificarJuego", component:ModificarJuegoComponent},
   {path:"Administrar/EliminarJuego", component:EliminarJuegoComponent},
+  {path:"MensajeAmigo", component:MensajeAmigoComponent},
   {path:"**", component:CarrouselComponent}
 ];
 

@@ -1,0 +1,21 @@
+<div class="container">
+  <h2 id="titulo" class="text-center"></h2>
+  <div class="row mt-5">
+    <div class="col-12 text-center"
+      style="border: 1px solid black; height: auto; background-color: rgb(240, 240, 240);">Enviar mensaje
+      <div *ngIf="!status" class="my-4 row d-flex align-items-center justify-content-evenly">
+        <h2>Usuario receptor: {{amigo}}</h2>
+        <form id="formulario">
+            <textarea class="form-control" name="mensaje" rows="3" placeholder="Escribe aqui tu mensaje"></textarea>
+          <span class="alert alert-danger d-block mt-2" *ngIf="err == 1">No puedes dejar este campo vacio</span>
+          <button class="mt-3 mb-4 w-100 btn btn-lg btn-danger" name="boton" type="button"
+            (click)="enviarMensaje()">Enviar mensaje</button>
+        </form>
+      </div>
+      <div *ngIf="status"
+          class="m-4 row d-flex flex-column align-items-center justify-content-center alert alert-success">
+          <p class="display-6">El mensaje se ha enviado correctamente!</p>
+        </div>
+    </div>
+  </div>
+</div>

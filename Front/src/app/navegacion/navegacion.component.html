@@ -45,14 +45,18 @@
           data-bs-toggle="dropdown" aria-expanded="false">
           Mi Cuenta
         </a>
-        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+        <ul class="dropdown-menu dropdown-menu-dark" id="navbarDropdown" aria-labelledby="navbarDarkDropdownMenuLink">
           <li><a class="dropdown-item" [routerLink]="['/MiCuenta']">Mi cuenta</a></li>
-          <li><a class="dropdown-item" href="biblioteca.html">Mi biblioteca</a></li>
-          <li><button class="dropdown-item"  [routerLink]="['/CerrarSesion']">Cerrar Sesión</button></li>
+          <li><a class="dropdown-item" [routerLink]="['/Editar']">Editar</a></li>
+          <li><a class="dropdown-item" style="cursor: pointer;">Amigos</a>
+            <ul class="submenu dropdown-menu dropdown-menu-dark">
+              <li *ngFor="let amigo of amigos"><a class="dropdown-item" [routerLink]="['/MensajeAmigo']" (click)="setAmigo(amigo)">{{amigo}}</a></li>
+            </ul>
+          </li>
+          <li><button class="dropdown-item" [routerLink]="['/CerrarSesion']">Cerrar Sesión</button></li>
         </ul>
         <button class="btn btn-warning m-1" [routerLink]="['/ListaMensajes']" *ngIf="this.localStorage ||this.sessionStorage">Lista de Mensajes</button>
       </li>
-      
     </ul>
   </div>
 </nav>

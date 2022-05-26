@@ -1,3 +1,15 @@
-body{
-    
+.dropdown-menu li {
+    position: relative;
+    list-style-type: none;
+}
+
+.nav-item .submenu {
+    display: none;
+    position: absolute;
+    right: 100%;
+    top: -10px;
+}
+
+.dropdown-menu>li:hover>.submenu {
+    display: block;
 }
