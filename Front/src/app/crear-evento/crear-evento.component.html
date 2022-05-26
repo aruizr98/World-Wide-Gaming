@@ -1,0 +1,38 @@
+<main class="form-signin mx-auto">
+    <form id="inicioSesion" #InicioSesion="ngForm"  (ngSubmit)="onSubmit()">
+        <h1 class="h3 mb-3 fw-normal">Crear evento</h1>
+        <span class="alert alert-danger d-none" id="correoIncorrecto">No existe ningún usuario con esa dirección de
+            correo electrónico.</span>
+        <span class="alert alert-danger d-none" id="contrasenyaIncorrecta">La contraseña introducida no es
+            correcta.</span>
+        <div class="form-floating">
+            <input type="text" name="nombreEvento" class="form-control my-3" id="floatingInput" #nombre="ngModel"
+                [(ngModel)]="evento.Nombre" placeholder="Nombre del evento" required>
+            <label for="floatingInput">Nombre del evento</label>
+            <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="nombre.touched && !nombre.valid">El nombre del
+                evento es
+                obligatorio</span>
+        </div>
+        <div class="form-floating">
+            <input type="text" name="fechaHora" class="form-control my-3" id="floatingInput" #fechaHora="ngModel"
+                [(ngModel)]="evento.FechaHora" placeholder="Fecha y hora del evento" required>
+            <label for="floatingInput">Fecha y hora evento</label>
+            <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="fechaHora.touched && !fechaHora.valid">La fecha y la hora del
+                evento son
+                obligatorias</span>
+        </div>
+        <div class="form-floating">
+            <textarea name="descripcion" class="form-control my-3" id="floatingPassword" #descripcion="ngModel"
+                [(ngModel)]="evento.Descripcion" placeholder="Descripción del evento" required></textarea>
+            <label for="floatingPassword">Descripción del evento</label>
+            <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="descripcion.touched && !descripcion.valid">La
+                descripción del evento es obligatoria</span>
+        </div>
+
+        <div class="checkbox mb-3">
+            <select id="nombreJuego" name="nombreJuego" #nombreJuego="ngModel" [(ngModel)]="evento.NombreJuego"></select>
+        </div>
+        <input class="w-100 btn btn-lg btn-primary" type="submit" value="Crear evento"
+            [disabled]="!InicioSesion.form.valid" />
+    </form>
+</main>
