@@ -29,4 +29,10 @@ export class EventoService {
 
     return this._http.put(this.url + "agregarUsuario/" + id + "/" + usuarios, { headers: headers });
   }
+  crearEvento(evento: Evento): Observable<any> {
+    let params = JSON.stringify(evento);
+    let headers = new HttpHeaders().set("content-type", "application/json");
+
+    return this._http.post(this.url + "crearEvento", params, { headers: headers });
+  }
 }
