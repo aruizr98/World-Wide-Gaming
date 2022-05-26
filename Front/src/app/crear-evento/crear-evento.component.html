@@ -1,10 +1,7 @@
 <main class="form-signin mx-auto">
-    <form id="inicioSesion" #InicioSesion="ngForm"  (ngSubmit)="onSubmit()">
+    <form id="crearEvento" #crearEvento="ngForm"  (ngSubmit)="onSubmit(crearEvento)">
         <h1 class="h3 mb-3 fw-normal">Crear evento</h1>
-        <span class="alert alert-danger d-none" id="correoIncorrecto">No existe ningún usuario con esa dirección de
-            correo electrónico.</span>
-        <span class="alert alert-danger d-none" id="contrasenyaIncorrecta">La contraseña introducida no es
-            correcta.</span>
+        <span class="alert alert-success d-block" *ngIf="this.eventoCreado">Evento {{this.evento.Nombre}} creado correctamente.</span>
         <div class="form-floating">
             <input type="text" name="nombreEvento" class="form-control my-3" id="floatingInput" #nombre="ngModel"
                 [(ngModel)]="evento.Nombre" placeholder="Nombre del evento" required>
@@ -32,7 +29,8 @@
         <div class="checkbox mb-3">
             <select id="nombreJuego" name="nombreJuego" #nombreJuego="ngModel" [(ngModel)]="evento.NombreJuego"></select>
         </div>
+        <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="!this.juegoSeleccionado">Por favor, selecciona un juego</span>
         <input class="w-100 btn btn-lg btn-primary" type="submit" value="Crear evento"
-            [disabled]="!InicioSesion.form.valid" />
+            [disabled]="!crearEvento.form.valid" />
     </form>
 </main>
