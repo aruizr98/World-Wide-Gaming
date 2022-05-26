@@ -16,7 +16,6 @@ export class ListaMensajesComponent implements OnInit {
 
   ngOnInit(): void {
     this._usuarioService.listarUsuarios().subscribe(
-
       response => {
         for (let index = 0; index < response["usuarios"].length; index++) {
           this._mensajeService.listarMensajes().subscribe(
@@ -52,7 +51,7 @@ export class ListaMensajesComponent implements OnInit {
                 let button=document.createElement("button");
                 div.setAttribute("class", "text-center my-2");
                 button.setAttribute("class", "btn btn-primary");
-                button.setAttribute("onclick", "sessionStorage.setItem('receptorEstablecido', this.parentElement.parentElement.children[0].children[0].innerText); location.href='/EnviarMensaje'");
+                button.setAttribute("onclick", "sessionStorage.setItem('amigo', this.parentElement.parentElement.children[0].children[0].innerText); location.href='/MensajeAmigo'");
                 button.innerText="Escribir mensaje";
                 div.append(button);
                 caja.append(div);
