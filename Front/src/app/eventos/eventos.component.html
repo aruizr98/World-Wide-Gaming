@@ -3,7 +3,11 @@
 <span class="alert alert-danger d-none text-center" id="apuntadoIncorrecto"></span>
 <p class="text-center" *ngIf="this.numeroEventos == 0">De momento no hay eventos disponibles.</p> 
 <div id="eventos" class="border">
-  
-
+    
 </div>
+<div class="text-center">
+    <button class="btn btn-primary my-3" [routerLink]="['/CrearEvento']">Crear evento</button>
+</div>
+
+
 
