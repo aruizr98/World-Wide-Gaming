@@ -23,6 +23,7 @@ import { CrearJuegoComponent } from './administracion/crear-juego/crear-juego.co
 import { ModificarJuegoComponent } from './administracion/modificar-juego/modificar-juego.component';
 import { EliminarJuegoComponent } from './administracion/eliminar-juego/eliminar-juego.component';
 import { MensajeAmigoComponent } from './mensaje-amigo/mensaje-amigo.component';
+import { CrearEventoComponent } from './crear-evento/crear-evento.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MensajeAmigoComponent } from './mensaje-amigo/mensaje-amigo.component';
     ModificarJuegoComponent,
     EliminarJuegoComponent,
     MensajeAmigoComponent,
+    CrearEventoComponent,
   ],
   imports: [
     BrowserModule,
