@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Evento } from "../models/Evento";
 import { EventoService } from "../services/evento.service";
 import { UsuarioService } from "../services/usuario.service";
+import { JuegoService } from "../services/juego.service";
+import { Juego } from "../models/Juego";
 
 @Component({
   selector: 'app-eventos',
@@ -12,10 +14,9 @@ import { UsuarioService } from "../services/usuario.service";
 export class EventosComponent implements OnInit {
   public numeroEventos: Number;
   public usuarioCreador: string;
-  public usuarioConectado:boolean;
-  constructor(private _eventoService: EventoService, private _usuarioService: UsuarioService) {
-    this.numeroEventos = 0;
-  }
+  public usuarioConectado: boolean;
+  public limite: string;
+  constructor(private _eventoService: EventoService, private _usuarioService: UsuarioService, private _juegoService: JuegoService) { }
   yaExiste(array: Array<string>, elemento: string): boolean {
     let respuesta = false;
     for (let index = 0; index < array.length; index++) {
@@ -25,8 +26,24 @@ export class EventosComponent implements OnInit {
     }
     return respuesta;
   }
+  getLimiteUsuarios(titulo: string) {
+    this._juegoService.listarJuegos().subscribe(
+      response => {
+        for (let index = 0; index < response["juegos"].length; index++) {
+          if (response["juegos"][index].NombreJuego == titulo) {
+            sessionStorage.setItem("limiteUsuarios", response["juegos"][index].LimiteUsuarios);
+            this.limite = response["juegos"][index].LimiteUsuarios;
+          }
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    )
+  }
   ngOnInit(): void {
-    this.usuarioConectado=true;
+    sessionStorage.removeItem("limiteUsuarios");
+    this.usuarioConectado = true;
     document.getElementById("apuntadoIncorrecto").innerText = "";
     document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-danger d-none text-center");
     if (sessionStorage.getItem("agregarUsuario") == "true") {
@@ -36,95 +53,98 @@ export class EventosComponent implements OnInit {
             for (let index = 0; index < response["eventos"].length; index++) {
               if (sessionStorage.getItem("nombreEvento") == response["eventos"][index].Nombre) {
                 let usuariosInscritos = response["eventos"][index].UsuariosApuntados;
+                this.getLimiteUsuarios(response["eventos"][index].NombreJuego);
                 if (!this.yaExiste(usuariosInscritos, sessionStorage.getItem("nombreUsuario"))) {
-                  usuariosInscritos.push(sessionStorage.getItem("nombreUsuario"));
-                  var eventoModificado = new Evento(response["eventos"][index]._id, response["eventos"][index].Nombre, response["eventos"][index].FechaHora, response["eventos"][index].Descripcion, response["eventos"][index].NombreJuego, response["eventos"][index].Creador, usuariosInscritos);
-                  console.log(eventoModificado);
-                  this._eventoService.agregarUsuario(response["eventos"][sessionStorage.getItem("indice")]._id, usuariosInscritos).subscribe(
-                    response2 => {
-                      console.log(response2);
-                      document.getElementById("apuntadoCorrecto").innerText = "Te has apuntado correctamente al evento " + response2["evento"].Nombre;
-                      document.getElementById("apuntadoCorrecto").setAttribute("class", "alert alert-success d-block text-center");
-                      this._usuarioService.listarUsuarios().subscribe(
-                        response3 => {
-                          for (let j = 0; j < response3["usuarios"].length; j++) {
-                            if (response3["usuarios"][j]._id == sessionStorage.getItem("idUsuario")) {
-                              console.log("El usuario ha coincidido")
-                              let listaEventos = response3["usuarios"][j].idEvento;
-                              listaEventos.push(response2["evento"]._id);
-                              this._usuarioService.actualizarListaEventos(response3["usuarios"][j]._id, listaEventos).subscribe(
-                                response4 => {
-                                  console.log(response4);
-                                },
-                                error => {
-                                  console.log(<any>error);
-                                }
-                              )
-
+                  if (Number(sessionStorage.getItem("limiteUsuarios")) > usuariosInscritos.length) {
+                    usuariosInscritos.push(sessionStorage.getItem("nombreUsuario"));
+                    this._eventoService.agregarUsuario(response["eventos"][sessionStorage.getItem("indice")]._id, usuariosInscritos).subscribe(
+                      response2 => {
+                        console.log(response2);
+                        document.getElementById("apuntadoCorrecto").innerText = "Te has apuntado correctamente al evento " + response2["evento"].Nombre;
+                        document.getElementById("apuntadoCorrecto").setAttribute("class", "alert alert-success d-block text-center");
+                        this._usuarioService.listarUsuarios().subscribe(
+                          response3 => {
+                            for (let j = 0; j < response3["usuarios"].length; j++) {
+                              if (response3["usuarios"][j]._id == sessionStorage.getItem("idUsuario")) {
+                                let listaEventos = response3["usuarios"][j].idEvento;
+                                listaEventos.push(response2["evento"]._id);
+                                this._usuarioService.actualizarListaEventos(response3["usuarios"][j]._id, listaEventos).subscribe(
+                                  response4 => {
+                                    console.log(response4);
+                                  },
+                                  error => {
+                                    console.log(<any>error);
+                                  }
+                                )
+                              }
                             }
-
+                          },
+                          error => {
+                            console.log(<any>error);
                           }
-                        },
-                        error => {
-                          console.log(<any>error);
-                        }
-                      )
-                    },
-                    error2 => {
-                      console.log(<any>error2);
-                    }
-                  )
+                        )
+                      },
+                      error2 => {
+                        console.log(<any>error2);
+                      }
+                    )
+                  }else{
+                    document.getElementById("apuntadoIncorrecto").innerText = "Se ha superado el límite de usuarios permitidos para ese juego";
+                    document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-danger d-block text-center");
+                  }
                 } else {
                   document.getElementById("apuntadoIncorrecto").innerText = "Ya estás apuntad@ a ese evento";
                   document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-primary d-block text-center");
                 }
-
-
               }
-
             }
           } else if (localStorage.getItem("nombreUsuario")) {
             for (let index = 0; index < response["eventos"].length; index++) {
               if (sessionStorage.getItem("nombreEvento") == response["eventos"][index].Nombre) {
                 let usuariosInscritos = response["eventos"][index].UsuariosApuntados;
+                this.getLimiteUsuarios(response["eventos"][index].NombreJuego);
                 if (!this.yaExiste(usuariosInscritos, localStorage.getItem("nombreUsuario"))) {
-                  usuariosInscritos.push(localStorage.getItem("nombreUsuario"));
-                  var eventoModificado = new Evento(response["eventos"][index]._id, response["eventos"][index].Nombre, response["eventos"][index].FechaHora, response["eventos"][index].Descripcion, response["eventos"][index].NombreJuego, response["eventos"][index].Creador, usuariosInscritos);
-                  console.log(eventoModificado);
-                  this._eventoService.agregarUsuario(response["eventos"][sessionStorage.getItem("indice")]._id, usuariosInscritos).subscribe(
-                    response2 => {
-                      console.log(response2);
-                      document.getElementById("apuntadoCorrecto").innerText = "Te has apuntado correctamente al evento " + response2["evento"].Nombre;
-                      document.getElementById("apuntadoCorrecto").setAttribute("class", "alert alert-success d-block text-center");
-                      this._usuarioService.listarUsuarios().subscribe(
-                        response3 => {
-                          for (let j = 0; j < response3["usuarios"].length; j++) {
-                            if (response3["usuarios"][j]._id == localStorage.getItem("idUsuario")) {
-                              console.log("El usuario ha coincidido")
-                              let listaEventos = response3["usuarios"][j].idEvento;
-                              listaEventos.push(response2["evento"]._id);
-                              this._usuarioService.actualizarListaEventos(response3["usuarios"][j]._id, listaEventos).subscribe(
-                                response4 => {
-                                  console.log(response4);
-                                },
-                                error => {
-                                  console.log(<any>error);
-                                }
-                              )
-
+                  console.log(Number(sessionStorage.getItem("limiteUsuarios")))
+                  console.log(usuariosInscritos.length)
+                  if (Number(sessionStorage.getItem("limiteUsuarios")) > usuariosInscritos.length) {
+                    usuariosInscritos.push(localStorage.getItem("nombreUsuario"));
+                    this._eventoService.agregarUsuario(response["eventos"][sessionStorage.getItem("indice")]._id, usuariosInscritos).subscribe(
+                      response2 => {
+                        console.log(response2);
+                        document.getElementById("apuntadoCorrecto").innerText = "Te has apuntado correctamente al evento " + response2["evento"].Nombre;
+                        document.getElementById("apuntadoCorrecto").setAttribute("class", "alert alert-success d-block text-center");
+                        this._usuarioService.listarUsuarios().subscribe(
+                          response3 => {
+                            for (let j = 0; j < response3["usuarios"].length; j++) {
+                              if (response3["usuarios"][j]._id == localStorage.getItem("idUsuario")) {
+                                console.log("El usuario ha coincidido")
+                                let listaEventos = response3["usuarios"][j].idEvento;
+                                listaEventos.push(response2["evento"]._id);
+                                this._usuarioService.actualizarListaEventos(response3["usuarios"][j]._id, listaEventos).subscribe(
+                                  response4 => {
+                                    console.log(response4);
+                                  },
+                                  error => {
+                                    console.log(<any>error);
+                                  }
+                                )
+                              }
                             }
-
+                          },
+                          error => {
+                            console.log(<any>error);
                           }
-                        },
-                        error => {
-                          console.log(<any>error);
-                        }
-                      )
-                    },
-                    error2 => {
-                      console.log(<any>error2);
-                    }
-                  )
+                        )
+                      },
+                      error2 => {
+                        console.log(<any>error2);
+                      }
+                    )
+                  } else {
+                    document.getElementById("apuntadoIncorrecto").innerText = "Se ha superado el límite de usuarios permitidos para ese juego";
+                    document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-danger d-block text-center");
+                  }
+
                 } else {
                   document.getElementById("apuntadoIncorrecto").innerText = "Ya estás apuntad@ a ese evento";
                   document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-primary d-block text-center");
@@ -134,8 +154,8 @@ export class EventosComponent implements OnInit {
               }
 
             }
-          }else{
-            this.usuarioConectado=false;
+          } else {
+            this.usuarioConectado = false;
           }
 
         },
@@ -183,26 +203,5 @@ export class EventosComponent implements OnInit {
         console.log(<any>error);
       }
     )
-  }
-  ngOnLoad() {
-    this.agregarBoton();
-
-  }
-  agregarBoton() {
-    // let cajas=document.getElementsByClassName("cajaEvento");
-    // let cajasArray=new Array();
-    // console.log(cajas);
-    // for (let index = 0; index < cajas.length; index++) {
-    //  cajasArray[index]=cajas[index];
-    //   console.log("a")
-    // }
-    // console.log(cajasArray);
-    // for (let index = 0; index < cajasArray.length; index++) {
-    //   console.log("a")
-    //   let boton=document.createElement("button");
-    //   boton.setAttribute("class", "btn btn-primary m-3");
-    //   boton.setAttribute("ng-click", "agregarUsuario()");
-    //   cajasArray[index].append(boton);
-    // }
   }
 }
