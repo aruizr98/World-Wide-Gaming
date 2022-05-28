@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
-        <div class="col-11"><img style="width:120px;" src="{{url+'getImagen/'+this.fotoPerfil}}" *ngIf="this.fotoPerfil"/></div>
+        <h2 class="text-center">Cuenta de {{nombreUsuario}}</h2>
+        <div class="col-11"><img class="mb-3" style="width:120px;" src="{{url+'getImagen/'+this.fotoPerfil}}" *ngIf="this.fotoPerfil"/></div>
 
 
         <div class="col-1">
@@ -8,7 +9,7 @@
             <button class="btn btn-primary" *ngIf="this.administrador"[routerLink]="['/Administrar']">Administrar</button>
         </div>
     </div>
-    <h2 class="text-center">Cuenta de {{nombreUsuario}}</h2>
+    
     <div class="row ">
         <div class="col-3 text-center ml-md-auto" style="border:1px solid black; height:300px;overflow:scroll;"
             id="proximosEventos"><b>Próximos eventos</b></div>
