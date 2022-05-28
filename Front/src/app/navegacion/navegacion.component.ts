@@ -39,7 +39,7 @@ export class NavegacionComponent implements OnInit {
     this._usuarioService.listarUsuarios().subscribe(
       response => {
         for (let index = 0; index < response["usuarios"].length; index++) {
-          if (sessionStorage.getItem("idUsuario") == response["usuarios"][index]._id) {
+          if (sessionStorage.getItem("idUsuario") == response["usuarios"][index]._id || localStorage.getItem("idUsuario") == response["usuarios"][index]._id ) {
             idsAmigos = response["usuarios"][index].Favoritos;
           }
         }
