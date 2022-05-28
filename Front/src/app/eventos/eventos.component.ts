@@ -12,6 +12,7 @@ import { UsuarioService } from "../services/usuario.service";
 export class EventosComponent implements OnInit {
   public numeroEventos: Number;
   public usuarioCreador: string;
+  public usuarioConectado:boolean;
   constructor(private _eventoService: EventoService, private _usuarioService: UsuarioService) {
     this.numeroEventos = 0;
   }
@@ -25,6 +26,7 @@ export class EventosComponent implements OnInit {
     return respuesta;
   }
   ngOnInit(): void {
+    this.usuarioConectado=true;
     document.getElementById("apuntadoIncorrecto").innerText = "";
     document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-danger d-none text-center");
     if (sessionStorage.getItem("agregarUsuario") == "true") {
@@ -73,8 +75,8 @@ export class EventosComponent implements OnInit {
                     }
                   )
                 } else {
-                  document.getElementById("apuntadoIncorrecto").innerText = "Ya estabas apuntad@ a ese evento";
-                  document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-danger d-block text-center");
+                  document.getElementById("apuntadoIncorrecto").innerText = "Ya estás apuntad@ a ese evento";
+                  document.getElementById("apuntadoIncorrecto").setAttribute("class", "alert alert-primary d-block text-center");
                 }
 
 
@@ -132,6 +134,8 @@ export class EventosComponent implements OnInit {
               }
 
             }
+          }else{
+            this.usuarioConectado=false;
           }
 
         },

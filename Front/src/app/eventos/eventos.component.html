@@ -2,6 +2,10 @@
 <span class="alert alert-success d-none text-center" id="apuntadoCorrecto"></span>
 <span class="alert alert-danger d-none text-center" id="apuntadoIncorrecto"></span>
 <p class="text-center" *ngIf="this.numeroEventos == 0">De momento no hay eventos disponibles.</p> 
+<div class="text-center">
+    <span class="alert alert-primary d-block" *ngIf="!this.usuarioConectado">Para poder apuntarte a un evento tienes que iniciar sesión.</span>
+</div>
+
 <div id="eventos" class="border">
     
 </div>
