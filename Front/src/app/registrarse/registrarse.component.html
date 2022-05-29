@@ -64,8 +64,8 @@
       </div>
       <div class="my-3 text-start text-white">
         <label for="FotoPerfil" class="mx-1">Foto de perfil: </label>
-        <input type="file" name="FotoPerfil" #fotoPerfil="ngModel" [(ngModel)]="usuario.FotoPerfil" placeholder="Subir foto de perfil" (change)="fileChangeEvent($event)"/></div>
-      
+        <input type="file" name="FotoPerfil" #fotoPerfil="ngModel" [(ngModel)]="usuario.FotoPerfil" placeholder="Subir foto de perfil" (change)="fileChangeEvent($event)" pattern="^.*\.(jpg|JPG|gif|GIF|jpeg|JPEG)$"/></div>
+        <span class="alert alert-danger d-block mt-2 mb-4" *ngIf=" !fotoPerfil.valid">El archivo seleccionado no es una imágen.</span>
     </div>
     <input type="submit" class="w-100 btn btn-primary mt-3" value="Registrarse" [disabled]="!formularioRegistro.form.valid" />
     <span class="bg-success" id="resultadoRegistro"></span>
