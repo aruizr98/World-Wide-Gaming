@@ -63,5 +63,8 @@ export class NavegacionComponent implements OnInit {
 
   setAmigo(amigo):void {
     sessionStorage.setItem("amigo", amigo);
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate(["/MensajeAmigo"]);
   }
 }

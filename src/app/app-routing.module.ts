@@ -18,6 +18,8 @@ import { CrearJuegoComponent } from './administracion/crear-juego/crear-juego.co
 import { ModificarJuegoComponent } from './administracion/modificar-juego/modificar-juego.component';
 import { EliminarJuegoComponent } from './administracion/eliminar-juego/eliminar-juego.component';
 import { MensajeAmigoComponent } from './mensaje-amigo/mensaje-amigo.component';
+import { CrearEventoComponent } from './crear-evento/crear-evento.component';
+import { EditarCuentaComponent } from './editar-cuenta/editar-cuenta.component';
 
 
 const routes: Routes = [
@@ -39,6 +41,8 @@ const routes: Routes = [
   {path:"Administrar/ModificarJuego", component:ModificarJuegoComponent},
   {path:"Administrar/EliminarJuego", component:EliminarJuegoComponent},
   {path:"MensajeAmigo", component:MensajeAmigoComponent},
+  {path:"CrearEvento", component:CrearEventoComponent},
+  {path:"EditarCuenta", component:EditarCuentaComponent},
   {path:"**", component:CarrouselComponent}
 ];
 
