@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <!-- <div class="col-11"><img style="width:120px;" src="{{url+'getImagen/'+this.usuario.FotoPerfil}}" *ngIf="this.usuario.FotoPerfil" />
+    </div> -->
+  </div>
+  <h2 class="text-center">Editar cuenta</h2>
+  <div class="row ">
+    <div style="border:1px solid black;" id="infoUsuario">
+      <form id="form">
+        <p class="display-6">Informacion del usuario</p>
+        <label class="mb-1">Nombre:</label>
+        <input type="text" name="nombre" class="form-control mb-2" placeholder="{{usuario.Nombre}}" style="height: 60px;">
+        <label class="mb-1">Apellidos:</label>
+        <input type="text" name="apellidos" class="form-control mb-2" placeholder="{{usuario.Apellidos}}" style="height: 60px;">
+        <label class="mb-1">Nombre de usuario:</label>
+        <input type="text" name="nombreUsuario" class="form-control mb-2" placeholder="{{usuario.NombreUsuario}}" style="height: 60px;">
+        <label class="mb-1">Correo:</label>
+        <input type="text" name="correo" class="form-control mb-2" placeholder="{{usuario.Correo}}" style="height: 60px;">
+        <label class="mb-1">Contraseña:</label>
+        <input type="password" name="contrasenya" class="form-control mb-4" placeholder="{{usuario.Contrasenya}}" style="height: 60px;">
+        <p class="display-6">Redes sociales</p>
+        <label class="mb-1">Facebook:</label>
+        <input type="text" name="facebook" class="form-control mb-2" placeholder="{{usuario.Facebook}}" style="height: 60px;">
+        <label class="mb-1">Twitter:</label>
+        <input type="text" name="twitter" class="form-control mb-2" placeholder="{{usuario.Twitter}}" style="height: 60px;">
+        <label class="mb-1">Instagram:</label>
+        <input type="text" name="instagram" class="form-control mb-2" placeholder="{{usuario.Instagram}}" style="height: 60px;">
+        <label class="mb-1">Discord:</label>
+        <input type="text" name="discord" class="form-control mb-2" placeholder="{{usuario.Discord}}" style="height: 60px;">
+        <label class="mb-1">Steam:</label>
+        <input type="text" name="steam" class="form-control mb-2" placeholder="{{usuario.Steam}}" style="height: 60px;">
+        <label class="mb-1">Epic games:</label>
+        <input type="text" name="epic" class="form-control mb-2" placeholder="{{usuario.Epic}}" style="height: 60px;">
+        <label class="mb-1">Twitch:</label>
+        <input type="text" name="twitch" class="form-control mb-2" placeholder="{{usuario.Twitch}}" style="height: 60px;">
+        <label class="mb-1">Youtube:</label>
+        <input type="text" name="youtube" class="form-control mb-2" placeholder="{{usuario.Youtube}}" style="height: 60px;">
+      </form>
+      <div>
+        <button class="mt-4 w-100 btn btn-lg btn-primary" name="boton" type="submit"
+            (click)="guardar()">Guardar cambios</button>
+          <button class="mt-2 mb-3 w-100 btn btn-lg btn-danger" name="boton" type="button" [routerLink]="['/Inicio']">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
