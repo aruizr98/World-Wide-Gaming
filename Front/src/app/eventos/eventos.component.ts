@@ -36,7 +36,7 @@ export class EventosComponent implements OnInit {
               document.getElementsByClassName("botonApuntarse")[indice].setAttribute("disabled", "true");
               document.getElementsByClassName("botonApuntarse")[indice].innerHTML="Límite de usuarios completo";
             }
-            document.getElementsByClassName("apuntados")[indice].innerHTML+="/"+this.limite+")"
+            document.getElementsByClassName("apuntados")[indice].innerHTML+="("+usuariosApuntados+"/"+this.limite+")"
           }
         }
       },
@@ -73,7 +73,7 @@ export class EventosComponent implements OnInit {
                 <div><p>`+ response["eventos"][index].Descripcion + `</p></div>
                 <h4>Juego: `+ response["eventos"][index].NombreJuego + `</h4>
                 <h4>Usuario creador: `+ this.usuarioCreador + `</h4>
-                <h4 class='apuntados'>Usuarios apuntados: <br/>` + response["eventos"][index].UsuariosApuntados + `<br/>(`+numeroApuntados.length+`</h4>
+                <h4 class='apuntados'>Usuarios apuntados: <br/>` + response["eventos"][index].UsuariosApuntados + `<br/></h4>
                 <button class="btn btn-primary m-3 botonApuntarse" onclick="sessionStorage.setItem('agregarUsuario', 'true'); sessionStorage.setItem('indice', `+ index + `); sessionStorage.setItem('nombreEvento', '` + response['eventos'][index].Nombre + `');location.reload();">¡Me apunto!</button>`;
 
               eventos.appendChild(caja);
