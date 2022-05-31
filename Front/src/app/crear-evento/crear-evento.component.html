@@ -12,11 +12,11 @@
         </div>
         <div class="form-floating">
             <input type="text" name="fechaHora" class="form-control my-3" id="floatingInput" #fechaHora="ngModel"
-                [(ngModel)]="evento.FechaHora" placeholder="Fecha y hora del evento" required>
+                [(ngModel)]="evento.FechaHora" placeholder="Fecha y hora del evento" pattern="^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})(\s)([0-1][0-9]|2[0-3])(:)([0-5][0-9])$" required>
             <label for="floatingInput">Fecha y hora evento</label>
             <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="fechaHora.touched && !fechaHora.valid">La fecha y la hora del
                 evento son
-                obligatorias</span>
+                obligatorias y deben seguir la siguiente estructura: dd/mm/aaaa hh:mm o dd-mm-aaaa hh:mm</span>
         </div>
         <div class="form-floating">
             <textarea name="descripcion" class="form-control my-3" id="floatingPassword" #descripcion="ngModel"
