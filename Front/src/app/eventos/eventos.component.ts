@@ -66,16 +66,17 @@ export class EventosComponent implements OnInit {
               var numeroApuntados = new Array();
               numeroApuntados = response["eventos"][index].UsuariosApuntados;
               this.getLimiteUsuarios(response["eventos"][index].NombreJuego, index, numeroApuntados.length);
-              caja.setAttribute("class", "border my-3 text-center w-25 container cajaEvento");
+              caja.setAttribute("class", "border text-center w-25 container cajaEvento m-3");
               caja.innerHTML = `
+              <div class=''>
                 <h2>`+ response["eventos"][index].Nombre + `</h2>
                 <h4>`+ response["eventos"][index].FechaHora + `</h4>
                 <div><p>`+ response["eventos"][index].Descripcion + `</p></div>
                 <h4>Juego: `+ response["eventos"][index].NombreJuego + `</h4>
                 <h4>Usuario creador: `+ this.usuarioCreador + `</h4>
                 <h4 class='apuntados'>Usuarios apuntados: <br/>` + response["eventos"][index].UsuariosApuntados + `<br/></h4>
-                <button class="btn btn-primary m-3 botonApuntarse" onclick="sessionStorage.setItem('agregarUsuario', 'true'); sessionStorage.setItem('indice', `+ index + `); sessionStorage.setItem('nombreEvento', '` + response['eventos'][index].Nombre + `');location.reload();">¡Me apunto!</button>`;
-
+                <button class="btn btn-primary m-3 botonApuntarse" onclick="sessionStorage.setItem('agregarUsuario', 'true'); sessionStorage.setItem('indice', `+ index + `); sessionStorage.setItem('nombreEvento', '` + response['eventos'][index].Nombre + `');location.reload();">¡Me apunto!</button>
+                </div>`;
               eventos.appendChild(caja);
 
             },
