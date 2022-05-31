@@ -45,7 +45,7 @@ export class UsuarioService {
   }
   editarUsuario(id: string, usuario: Usuario) {
     let headers = new HttpHeaders().set("content-type", "application/json");
-
-    return this._http.put(this.url + "editarUsuario/" + id, { headers: headers });
+    let params=JSON.stringify(usuario)
+    return this._http.put(this.url + "editarUsuario/" + id, params, { headers: headers });
   }
 }
