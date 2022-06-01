@@ -34,7 +34,7 @@ export class ListaMensajesComponent implements OnInit {
                   }
                   localStorage.setItem("mensajes", "true");
                   mensajes = true;
-                  caja.innerHTML += "<p class='m-0 text-start'>" + response2["mensajes"][j].Mensaje + "</p>";
+                  caja.innerHTML += "<br/><p class='d-block m-0 text-start bg-success text-white w-auto my-2 p-1' style='float:left;border-radius:0px 10px 10px 10px'>" + response2["mensajes"][j].Mensaje + "</p><br/>";
                 }else if((response2["mensajes"][j].Emisor == sessionStorage.getItem("idUsuario") || response2["mensajes"][j].Emisor == localStorage.getItem("idUsuario")) && response["usuarios"][index]._id == response2["mensajes"][j].Receptor  ){
                   localStorage.setItem("mensajes", "true");
                   mensajes=true;
@@ -42,7 +42,7 @@ export class ListaMensajesComponent implements OnInit {
                     caja.innerHTML += "<div class='text-center'><span><b>" + response["usuarios"][index].NombreUsuario + "</b></span></div>";
                     contador++;
                   }
-                  caja.innerHTML += "<p class='m-0 text-end'>" + response2["mensajes"][j].Mensaje + "</p>";
+                  caja.innerHTML += "<br/><p class='d-block h-auto m-0 text-end w-auto bg-primary text-white my-2 p-1' style='float:right;border-radius:10px 0px 10px 10px'>" + response2["mensajes"][j].Mensaje + "</p><br/>";
                 }
 
               }
@@ -50,7 +50,7 @@ export class ListaMensajesComponent implements OnInit {
                 let div=document.createElement("div");
                 let button=document.createElement("button");
                 div.setAttribute("class", "text-center my-2");
-                button.setAttribute("class", "btn btn-primary");
+                button.setAttribute("class", " btn btn-primary");
                 button.setAttribute("onclick", "sessionStorage.setItem('amigo', this.parentElement.parentElement.children[0].children[0].innerText); location.href='/MensajeAmigo'");
                 button.innerText="Escribir mensaje";
                 div.append(button);
