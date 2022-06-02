@@ -47,12 +47,14 @@ export class ListaMensajesComponent implements OnInit {
 
               }
               if (mensajes) {
+                let br=document.createElement("br");
                 let div=document.createElement("div");
                 let button=document.createElement("button");
                 div.setAttribute("class", "text-center my-2");
                 button.setAttribute("class", " btn btn-primary");
                 button.setAttribute("onclick", "sessionStorage.setItem('amigo', this.parentElement.parentElement.children[0].children[0].innerText); location.href='/MensajeAmigo'");
                 button.innerText="Escribir mensaje";
+                div.append(br);
                 div.append(button);
                 caja.append(div);
                 mensajesCaja.append(caja);
