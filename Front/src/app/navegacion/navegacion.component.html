@@ -43,7 +43,7 @@
       <li class="nav-item dropdown" *ngIf="this.localStorage ||this.sessionStorage">
         <a class="btn btn-primary" href="#" id="navbarDarkDropdownMenuLink" role="button"
           data-bs-toggle="dropdown" aria-expanded="false">
-          Mi Cuenta
+          {{nombreUsuario}}
         </a>
         <ul class="dropdown-menu dropdown-menu-dark" id="navbarDropdown" aria-labelledby="navbarDarkDropdownMenuLink">
           <li><a class="dropdown-item" [routerLink]="['/MiCuenta']">Mi cuenta</a></li>

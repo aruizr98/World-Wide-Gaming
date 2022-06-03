@@ -13,6 +13,7 @@ export class NavegacionComponent implements OnInit {
   public localStorage: boolean;
   public juegos: Array<String>;
   public amigos: Array<String>;
+  public nombreUsuario:String;
 
   constructor(private _usuarioService: UsuarioService, private _navService: NavegacionService, private router: Router) {
   }
@@ -20,8 +21,10 @@ export class NavegacionComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem("nombreUsuario") != undefined) {
       this.localStorage = true;
+      this.nombreUsuario=localStorage.getItem("nombreUsuario");
     } else {
       this.localStorage = false;
+      this.nombreUsuario=sessionStorage.getItem("nombreUsuario");
       console.log(this.localStorage);
       if (sessionStorage.getItem("nombreUsuario") != undefined) {
         this.sessionStorage = true;
