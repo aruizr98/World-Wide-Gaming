@@ -1,8 +1,12 @@
 <h2 class="text-center">Tus Mensajes</h2>
-<div id="mensajes">
+<div class="text-center mt-5 mb-4">
+     <button class="btn btn-primary" [routerLink]="['/MensajeAmigo']">Enviar nuevo mensaje</button>
+</div>   
+   
+<div id="mensajes" class="d-flex flex-wrap justify-content-center">
     <h4 class="alert alert-primary text-center" *ngIf="!comprobarMensajes()">De momento, no tienes mensajes...</h4>
 </div>
 <div class="w-100 text-center my-4">
-    <button class="btn btn-primary" [routerLink]="['/MensajeAmigo']">Enviar nuevo mensaje</button>
+    
 </div>
 
