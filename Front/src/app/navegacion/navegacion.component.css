@@ -1,3 +1,7 @@
+#logo{
+    font-family: 'Press Start 2P', cursive;
+    font-size:14px;
+}
 .dropdown-menu li {
     position: relative;
     list-style-type: none;
