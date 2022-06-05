@@ -1,7 +1,5 @@
 <div class="container">
   <div class="row">
-    <!-- <div class="col-11"><img style="width:120px;" src="{{url+'getImagen/'+this.usuario.FotoPerfil}}" *ngIf="this.usuario.FotoPerfil" />
-    </div> -->
   </div>
   <h2 class="text-center">Editar cuenta</h2>
   <span class="alert alert-success d-none text-center" id="correcto"></span>
@@ -29,6 +27,10 @@
         <input type="password" name="contrasenya" class="form-control mb-4" value="{{usuario.Contrasenya}}" #contrasenya="ngModel" [(ngModel)]="usuario.Contrasenya" style="height: 60px;" pattern="[A-Za-z0-9 ]{2,15}" required>
         <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="contrasenya.touched && !contrasenya.valid">La contraseña es
           obligatoria y debe tener entre 2 y 15 caracteres</span>
+          <label for="FotoPerfil" class="mx-1">Foto de perfil: </label>
+          <input type="file" name="FotoPerfil" #fotoPerfil="ngModel" [(ngModel)]="usuario.FotoPerfil" placeholder="Subir foto de perfil" (change)="fileChangeEvent($event)" pattern="^.*\.(jpg|JPG|gif|GIF|jpeg|JPEG|png|PNG)$"/>
+          <span class="alert alert-danger d-block mt-2 mb-4" *ngIf=" !fotoPerfil.valid">El archivo seleccionado no es una imágen.</span><br/>
+          <button class="btn btn-primary my-3" (click)="elminarFotoPerfil();">Eliminar foto de perfil</button>
         <p class="display-6">Redes sociales</p>
         <label class="mb-1">Facebook:</label>
         <input type="text" name="facebook" class="form-control mb-2" placeholder="¡Copia aquí el enlace a tu cuenta de Facebook!" value="{{usuario.Facebook}}" #facebook="ngModel" [(ngModel)]="usuario.Facebook" style="height: 60px;">
