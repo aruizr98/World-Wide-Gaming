@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute  } from '@angular/router';
 import { NavegacionService } from '../services/navegacion.service';
 import { UsuarioService } from '../services/usuario.service';
 
@@ -14,10 +14,38 @@ export class NavegacionComponent implements OnInit {
   public juegos: Array<String>;
   public amigos: Array<String>;
   public nombreUsuario:String;
-
-  constructor(private _usuarioService: UsuarioService, private _navService: NavegacionService, private router: Router) {
+  constructor(private _usuarioService: UsuarioService, private _navService: NavegacionService, public router: Router) {
   }
-
+  cambiarColor(elemento){
+    elemento.setAttribute('style', 'background-color:green;color:white;');
+  }
+  quitarColor(elemento){
+    elemento.setAttribute('style', '');
+  }
+  limpiarColoresMiCuenta(){
+    var enlaces=document.getElementsByClassName("btn m-1 botonNavegacion");
+    for (let index = 0; index < enlaces.length; index++) {
+      console.log("a");
+      enlaces[index].setAttribute("class", "btn m-1 botonNavegacion");
+    }
+    console.log(document.getElementById("miCuenta"))
+    document.getElementById("miCuenta").setAttribute("style", "");
+  }
+  limpiarColoresListaMensajes(){
+    var enlaces=document.getElementsByClassName("btn m-1 botonNavegacion");
+    for (let index = 0; index < enlaces.length; index++) {
+      console.log("a");
+      enlaces[index].setAttribute("class", "btn m-1 botonNavegacion");
+    }
+    console.log(document.getElementById("listaMensajes"))
+    document.getElementById("listaMensajes").setAttribute("style", "");
+  }
+  limpiarColores(){
+    if(document.getElementById("miCuenta") != null && document.getElementById("listaMensajes") != null){
+    document.getElementById("miCuenta").setAttribute("style", "");
+    document.getElementById("listaMensajes").setAttribute("style", "");
+    }
+  }
   ngOnInit(): void {
     if (localStorage.getItem("nombreUsuario") != undefined) {
       this.localStorage = true;

@@ -6,13 +6,13 @@
     </div>
     <ul id="listaMenu" class="nav col-8 justify-content-end">
       <li class="nav-item dropdown">
-        <a class="btn  m-1 botonNavegacion" [routerLink]="['/inicio']" [routerLinkActive]="['btn-success']">
+        <a class="btn  m-1 botonNavegacion" #inicio [routerLink]="['/inicio']" [routerLinkActive]="['btn-success']" (click)="limpiarColores()" (mouseenter)="cambiarColor(inicio)" (mouseleave)="quitarColor(inicio)">
           Inicio
         </a>
       </li>
       <li class="nav-item dropdown">
         <a class="btn m-1 botonNavegacion" #foros href="#" id="navbarDarkDropdownMenuLink" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false" [class.btn-success]="router.isActive('/MenuForo',false)" >
+          data-bs-toggle="dropdown" aria-expanded="false" [class.btn-success]="router.isActive('/MenuForo',false)" (click)="limpiarColores()" (mouseenter)="cambiarColor(foros)" (mouseleave)="quitarColor(foros)" >
           Foros
         </a>
         <ul id="lista" class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -21,28 +21,28 @@
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a class="btn m-1 botonNavegacion" [routerLink]="['/Eventos']" [routerLinkActive]="['btn-success']">
+        <a class="btn m-1 botonNavegacion" [routerLink]="['/Eventos']" [routerLinkActive]="['btn-success']" #eventos (click)="limpiarColores()" (mouseenter)="cambiarColor(eventos)" (mouseleave)="quitarColor(eventos)">
           Eventos
         </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="btn m-1 botonNavegacion" [routerLink]="['/BuscarUsuarios']" [routerLinkActive]="['btn-success']">
+        <a class="btn m-1 botonNavegacion" [routerLink]="['/BuscarUsuarios']" [routerLinkActive]="['btn-success']" #buscar (click)="limpiarColores()" (mouseenter)="cambiarColor(buscar)" (mouseleave)="quitarColor(buscar)">
           Buscar
         </a>
       </li>
       <div>
         <button type="button" class="btn btn-outline-secondary me-2 m-1" id="botoniniciarSesion"
-          [routerLink]="['/IniciarSesion']" [routerLinkActive]="['btn-success', 'text-white']" *ngIf="!this.localStorage && !this.sessionStorage">Iniciar sesión</button>
+          [routerLink]="['/IniciarSesion']" [routerLinkActive]="['btn-success', 'text-white']" #iniciarSesion (mouseenter)="cambiarColor(iniciarSesion)" (mouseleave)="quitarColor(iniciarSesion)" *ngIf="!this.localStorage && !this.sessionStorage">Iniciar sesión</button>
         <button id="botonRegistrarse" type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/Registrarse']" [routerLinkActive]="['btn-success', 'text-white']"
-          *ngIf="!this.localStorage && !this.sessionStorage">Registrarse</button>
+          *ngIf="!this.localStorage && !this.sessionStorage" #registrarse (mouseenter)="cambiarColor(registrarse)" (mouseleave)="quitarColor(registrarse)">Registrarse</button>
 
         <!-- <button class="btn btn-outline-primary me-2 m-1" *ngIf="this.localStorage ||this.sessionStorage">Mi
           Cuenta</button> -->
         
       </div>
       <li class="nav-item dropdown" *ngIf="this.localStorage ||this.sessionStorage">
-        <a class="btn btn-primary" href="#" id="navbarDarkDropdownMenuLink" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false" >
+        <a  class="btn btn-primary" href="#" id="navbarDarkDropdownMenuLink" role="button" id="miCuenta"
+          data-bs-toggle="dropdown" aria-expanded="false" #miCuenta (click)="limpiarColoresListaMensajes(); cambiarColor(miCuenta)">
           {{nombreUsuario}}
         </a>
         <ul class="dropdown-menu dropdown-menu-dark" id="navbarDropdown" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -55,7 +55,7 @@
           </li>
           <li><button class="dropdown-item" [routerLink]="['/CerrarSesion']">Cerrar Sesión</button></li>
         </ul>
-        <button class="btn btn-warning m-1" [routerLink]="['/ListaMensajes']" [routerLinkActive]="['btn-success']" *ngIf="this.localStorage ||this.sessionStorage">Lista de Mensajes</button>
+        <a role="button" id="listaMensajes" class="btn btn-warning m-1" [routerLink]="['/ListaMensajes']" [routerLinkActive]="['btn-success']" #listaMensajes (click)="limpiarColoresMiCuenta(); cambiarColor(listaMensajes)" *ngIf="this.localStorage ||this.sessionStorage">Lista de Mensajes</a>
       </li>
     </ul>
   </div>
