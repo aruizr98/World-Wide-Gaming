@@ -49,13 +49,17 @@ export class RegistrarseComponent implements OnInit {
         this._usuarioService.guardarUsuario(this.usuario).subscribe(
           response => {
             if (response.usuario) {
-
-              //Subir la foto de perfil
-              this._uploadService.makeFileRequest(Global.url + "subirImagen/" + response.usuario._id, [], this.filesToUpload, "image").then((result: any) => {
+              this.status = true;
+              if(this.usuario.FotoPerfil != ""){
+                //Subir la foto de perfil
+                this._uploadService.makeFileRequest(Global.url + "subirImagen/" + response.usuario._id, [], this.filesToUpload, "image").then((result: any) => {
                 this.status = true;
                 console.log(result);
                 form.reset();
               })
+              }
+              
+              
             }
 
           },
