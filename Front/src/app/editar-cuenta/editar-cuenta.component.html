@@ -30,7 +30,7 @@
           <label for="FotoPerfil" class="mx-1">Foto de perfil: </label>
           <input type="file" name="FotoPerfil" #fotoPerfil="ngModel" [(ngModel)]="usuario.FotoPerfil" placeholder="Subir foto de perfil" (change)="fileChangeEvent($event)" pattern="^.*\.(jpg|JPG|gif|GIF|jpeg|JPEG|png|PNG)$"/>
           <span class="alert alert-danger d-block mt-2 mb-4" *ngIf=" !fotoPerfil.valid">El archivo seleccionado no es una imágen.</span><br/>
-          <button class="btn btn-primary my-3" (click)="elminarFotoPerfil();">Eliminar foto de perfil</button>
+          <button *ngIf="this.usuario.FotoPerfil !='' && this.usuario.FotoPerfil!=null && this.usuario.FotoPerfil!=undefined" class="btn btn-primary my-3" (click)="elminarFotoPerfil();">Eliminar foto de perfil</button>
         <p class="display-6">Redes sociales</p>
         <label class="mb-1">Facebook:</label>
         <input type="text" name="facebook" class="form-control mb-2" placeholder="¡Copia aquí el enlace a tu cuenta de Facebook!" value="{{usuario.Facebook}}" #facebook="ngModel" [(ngModel)]="usuario.Facebook" style="height: 60px;">
