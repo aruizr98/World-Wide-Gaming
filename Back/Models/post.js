@@ -9,6 +9,7 @@ var postSchema=Schema({
     Titulo:String,
     TextoPost:String,
     FechaHora:String,
-    NombreJuego:String
+    NombreJuego:String,
+    NombreForo:String
 });
 module.exports=mongoose.model("Post", postSchema);

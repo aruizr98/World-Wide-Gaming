@@ -12,6 +12,7 @@ var controller={
         post.TextoPost=params.TextoPost;
         post.FechaHora=params.FechaHora;
         post.NombreJuego=params.NombreJuego;
+        post.NombreForo=params.NombreForo;
 
         post.save((err, postStored) =>{
             if(err){
