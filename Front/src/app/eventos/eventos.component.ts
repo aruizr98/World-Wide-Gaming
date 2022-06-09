@@ -66,9 +66,9 @@ export class EventosComponent implements OnInit {
               var numeroApuntados = new Array();
               numeroApuntados = response["eventos"][index].UsuariosApuntados;
               this.getLimiteUsuarios(response["eventos"][index].NombreJuego, index, numeroApuntados.length);
-              caja.setAttribute("class", "border text-center w-25 container cajaEvento m-3");
+              caja.setAttribute("class", "border text-center w-25 container cajaEvento m-3 evento");
               caja.innerHTML = `
-              <div class=''>
+              <div>
                 <h2>`+ response["eventos"][index].Nombre + `</h2>
                 <h4>`+ response["eventos"][index].FechaHora + `</h4>
                 <div><p>`+ response["eventos"][index].Descripcion + `</p></div>
