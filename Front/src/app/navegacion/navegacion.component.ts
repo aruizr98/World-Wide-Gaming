@@ -34,10 +34,8 @@ export class NavegacionComponent implements OnInit {
   limpiarColoresListaMensajes(){
     var enlaces=document.getElementsByClassName("btn m-1 botonNavegacion");
     for (let index = 0; index < enlaces.length; index++) {
-      console.log("a");
       enlaces[index].setAttribute("class", "btn m-1 botonNavegacion");
     }
-    console.log(document.getElementById("listaMensajes"))
     document.getElementById("listaMensajes").setAttribute("style", "");
   }
   limpiarColores(){
