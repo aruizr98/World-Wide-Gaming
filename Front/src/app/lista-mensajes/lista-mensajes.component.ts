@@ -24,7 +24,7 @@ export class ListaMensajesComponent implements OnInit {
               var caja = document.createElement("div");
               let contador=0;
               caja.setAttribute("style", "height:450px;overflow:scroll;")
-              caja.setAttribute("class", "border text-center w-25 container cajaEvento m-3");
+              caja.setAttribute("class", "border text-center w-25 container cajaEvento m-3 mensaje");
               var mensajesCaja = document.getElementById("mensajes");
               for (let j = 0; j < response2["mensajes"].length; j++) {
                 if (response["usuarios"][index]._id == response2["mensajes"][j].Emisor && (response2["mensajes"][j].Receptor == sessionStorage.getItem("idUsuario") || response2["mensajes"][j].Receptor == localStorage.getItem("idUsuario"))) {
