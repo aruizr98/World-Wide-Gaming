@@ -2,10 +2,10 @@ html {
     min-height: 100%;
     position: relative;
 }
-
 body {
     margin: 0;
     margin-bottom: 40px;
+    background-color:#C7C7C7;
 }
 
 footer {
@@ -14,4 +14,28 @@ footer {
     width: 100%;
     height: 40px;
     color: white;
+}
+.evento:hover{
+    transform:scale(1.08);
+}
+.evento{
+    transition:300ms;
+}
+.evento button:hover{
+    transform:scale(1.2);
+}
+.evento button{
+    transition:300ms;
+}
+.mensaje:hover{
+    transform:scale(1.1);
+}
+.mensaje{
+    transition:300ms;
+}
+.mensaje button:hover{
+    transform:scale(1.2);
+}
+.mensaje button{
+    transition:300ms;
 }
