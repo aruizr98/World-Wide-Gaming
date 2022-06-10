@@ -113,7 +113,7 @@ export class BuscarComponent implements OnInit {
         for (let index = 0; index < response["usuarios"].length; index++) {
           if (response["usuarios"][index].NombreUsuario.indexOf(this.busqueda.nombreUsuario) != -1) {
             document.getElementById("resultado").innerHTML += `
-              <div><h5>`+ response["usuarios"][index].NombreUsuario + `</h5><button class='btn btn-primary' onclick="sessionStorage.setItem('agregarUsuario', 'true'); sessionStorage.setItem('usuarioAgregar', '` + response["usuarios"][index]._id + `');sessionStorage.setItem('NombreUsuarioAgregar', '` + response["usuarios"][index].NombreUsuario + `'); location.reload();">Agregar a favoritos</button></div>
+              <div><h5><a class='text-decoration-none text-black ' ng-reflect-router-link="/MiCuenta,`+response["usuarios"][index].NombreUsuario+`" href="/MiCuenta/`+response["usuarios"][index].NombreUsuario+`">`+ response["usuarios"][index].NombreUsuario + `</a></h5></div>
             `
           } else {
             contador++;
