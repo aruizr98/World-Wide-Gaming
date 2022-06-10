@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from "../services/usuario.service";
 import { EventoService } from '../services/evento.service';
 import { Global } from '../services/global';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mi-cuenta',
@@ -21,8 +22,9 @@ export class MiCuentaComponent implements OnInit {
   public youtube:string;
   public fotoPerfil:string;
   public url:string;
+  public visitante:boolean;
 
-  constructor(private _usuarioService: UsuarioService, private _eventoService: EventoService) {this.url=Global.url; }
+  constructor(private _usuarioService: UsuarioService, private _eventoService: EventoService,private route: ActivatedRoute) {this.url=Global.url; }
 
   obtenerInfoEvento(id: string): Array<string> {
     let arrayInfo = new Array<string>();
@@ -43,13 +45,116 @@ export class MiCuentaComponent implements OnInit {
     )
     return arrayInfo;
   }
+  yaExiste(array: Array<string>, elemento: string): boolean {
+    let respuesta = false;
+    for (let index = 0; index < array.length; index++) {
+      if (array[index] == elemento) {
+        respuesta = true;
+      }
+    }
+    return respuesta;
+  }
+  agregarUsuarioFavoritos(usuario:string) {
+    this._usuarioService.listarUsuarios().subscribe(
+      response =>{
+        for (let index = 0; index < response["usuarios"].length; index++) {
+          if(response["usuarios"][index].NombreUsuario==usuario){
+            sessionStorage.setItem("usuarioAgregar", response["usuarios"][index]._id);
+          }
+          
+        }
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    )
+    if (localStorage.getItem("idUsuario")) {
+      this._usuarioService.listarUsuarios().subscribe(
+        response => {
+          for (let index = 0; index < response["usuarios"].length; index++) {
+            if (response["usuarios"][index]._id == localStorage.getItem("idUsuario")) {
+              var favoritosArray = response["usuarios"][index].Favoritos;
+              if(sessionStorage.getItem("usuarioAgregar") == localStorage.getItem("idUsuario")){
+                document.getElementById("yaExisteUsuario").innerText = "No puedes agregar tu propio usuario a favoritos.";
+                document.getElementById("yaExisteUsuario").setAttribute("class", "alert alert-primary text-center d-block my-3 w-50 mx-auto");
+              }else{
+                if (!this.yaExiste(favoritosArray, sessionStorage.getItem("usuarioAgregar"))) {
+                favoritosArray.push(sessionStorage.getItem("usuarioAgregar"));
+                document.getElementById("usuarioAgregado").innerText = "El usuario " + usuario + " ha sido agregado a la lista de favoritos correctamente";
+                document.getElementById("usuarioAgregado").setAttribute("class", "alert alert-success text-center d-block my-3 w-50 mx-auto");
+                this._usuarioService.actualizarListaFavoritos(localStorage.getItem("idUsuario"), favoritosArray).subscribe(
+                  response2 => {
+                    console.log(response2);
+                  },
+                  error => {
+                    console.log(<any>error);
+                  }
+                )
+              } else {
+                document.getElementById("yaExisteUsuario").innerText = "El usuario " +usuario+ " ya está en tu lista de favoritos";
+                document.getElementById("yaExisteUsuario").setAttribute("class", "alert alert-primary text-center d-block my-3 w-50 mx-auto");
+              }
+              }
+            }
+
+
+          }
+        },
+        error => {
+          console.log(<any>error);
+        }
+      )
+    } else {
+      this._usuarioService.listarUsuarios().subscribe(
+        response => {
+          for (let index = 0; index < response["usuarios"].length; index++) {
+            if (response["usuarios"][index]._id == sessionStorage.getItem("idUsuario")) {
+              var favoritosArray = response["usuarios"][index].Favoritos;
+              if(sessionStorage.getItem("usuarioAgregar") == sessionStorage.getItem("idUsuario")){
+                document.getElementById("yaExisteUsuario").innerText = "No puedes agregar tu propio usuario a favoritos.";
+                document.getElementById("yaExisteUsuario").setAttribute("class", "alert alert-primary text-center d-block my-3 w-50 mx-auto");
+              }else{
+                if (!this.yaExiste(favoritosArray, sessionStorage.getItem("usuarioAgregar"))) {
+                favoritosArray.push(sessionStorage.getItem("usuarioAgregar"));
+                document.getElementById("usuarioAgregado").innerText = "El usuario " +usuario+ " ha sido agregado a la lista de favoritos correctamente";
+                document.getElementById("usuarioAgregado").setAttribute("class", "alert alert-success text-center d-block my-3 w-50 mx-auto");
+                this._usuarioService.actualizarListaFavoritos(sessionStorage.getItem("idUsuario"), favoritosArray).subscribe(
+                  response2 => {
+                    console.log(response2);
+                  },
+                  error => {
+                    console.log(<any>error);
+                  }
+                )
+              } else {
+                document.getElementById("yaExisteUsuario").innerText = "El usuario " +usuario+ " ya está en tu lista de favoritos";
+                document.getElementById("yaExisteUsuario").setAttribute("class", "alert alert-primary text-center d-block my-3 w-50 mx-auto");
+              }
+              }
+            }
+          }
+        },
+        error => {
+          console.log(<any>error);
+        }
+      )
+    }
+    sessionStorage.removeItem("agregarUsuario");
+  }
   ngOnInit(): void {
-      //Mostrar nombre de usuario
+    if(this.route.snapshot.paramMap.get("nombreUsuario")){
+      this.nombreUsuario=this.route.snapshot.paramMap.get("nombreUsuario");
+      this.visitante=true;
+    }else{
+      this.visitante=false;
       if(localStorage.getItem("nombreUsuario") != undefined){
         this.nombreUsuario = localStorage.getItem("nombreUsuario");
       }else{
         this.nombreUsuario = sessionStorage.getItem("nombreUsuario");
       }
+    }
+     
+      
       this._usuarioService.listarUsuarios().subscribe(
         response => {
           for (let index = 0; index < response["usuarios"].length; index++) {

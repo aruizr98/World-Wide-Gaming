@@ -1,12 +1,15 @@
 <div class="container">
     <div class="row">
+        <span class="alert alert-primary text-center d-none my-3 w-50 mx-auto" id="yaExisteUsuario"></span>
+        <span class="alert alert-success text-center d-none my-3 w-50 mx-auto" id="usuarioAgregado"></span>
         <h2 class="text-center">Cuenta de {{nombreUsuario}}</h2>
         <div class="col-11"><img class="mb-3" style="width:120px;" src="{{url+'getImagen/'+this.fotoPerfil}}" *ngIf="this.fotoPerfil"/></div>
 
 
         <div class="col-1">
              <!--Esto sólo aparecerá si el usuario es administrador-->
-            <button class="btn btn-primary d-block mb-3" *ngIf="this.administrador"[routerLink]="['/Administrar']">Administrar</button>
+            <button class="btn btn-primary d-block mb-3" *ngIf="this.administrador && !this.visitante"[routerLink]="['/Administrar']">Administrar</button>
+            <button class='btn btn-primary d-block mb-3' (click)="agregarUsuarioFavoritos(this.nombreUsuario )" *ngIf="this.visitante">Agregar a favoritos</button>
         </div>
     </div>
     
@@ -20,8 +23,8 @@
             <ul class="list-unstyled">
                 <li><b>Nombre completo:</b> {{nombreCompleto}}</li>
                 <li><b>Correo:</b> {{correo}}</li>
-                <li *ngIf="this.administrador">Eres administrador</li>
-                <li *ngIf="!this.administrador">No eres administrador</li>
+                <li *ngIf="this.administrador"><b>Administrador: </b>Es administrador</li>
+                <li *ngIf="!this.administrador"><b>Administrador: </b>No es administrador</li>
                 <ul class="list-unstyled">
                     <h4>Mis redes sociales</h4>
                     <li *ngIf="this.facebook"><b>Facebook: </b><a href="{{facebook}}"> {{facebook}}</a></li>
