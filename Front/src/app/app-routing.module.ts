@@ -28,6 +28,7 @@ const routes: Routes = [
   {path:"Eventos", component:EventosComponent},
   {path:"IniciarSesion", component:IniciarSesionComponent},
   {path:"Registrarse", component:RegistrarseComponent},
+  {path:"MiCuenta/:nombreUsuario", component:MiCuentaComponent},
   {path:"MiCuenta", component:MiCuentaComponent},
   {path:"CerrarSesion", component:CerrarSesionComponent},
   {path:"ListaMensajes", component:ListaMensajesComponent},
