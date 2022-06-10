@@ -55,6 +55,9 @@ export class MiCuentaComponent implements OnInit {
     return respuesta;
   }
   agregarUsuarioFavoritos(usuario:string) {
+    if(localStorage.getItem("idUsuario")==null && sessionStorage.getItem("idUsuario")==null){
+      document.getElementById("sesionNoIniciada").setAttribute("class", "alert alert-primary text-center d-block my-3 w-50 mx-auto");
+    }
     this._usuarioService.listarUsuarios().subscribe(
       response =>{
         for (let index = 0; index < response["usuarios"].length; index++) {
