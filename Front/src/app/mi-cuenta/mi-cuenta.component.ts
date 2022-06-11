@@ -18,6 +18,8 @@ export class MiCuentaComponent implements OnInit {
   public twitter:string;
   public instagram:string;
   public discord:string;
+  public epic:string;
+  public steam:string;
   public twitch:string;
   public youtube:string;
   public fotoPerfil:string;
@@ -186,7 +188,9 @@ export class MiCuentaComponent implements OnInit {
               this.twitter=response["usuarios"][index].Twitter;
               this.instagram=response["usuarios"][index].Instagram;
               this.discord=response["usuarios"][index].Discord;
-              this.twitch=response["usuarios"][index].Tiwtch;
+              this.epic=response["usuarios"][index].Epic;
+              this.steam=response["usuarios"][index].Steam;
+              this.twitch=response["usuarios"][index].Twitch;
               this.youtube=response["usuarios"][index].Youtube;
               this.fotoPerfil=response["usuarios"][index].FotoPerfil;
             }
