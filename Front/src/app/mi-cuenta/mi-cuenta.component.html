@@ -26,11 +26,11 @@
         <div class="col-8 text-center offset-1" style="border:1px solid black; height:400px;" id="infoUsuario">
             <h3>Información del usuario</h3>
             <ul class="list-unstyled">
-                <li><b>Nombre completo:</b> {{nombreCompleto}}</li>
-                <li><b>Correo:</b> {{correo}}</li>
-                <li *ngIf="this.administrador"><b>Administrador: </b>Es administrador</li>
-                <li *ngIf="!this.administrador"><b>Administrador: </b>No es administrador</li>
-                <h4>Mis redes sociales</h4>
+                <li class="m-3"><b>Nombre completo:</b> {{nombreCompleto}}</li>
+                <li class="m-3"><b>Correo:</b> {{correo}}</li>
+                <li class="m-3" *ngIf="this.administrador"><b>Administrador: </b>Es administrador</li>
+                <li class="m-3" *ngIf="!this.administrador"><b>Administrador: </b>No es administrador</li>
+                <h4 class="m-3">Mis redes sociales</h4>
                 <span class="m-3" *ngIf="this.facebook"><a href="{{facebook}}"> <svg xmlns="http://www.w3.org/2000/svg"
                             width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                             <path
