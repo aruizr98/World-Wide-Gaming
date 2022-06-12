@@ -10,9 +10,9 @@ import { JuegoService } from 'src/app/services/juego.service';
 export class CrearJuegoComponent implements OnInit {
   public status: boolean;
   public err: Number;
-  public juego: Juego = new Juego("", "", 12);
+  public juego: Juego;
 
-  constructor(private _juegoService: JuegoService) { }
+  constructor(private _juegoService: JuegoService) {this.juego=new Juego("", "", 12) }
 
   ngOnInit(): void {
     this.err = 0;
@@ -22,9 +22,13 @@ export class CrearJuegoComponent implements OnInit {
   guardarJuego(): void {
     this.err = 0;
     var val = document.forms["formulario"]["juego"].value;
+    var val2 = document.forms["formulario"]["numeroJugadores"].value;
     this.juego.NombreJuego = val;
+    this.juego.LimiteUsuarios = val2;
     if (this.juego.NombreJuego == "") {
       this.err = 1;
+    }else if(this.juego.LimiteUsuarios.toString() == ""){
+      this.err = 3;
     } else {
       this._juegoService.listarJuegos().subscribe(
         response => {
@@ -32,6 +36,9 @@ export class CrearJuegoComponent implements OnInit {
             if (this.juego.NombreJuego == response["juegos"][index].NombreJuego) {
               this.err = 2;
             }
+          }
+          if(isNaN(Number(this.juego.LimiteUsuarios))){
+            this.err=4;
           }
           console.log(this.err);
           if (this.err == 0) {
