@@ -14,18 +14,20 @@
         <div id="resultado" class="text-center"></div>
       </div>
       <div *ngIf="status && !correcto" class="row my-4">
-        <form id="formulario" class="mx-auto row">
+        <form #formulario="ngForm" id="formulario" class="mx-auto row">
           <div class="col w-50 border d-flex justify-content-center align-items-center mx-2"
             style="background-color: white;">
             <h4>Juego: {{juego}}</h4>
           </div>
           <div class="col w-50">
             <input type="text" name="nombre" class="form-control form-control-dark"
-              placeholder="Introduce el nuevo nombre del juego" #nombreJuego="ngModel" [(ngModel)]="juegoObjeto.NombreJuego" />
+              placeholder="Introduce el nuevo nombre del juego" #nombreJuego="ngModel" [(ngModel)]="juegoObjeto.NombreJuego" required />
+              <span class="alert alert-danger d-block mt-2 mb-4" *ngIf="nombreJuego.touched && !nombreJuego.valid">No puedes dejar este campo vacío</span>
             <input type="text" name="limite" class="form-control form-control-dark mt-2"
-              placeholder="Introduce el nuevo limite de usuarios" #limite="ngModel" [(ngModel)]="juegoObjeto.LimiteUsuarios" />
+              placeholder="Introduce el nuevo limite de usuarios" #limite="ngModel" [(ngModel)]="juegoObjeto.LimiteUsuarios" maxLength="3" pattern="[0-9 ]{1,3}" required />
+              <span class="alert alert-danger d-block mt-2" *ngIf="limite.touched && !limite.valid">El límite de usuarios es obligatorio y solo puede contener números</span>
           </div>
-          <button class="mt-4 w-100 btn btn-lg btn-primary" name="boton" type="submit"
+          <button [disabled]="!formulario.form.valid" class="mt-4 w-100 btn btn-lg btn-primary" name="boton" type="submit"
             (click)="modificarJuego()">Guardar</button>
           <button class="mt-2 mb-3 w-100 btn btn-lg btn-danger" name="boton" type="button"
             (click)="cancelar()">Cancelar</button>
