@@ -34,7 +34,7 @@ export class ListaMensajesComponent implements OnInit {
                   }
                   localStorage.setItem("mensajes", "true");
                   mensajes = true;
-                  caja.innerHTML += "<br/><p class='d-block m-0 text-start bg-success text-white w-auto my-2 p-1' style='float:left;border-radius:0px 10px 10px 10px'>" + response2["mensajes"][j].Mensaje + "</p><br/>";
+                  caja.innerHTML += "<br/><p class='d-block m-0 text-start text-white w-auto my-2 p-1' style='background-color:#03BB85;float:left;border-radius:0px 10px 10px 10px'>" + response2["mensajes"][j].Mensaje + "</p><br/>";
                 } else if ((response2["mensajes"][j].Emisor == sessionStorage.getItem("idUsuario") || response2["mensajes"][j].Emisor == localStorage.getItem("idUsuario")) && response["usuarios"][index]._id == response2["mensajes"][j].Receptor) {
                   localStorage.setItem("mensajes", "true");
                   mensajes = true;
@@ -42,7 +42,7 @@ export class ListaMensajesComponent implements OnInit {
                     caja.innerHTML += "<div class='text-center'><span><b>" + response["usuarios"][index].NombreUsuario + "</b></span></div>";
                     contador++;
                   }
-                  caja.innerHTML += "<br/><p class='d-block h-auto m-0 text-end w-auto bg-primary text-white my-2 p-1' style='float:right;border-radius:10px 0px 10px 10px'>" + response2["mensajes"][j].Mensaje + "</p><br/>";
+                  caja.innerHTML += "<br/><p class='d-block h-auto m-0 text-end w-auto text-white my-2 p-1' style='background-color:#143D59;float:right;border-radius:10px 0px 10px 10px'>" + response2["mensajes"][j].Mensaje + "</p><br/>";
                 }
 
               }
