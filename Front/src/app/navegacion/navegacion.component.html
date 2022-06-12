@@ -31,9 +31,9 @@
         </a>
       </li>
       <div>
-        <button type="button" class="btn btn-outline-secondary me-2 m-1" id="botoniniciarSesion"
+        <button type="button" class="btn btn-outline-secondary text-white me-2 m-1" id="botoniniciarSesion"
           [routerLink]="['/IniciarSesion']" [routerLinkActive]="['btn-success', 'text-white']" #iniciarSesion (mouseenter)="cambiarColor(iniciarSesion)" (mouseleave)="quitarColor(iniciarSesion)" *ngIf="!this.localStorage && !this.sessionStorage">Iniciar sesión</button>
-        <button id="botonRegistrarse" type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/Registrarse']" [routerLinkActive]="['btn-success', 'text-white']"
+        <button id="botonRegistrarse" type="button" class="btn btn-outline-secondary text-white m-1" [routerLink]="['/Registrarse']" [routerLinkActive]="['btn-success', 'text-white']"
           *ngIf="!this.localStorage && !this.sessionStorage" #registrarse (mouseenter)="cambiarColor(registrarse)" (mouseleave)="quitarColor(registrarse)">Registrarse</button>
 
         <!-- <button class="btn btn-outline-primary me-2 m-1" *ngIf="this.localStorage ||this.sessionStorage">Mi
