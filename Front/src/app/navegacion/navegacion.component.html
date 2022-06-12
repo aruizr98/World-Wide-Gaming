@@ -1,64 +1,87 @@
-<nav id="menu" class="navegacion navbar navbar-expand-md navbar-light bg-light shadow mb-5 bg-white rounded">
+<nav id="menu" class="navegacion navbar navbar-expand-lg navbar-light bg-light shadow mb-5 bg-white rounded">
   <div class="container-fluid contenedor">
-    <div id="cajaLogo" class="col-4">
-      <a id="logo" class="text-decoration-none text-dark" [routerLink]="['/inicio']"><img class="d-inline-block align-text-center" src="assets/images/logo.png"
-          alt="Logo" height="50"><b>World Wide Gaming</b></a>
+    <div id="cajaLogo">
+      <a id="logo" class="text-decoration-none text-dark" [routerLink]="['/inicio']"><img
+          class="d-inline-block align-text-center" src="assets/images/logo.png" alt="Logo" height="50"><b>World Wide
+          Gaming</b></a>
     </div>
-    <ul id="listaMenu" class="nav col-8 justify-content-end">
-      <li class="nav-item dropdown">
-        <a class="btn  m-1 botonNavegacion" #inicio [routerLink]="['/inicio']" [routerLinkActive]="['btn-success']" (click)="limpiarColores(); cerrarIconoMensaje();" (mouseenter)="cambiarColor(inicio)" (mouseleave)="quitarColor(inicio)">
-          Inicio
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="btn m-1 botonNavegacion" #foros href="#" id="navbarDarkDropdownMenuLink" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false" [class.btn-success]="router.isActive('/MenuForo',false)" (click)="limpiarColores(); cerrarIconoMensaje();" (mouseenter)="cambiarColor(foros)" (mouseleave)="quitarColor(foros)" >
-          Foros
-        </a>
-        <ul id="lista" class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-          <li *ngFor="let juego of juegos"><button class="dropdown-item" [routerLink]="['/MenuForo', juego]" (click)="recargar(juego)">{{juego}}</button>
-          </li>
-        </ul>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="btn m-1 botonNavegacion" [routerLink]="['/Eventos']" [routerLinkActive]="['btn-success']" #eventos (click)="limpiarColores(); cerrarIconoMensaje();" (mouseenter)="cambiarColor(eventos)" (mouseleave)="quitarColor(eventos)">
-          Eventos
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="btn m-1 botonNavegacion" [routerLink]="['/BuscarUsuarios']" [routerLinkActive]="['btn-success']" #buscar (click)="limpiarColores(); cerrarIconoMensaje();" (mouseenter)="cambiarColor(buscar)" (mouseleave)="quitarColor(buscar)">
-          Buscar
-        </a>
-      </li>
-      <div>
-        <button type="button" class="btn btn-outline-secondary text-white me-2 m-1" id="botoniniciarSesion"
-          [routerLink]="['/IniciarSesion']" [routerLinkActive]="['btn-success', 'text-white']" #iniciarSesion (mouseenter)="cambiarColor(iniciarSesion)" (mouseleave)="quitarColor(iniciarSesion)" *ngIf="!this.localStorage && !this.sessionStorage">Iniciar sesión</button>
-        <button id="botonRegistrarse" type="button" class="btn btn-outline-secondary text-white m-1" [routerLink]="['/Registrarse']" [routerLinkActive]="['btn-success', 'text-white']"
-          *ngIf="!this.localStorage && !this.sessionStorage" #registrarse (mouseenter)="cambiarColor(registrarse)" (mouseleave)="quitarColor(registrarse)">Registrarse</button>
-
-        <!-- <button class="btn btn-outline-primary me-2 m-1" *ngIf="this.localStorage ||this.sessionStorage">Mi
-          Cuenta</button> -->
-        
-      </div>
-      <li class="nav-item dropdown" *ngIf="this.localStorage ||this.sessionStorage">
-        <a  class="btn btn-primary" href="#" id="navbarDarkDropdownMenuLink" role="button" id="miCuenta"
-          data-bs-toggle="dropdown" aria-expanded="false" #miCuenta (click)="limpiarColoresListaMensajes(); cambiarColor(miCuenta); cerrarIconoMensaje();">
-          {{nombreUsuario}}
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark" id="navbarDropdown" aria-labelledby="navbarDarkDropdownMenuLink">
-          <li><a class="dropdown-item" [routerLink]="['/MiCuenta']">Mi cuenta</a></li>
-          <li><a class="dropdown-item" [routerLink]="['/EditarCuenta']">Editar cuenta</a></li>
-          <li><a class="dropdown-item" style="cursor: pointer;">Amigos</a>
-            <ul class="submenu dropdown-menu dropdown-menu-dark">
-              <li *ngFor="let amigo of amigos"><a class="dropdown-item" [routerLink]="['/MensajeAmigo']" (click)="setAmigo(amigo)">{{amigo}}</a></li>
-            </ul>
-          </li>
-          <li><button class="dropdown-item" [routerLink]="['/CerrarSesion']">Cerrar Sesión</button></li>
-        </ul>
-        <a role="button" id="listaMensajes" class="btn btn-warning m-1" [routerLink]="['/ListaMensajes']" [routerLinkActive]="['btn-success']" #listaMensajes (click)="limpiarColoresMiCuenta(); abrirIconoMensaje(); cambiarColor(listaMensajes)" *ngIf="this.localStorage ||this.sessionStorage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
-        </svg></a>
-      </li>
-    </ul>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-lable="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarNav">
+      <ul id="listaMenu" class="navbar-nav w-100 justify-content-end animarMenu">
+        <li class="nav-item dropdown">
+          <a class="btn  m-1 botonNavegacion" #inicio [routerLink]="['/inicio']" [routerLinkActive]="['btn-success']"
+            (click)="limpiarColores(); cerrarIconoMensaje();" (mouseenter)="cambiarColor(inicio)"
+            (mouseleave)="quitarColor(inicio)">
+            Inicio
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="btn m-1 botonNavegacion" #foros href="#" id="navbarDarkDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false" [class.btn-success]="router.isActive('/MenuForo',false)"
+            (click)="limpiarColores(); cerrarIconoMensaje();" (mouseenter)="cambiarColor(foros)"
+            (mouseleave)="quitarColor(foros)">
+            Foros
+          </a>
+          <ul id="lista" class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li *ngFor="let juego of juegos"><button class="dropdown-item" [routerLink]="['/MenuForo', juego]"
+                (click)="recargar(juego)">{{juego}}</button>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="btn m-1 botonNavegacion" [routerLink]="['/Eventos']" [routerLinkActive]="['btn-success']" #eventos
+            (click)="limpiarColores(); cerrarIconoMensaje();" (mouseenter)="cambiarColor(eventos)"
+            (mouseleave)="quitarColor(eventos)">
+            Eventos
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="btn m-1 botonNavegacion" [routerLink]="['/BuscarUsuarios']" [routerLinkActive]="['btn-success']"
+            #buscar (click)="limpiarColores(); cerrarIconoMensaje();" (mouseenter)="cambiarColor(buscar)"
+            (mouseleave)="quitarColor(buscar)">
+            Buscar
+          </a>
+        </li>
+        <div class="d-flex">
+          <button type="button" class="btn btn-outline-secondary text-white me-2 m-1 boton" id="botoniniciarSesion"
+            [routerLink]="['/IniciarSesion']" [routerLinkActive]="['btn-success', 'text-white']" #iniciarSesion
+            (mouseenter)="cambiarColor(iniciarSesion)" (mouseleave)="quitarColor(iniciarSesion)"
+            *ngIf="!this.localStorage && !this.sessionStorage">Iniciar sesión</button>
+          <button id="botonRegistrarse" type="button" class="btn btn-outline-secondary text-white m-1 boton"
+            [routerLink]="['/Registrarse']" [routerLinkActive]="['btn-success', 'text-white']"
+            *ngIf="!this.localStorage && !this.sessionStorage" #registrarse (mouseenter)="cambiarColor(registrarse)"
+            (mouseleave)="quitarColor(registrarse)">Registrarse</button>
+        </div>
+        <li class="nav-item dropdown" *ngIf="this.localStorage ||this.sessionStorage">
+          <a class="btn btn-primary" href="#" id="navbarDarkDropdownMenuLink" role="button" id="miCuenta"
+            data-bs-toggle="dropdown" aria-expanded="false" #miCuenta
+            (click)="limpiarColoresListaMensajes(); cambiarColor(miCuenta); cerrarIconoMensaje();">
+            {{nombreUsuario}}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" id="navbarDropdown" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/MiCuenta']">Mi cuenta</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/EditarCuenta']">Editar cuenta</a></li>
+            <li><a class="dropdown-item" style="cursor: pointer;">Amigos</a>
+              <ul class="submenu dropdown-menu dropdown-menu-dark">
+                <li *ngFor="let amigo of amigos"><a class="dropdown-item" [routerLink]="['/MensajeAmigo']"
+                    (click)="setAmigo(amigo)">{{amigo}}</a></li>
+              </ul>
+            </li>
+            <li><button class="dropdown-item" [routerLink]="['/CerrarSesion']">Cerrar Sesión</button></li>
+          </ul>
+          <a role="button" id="listaMensajes" class="btn btn-warning m-1" [routerLink]="['/ListaMensajes']"
+            [routerLinkActive]="['btn-success']" #listaMensajes
+            (click)="limpiarColoresMiCuenta(); abrirIconoMensaje(); cambiarColor(listaMensajes)"
+            *ngIf="this.localStorage ||this.sessionStorage"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+              height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+              <path
+                d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+            </svg></a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

@@ -14,9 +14,6 @@
     top: -10px;
 }
 
-.dropdown-menu>li:hover>.submenu {
-    display: block;
-}
 #listaMenu li a{
     color:white;
 }
@@ -43,18 +40,16 @@
   .animarLogo{
     animation-name:animarLogo;
     animation-duration:1s;
+    width: 340px;
   }
   .animarMenu{
     animation-name:animarListaMenu;
     animation-duration:1.5s;
   }
 #cajaLogo{
-   
     border-right: 10px solid green;
     line-height: 70px;
-    display: block;
     height: 70px;
-    width: 17%;
     margin: 0px;
     padding: 0px;
     background-color: white;
@@ -64,4 +59,8 @@
 }
 .contenedor{
     padding-left:0px;
+}
+
+.boton {
+  width: 117px;
 }
