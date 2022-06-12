@@ -66,7 +66,11 @@ export class MensajeAmigoComponent implements OnInit {
       this.err = 1;
     } else {
       this.mensaje.Mensaje = val;
+      if(sessionStorage.getItem("idUsuario")){
       this.mensaje.Emisor = sessionStorage.getItem("idUsuario");
+      }else{
+        this.mensaje.Emisor = localStorage.getItem("idUsuario");
+      }
       if(!sessionStorage.getItem("amigo")){
         this.mensaje.Receptor=sessionStorage.getItem("receptor");
       }
