@@ -11,7 +11,7 @@ export class CarrouselComponent implements OnInit {
 
   ngOnInit(): void {
     document.getElementById("cajaLogo").setAttribute("class", "animarLogo");
-    document.getElementById("navbarNav").setAttribute("class", "collapse navbar-collapse justify-content-end");
+    document.getElementById("navbarNav").setAttribute("class", "collapse navbar-collapse justify-content-end animarMenu");
   }
 
 }
