@@ -7,6 +7,10 @@
     list-style-type: none;
 }
 
+.dropdown-menu>li:hover>.submenu {
+  display: block;
+}
+
 .nav-item .submenu {
     display: none;
     position: absolute;
