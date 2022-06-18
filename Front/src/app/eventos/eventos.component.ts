@@ -26,6 +26,13 @@ export class EventosComponent implements OnInit {
     }
     return respuesta;
   }
+  comprobarSesion(){
+    if(!sessionStorage.getItem("nombreUsuario") && !localStorage.getItem("nombreUsuario")){
+      return true;
+    }else{
+      return false;
+    }
+  }
   getLimiteUsuarios(titulo: string, indice, usuariosApuntados) {
     this._juegoService.listarJuegos().subscribe(
       response => {

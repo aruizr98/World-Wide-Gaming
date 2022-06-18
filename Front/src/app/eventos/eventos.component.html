@@ -6,7 +6,7 @@
     <span class="alert alert-primary d-block" *ngIf="!this.usuarioConectado">Para poder apuntarte a un evento tienes que iniciar sesión.</span>
 </div>
 <div class="text-center">
-    <button class="btn btn-primary my-3" [routerLink]="['/CrearEvento']">Crear evento</button>
+    <button class="btn btn-primary my-3" [routerLink]="['/CrearEvento']" *ngIf="!comprobarSesion()">Crear evento</button>
 </div>
 
 <div id="eventos" class="d-flex flex-wrap justify-content-center">
